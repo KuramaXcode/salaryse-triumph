@@ -968,8 +968,8 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center 15%;
     display: block;
-    /* Ensure no baseline gap */
 }
 
 /* Overlapping Identity Banner */
@@ -1127,22 +1127,16 @@
     min-width: 160px;
 }
 
-/* Export-safe mode: disable compositing effects that create ghost artifacts in html2canvas/PDF */
+/* Export-safe mode: only remove what html2canvas cannot render (backdrop-filter).
+   filter, text-shadow, and box-shadow are kept so the download matches the live card. */
 .character-card.v2.capture-safe,
 .character-card.v2.capture-safe * {
-    filter: none !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
-    text-shadow: none !important;
 }
 
 .character-card.v2.capture-safe .card-identity-bar {
     background: #1c2128 !important;
-    box-shadow: none !important;
-}
-
-.character-card.v2.capture-safe .house-banner-text {
-    background: rgba(255, 215, 0, 0.12) !important;
 }
 
 .character-card.v2 .dossier-insights {

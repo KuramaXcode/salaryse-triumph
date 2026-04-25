@@ -159,14 +159,12 @@ app.post('/api/generate-avatar', async (req, res) => {
       }
 
       input = {
-        size: '2K',
-        width: 2048,
-        height: 1152,
+        width: 1024,
+        height: 1360,
         prompt,
         max_images: 1,
         image_input: imageInput,
-        aspect_ratio: '16:9',
-        // Better adherence to app prompt wording
+        aspect_ratio: '3:4',
         enhance_prompt: false,
         sequential_image_generation: 'disabled',
       };

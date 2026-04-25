@@ -113,17 +113,23 @@ const Result: React.FC<ResultProps> = ({
     ): Promise<string | null> => {
         if (!cardRef.current) return null;
         const sourceNode = cardRef.current;
-        const rect = sourceNode.getBoundingClientRect();
+
+        // Always capture at the card's intended design size (420×800) so the
+        // downloaded image looks identical regardless of the user's screen size.
+        const CARD_W = 420;
+        const CARD_H = 800;
+
         const clone = sourceNode.cloneNode(true) as HTMLElement;
         clone.classList.add('capture-safe');
         clone.classList.add('capture-clone');
-        clone.style.width = `${Math.round(rect.width)}px`;
-        clone.style.height = `${Math.round(rect.height)}px`;
+        clone.style.width = `${CARD_W}px`;
+        clone.style.height = `${CARD_H}px`;
         clone.style.maxWidth = 'none';
         clone.style.maxHeight = 'none';
         clone.style.transform = 'none';
         clone.style.transformOrigin = 'top left';
-        // html2canvas struggles with img object-fit; convert the hero image to a background on capture.
+
+        // html2canvas doesn't honour object-fit on <img>; swap to a CSS background instead.
         const heroImg = clone.querySelector('img.hero-image') as HTMLImageElement | null;
         if (heroImg) {
             const heroSection = heroImg.closest('.card-hero-section') as HTMLElement | null;
@@ -131,28 +137,30 @@ const Result: React.FC<ResultProps> = ({
             if (heroSection && src) {
                 heroSection.style.backgroundImage = `url("${src}")`;
                 heroSection.style.backgroundSize = 'cover';
-                heroSection.style.backgroundPosition = 'center 20%';
+                heroSection.style.backgroundPosition = 'center 15%';
                 heroSection.style.backgroundRepeat = 'no-repeat';
                 heroImg.style.visibility = 'hidden';
             }
         }
+
         const wrapper = document.createElement('div');
         wrapper.className = 'capture-clone-wrapper';
-        wrapper.style.width = `${Math.round(rect.width)}px`;
-        wrapper.style.height = `${Math.round(rect.height)}px`;
+        wrapper.style.width = `${CARD_W}px`;
+        wrapper.style.height = `${CARD_H}px`;
         wrapper.appendChild(clone);
         document.body.appendChild(wrapper);
         try {
             setIsCapturing(true);
             await waitForFonts();
             await waitForImages(clone);
-            setIsCapturing(true);
             const canvas = await html2canvas(clone, {
                 backgroundColor: '#03060d',
                 scale,
                 logging: false,
                 useCORS: true,
                 allowTaint: false,
+                width: CARD_W,
+                height: CARD_H,
             });
             if (format === 'image/jpeg') {
                 return canvas.toDataURL('image/jpeg', 0.9);

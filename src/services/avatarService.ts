@@ -107,7 +107,7 @@ export async function generateAvatar(
     referencePhotoBase64: string | null,
     userDescription: string | null = null,
 ): Promise<AvatarResult> {
-    const isTextOnly = ['imagen', 'flux', 'seedream', 'z-image-turbo'].some((m) => AI_CONFIG.model.includes(m));
+    const isTextOnly = ['imagen', 'flux', 'z-image-turbo'].some((m) => AI_CONFIG.model.includes(m));
     const prompt = buildPrompt(ctx, isTextOnly, userDescription);
 
     if (!AI_CONFIG.enabled) {
