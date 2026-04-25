@@ -23,26 +23,21 @@ interface PromptContext {
     userName: string;
 }
 
-export function buildPrompt(ctx: PromptContext, isTextOnly: boolean, userDescription: string | null = null): string {
+export function buildPrompt(ctx: PromptContext, isTextOnly: boolean): string {
     const style = universeStyles[ctx.universe];
     const houseAccent = houseAccents[ctx.house] || '';
     const traitDesc = traitDescriptions[ctx.trait] || '';
 
     const promptParts = [
         `Subject: A person styled as a ${ctx.house} member from ${ctx.universe.toUpperCase()}.`,
-    ];
-
-    void userDescription;
-    promptParts.push('The person looks like: realistic human portrait matching the uploaded selfie, preserving facial identity and hair details.');
-
-    promptParts.push(
+        'The person looks like: realistic human portrait matching the uploaded selfie, preserving facial identity and hair details.',
         `Art Style: ${style.artStyle}.`,
         `Setting: ${style.setting}.`,
         `Lighting & Mood: ${style.mood}.`,
         `Vibe: ${traitDesc}.`,
         `Specific Details: ${houseAccent}.`,
         ...getBaseInstructions(isTextOnly)
-    );
+    ];
 
     const prompt = promptParts.join(' ');
 
@@ -53,41 +48,7 @@ export function buildPrompt(ctx: PromptContext, isTextOnly: boolean, userDescrip
     return prompt;
 }
 
-// ── Photo Description (Step 1 of Two-Step Pipeline) ──
-
-export async function describeUserPhoto(base64Image: string): Promise<string | null> {
-    try {
-        console.log('👁️ Extracting user features via backend vision API...');
-        const response = await fetch('/api/describe-photo', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                imageBase64: base64Image,
-            }),
-        });
-
-        if (!response.ok) {
-            const errData = await response.json().catch(() => ({}));
-            throw new Error(`Vision API error: ${response.status} - ${JSON.stringify(errData)}`);
-        }
-
-        const data = await response.json();
-        const description = typeof data.description === 'string' ? data.description.trim() : '';
-
-        console.log('👁️ Vision Description:', description);
-        if (!description || description.length < 5) {
-            console.warn('Vision description too short, returning null');
-            return null;
-        }
-
-        return description;
-    } catch (err) {
-        console.error('Failed to describe user photo:', err);
-        return null;
-    }
-}
-
-// ── Avatar Generation (Step 2 of Two-Step Pipeline) ──
+// ── Avatar Generation ──
 
 export interface AvatarResult {
     success: boolean;
@@ -98,17 +59,12 @@ export interface AvatarResult {
     modelName: string;
 }
 
-/**
- * Generate an AI avatar based on the quiz result and reference photo.
- * Returns a base64 image or URL depending on the provider.
- */
 export async function generateAvatar(
     ctx: PromptContext,
     referencePhotoBase64: string | null,
-    userDescription: string | null = null,
 ): Promise<AvatarResult> {
     const isTextOnly = ['imagen', 'flux', 'z-image-turbo'].some((m) => AI_CONFIG.model.includes(m));
-    const prompt = buildPrompt(ctx, isTextOnly, userDescription);
+    const prompt = buildPrompt(ctx, isTextOnly);
 
     if (!AI_CONFIG.enabled) {
         return { success: false, imageBase64: null, imageUrl: null, error: 'AI generation disabled', prompt, modelName: 'none' };

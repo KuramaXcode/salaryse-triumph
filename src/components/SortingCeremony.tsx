@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import './SortingCeremony.css';
 import { type FinalResult, type HouseVariant } from './Quiz';
 import { playReveal, playKeystroke } from '../hooks/useSound';
@@ -60,6 +60,15 @@ const SortingCeremony: React.FC<SortingCeremonyProps> = ({ theme, result, onReve
     const [isTyping, setIsTyping] = useState(true);
     const [intensity, setIntensity] = useState(0);
     const messages = messageMap[theme];
+
+    const particleSeeds = useMemo(() =>
+        Array.from({ length: 70 }, () => ({
+            left: Math.random() * 100,
+            duration: 2 + Math.random() * 4,
+            delay: Math.random() * 2,
+            baseSize: 2 + Math.random() * 4,
+        })),
+    []);
 
     // Typing effect
     useEffect(() => {
@@ -153,16 +162,16 @@ const SortingCeremony: React.FC<SortingCeremonyProps> = ({ theme, result, onReve
     return (
         <div className={`ceremony-container ${theme}`} style={{ '--intensity': intensity } as React.CSSProperties}>
             <div className="particles">
-                {Array.from({ length: 40 + Math.round(intensity * 30) }).map((_, i) => (
+                {particleSeeds.slice(0, 40 + Math.round(intensity * 30)).map((p, i) => (
                     <div
                         key={i}
                         className="particle"
                         style={{
-                            left: `${Math.random() * 100}%`,
-                            animationDuration: `${2 + Math.random() * 4}s`,
-                            animationDelay: `${Math.random() * 2}s`,
-                            width: `${2 + Math.random() * (4 + intensity * 4)}px`,
-                            height: `${2 + Math.random() * (4 + intensity * 4)}px`,
+                            left: `${p.left}%`,
+                            animationDuration: `${p.duration}s`,
+                            animationDelay: `${p.delay}s`,
+                            width: `${p.baseSize + intensity * 4}px`,
+                            height: `${p.baseSize + intensity * 4}px`,
                         }}
                     />
                 ))}

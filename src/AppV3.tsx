@@ -211,7 +211,6 @@ function AppV3() {
           userName: userName,
         },
         sourcePhoto,
-        null
       );
     })();
 
