@@ -21,31 +21,6 @@ function parseBody(body) {
   return body;
 }
 
-// GAS web apps respond with a 302 redirect. Node fetch follows it but converts
-// POST → GET (standard 302 behaviour), which hits doGet instead of doPost.
-// Fix: intercept the redirect and re-POST to the final URL.
-async function postToGAS(url, bodyString) {
-  const first = await fetch(url, {
-    method: 'POST',
-    headers: { 'Content-Type': 'text/plain' },
-    body: bodyString,
-    redirect: 'manual',
-  });
-
-  if (first.status >= 300 && first.status < 400) {
-    const location = first.headers.get('location');
-    if (location) {
-      return fetch(location, {
-        method: 'POST',
-        headers: { 'Content-Type': 'text/plain' },
-        body: bodyString,
-      });
-    }
-  }
-
-  return first;
-}
-
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ status: 'error', message: 'Method not allowed' });
@@ -59,7 +34,11 @@ export default async function handler(req, res) {
   }
 
   try {
-    const upstream = await postToGAS(webhookUrl, JSON.stringify(payload));
+    const upstream = await fetch(webhookUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify(payload),
+    });
 
     const raw = await upstream.text();
     let parsed;

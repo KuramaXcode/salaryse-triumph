@@ -133,6 +133,7 @@ const Result: React.FC<ResultProps> = ({
     const captureCardImage = async (
         format: 'image/png' | 'image/jpeg' = 'image/png',
         scale = 2,
+        quality = 0.9,
     ): Promise<string | null> => {
         if (!cardRef.current) return null;
         const sourceNode = cardRef.current;
@@ -186,7 +187,7 @@ const Result: React.FC<ResultProps> = ({
                 height: CARD_H,
             });
             if (format === 'image/jpeg') {
-                return canvas.toDataURL('image/jpeg', 0.9);
+                return canvas.toDataURL('image/jpeg', quality);
             }
             return canvas.toDataURL('image/png');
         } catch (err) {
@@ -245,10 +246,11 @@ const Result: React.FC<ResultProps> = ({
             if (cancelled) return;
             captureAttemptRef.current += 1;
             try {
-                const dataUrl = await captureCardImage('image/jpeg');
-                if (dataUrl) {
+                const dataUrl = await captureCardImage('image/jpeg', 2, 0.9);
+                const uploadUrl = await captureCardImage('image/jpeg', 1, 0.65);
+                if (dataUrl && uploadUrl) {
                     setCachedCardImage(dataUrl);
-                    onCaptureReady(dataUrl, 'v2');
+                    onCaptureReady(uploadUrl, 'v2');
                     uploadedCycleRef.current = captureCycle;
                     return;
                 }
