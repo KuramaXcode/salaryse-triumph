@@ -508,7 +508,7 @@ const Result: React.FC<ResultProps> = ({
                 <div className="primary-action-btn print-btn disabled">
                     TAP CARD TO OPEN
                 </div>
-                {qrCodeUrl && (
+                {cardReady && (
                     <button className="primary-action-btn scan-btn" onClick={() => setShowQR(true)}>
                         SCAN TO DOWNLOAD
                     </button>
@@ -518,15 +518,28 @@ const Result: React.FC<ResultProps> = ({
                 </button>
             </div>
 
-            {showQR && qrCodeUrl && (
+            {showQR && (
                 <div className="qr-overlay" onClick={() => setShowQR(false)}>
                     <div className="qr-modal" onClick={(e) => e.stopPropagation()}>
-                        <p className="qr-eyebrow">SCAN WITH YOUR PHONE CAMERA</p>
-                        <div className="qr-frame">
-                            <img src={qrCodeUrl} alt="Download QR Code" className="qr-image" />
-                        </div>
-                        <p className="qr-sub">Opens a download page in your browser</p>
-                        <p className="qr-sub">Card + AI Portrait — no app needed</p>
+                        {qrCodeUrl ? (
+                            <>
+                                <p className="qr-eyebrow">SCAN WITH YOUR PHONE CAMERA</p>
+                                <div className="qr-frame">
+                                    <img src={qrCodeUrl} alt="Download QR Code" className="qr-image" />
+                                </div>
+                                <p className="qr-sub">Opens a download page in your browser</p>
+                                <p className="qr-sub">Card + AI Portrait — no app needed</p>
+                            </>
+                        ) : (
+                            <>
+                                <p className="qr-eyebrow">PREPARING YOUR DOWNLOAD</p>
+                                <div className="qr-preparing">
+                                    <div className="qr-spinner"></div>
+                                    <p className="qr-sub">Uploading card to cloud...</p>
+                                    <p className="qr-sub">This takes a few seconds. Close and try again shortly.</p>
+                                </div>
+                            </>
+                        )}
                         <button className="qr-close-btn" onClick={() => setShowQR(false)}>
                             CLOSE
                         </button>
