@@ -298,14 +298,19 @@ function AppV3() {
     if (version !== 'v2') return;
     setLatestCardImageData(imageData);
     const uploadRes = await uploadPhotoToDrive(userName, imageData, 'result', 'v2');
-    if (uploadRes.success && uploadRes.photoUrl) {
+    const isRealDriveUrl = (url: string | null) =>
+      typeof url === 'string' && url.startsWith('https://drive.google.com/file/d/');
+
+    if (uploadRes.success && isRealDriveUrl(uploadRes.photoUrl)) {
       setResultCardUrl(uploadRes.photoUrl);
       setFinalizeMessage('Card uploaded and ready to finalize.');
-    } else if (!uploadRes.success) {
-      setFinalizeMessage(uploadRes.error || 'Card upload failed. Please retry art once, then finalize again.');
+    } else {
+      const hint = uploadRes.photoUrl?.startsWith('Upload Error')
+        ? 'Drive access denied — run runPermissionCheck() in your GAS script to authorize DriveApp.'
+        : (uploadRes.error || 'Card upload failed.');
+      console.warn('⚠️ Card Drive upload failed:', hint);
       setResultCardUrl(null);
     }
-    console.log('🖼️ Final Result Card (V2) uploaded to Drive');
   };
 
   const handleRetryArt = () => {
