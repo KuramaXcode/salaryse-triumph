@@ -232,6 +232,10 @@ app.get('/api/image-proxy', async (req, res) => {
     const buffer = Buffer.from(await upstream.arrayBuffer());
     res.setHeader('Content-Type', contentType);
     res.setHeader('Cache-Control', 'public, max-age=3600');
+    if (req.query.download === '1') {
+      const filename = req.query.filename || 'download.jpg';
+      res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+    }
     return res.status(200).send(buffer);
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
@@ -262,6 +266,11 @@ app.post('/api/sheet-proxy', async (req, res) => {
     const message = error instanceof Error ? error.message : String(error);
     return res.status(500).json({ status: 'error', message });
   }
+});
+
+app.get('/api/download-page', async (req, res) => {
+  const { default: handler } = await import('./api/download-page.js');
+  handler({ query: req.query, headers: req.headers }, res);
 });
 
 if (process.env.SERVE_DIST === 'true') {

@@ -73,6 +73,7 @@ function AppV3() {
   const [isFinalizingCard, setIsFinalizingCard] = useState(false);
   const [finalizeMessage, setFinalizeMessage] = useState<string | null>(null);
   const [healthWarning, setHealthWarning] = useState<string | null>(null);
+  const [avatarDriveUrl, setAvatarDriveUrl] = useState<string | null>(null);
 
   // Pre-fetch state for AI Vision Model
 
@@ -224,7 +225,9 @@ function AppV3() {
 
       if (avatarRes.success && avatarRes.imageBase64) {
         console.log("Initiating AI Avatar upload to Drive...");
-        uploadPhotoToDrive(userName, avatarRes.imageBase64, 'avatar').catch(e => console.error("AI Avatar Drive upload failed", e));
+        uploadPhotoToDrive(userName, avatarRes.imageBase64, 'avatar')
+          .then(r => { if (r.success && r.photoUrl) setAvatarDriveUrl(r.photoUrl); })
+          .catch(e => console.error("AI Avatar Drive upload failed", e));
       }
       setAvatarResult(avatarRes);
       setIsGeneratingAvatar(false);
@@ -350,6 +353,7 @@ function AppV3() {
     setResultCardUrl(null);
     setLatestCardImageData(null);
     setFinalizeMessage(null);
+    setAvatarDriveUrl(null);
     avatarPromiseRef.current = null;
     goToStep('universe');
   };
@@ -368,6 +372,7 @@ function AppV3() {
     setResultCardUrl(null);
     setLatestCardImageData(null);
     setFinalizeMessage(null);
+    setAvatarDriveUrl(null);
     avatarPromiseRef.current = null;
   };
 
@@ -543,6 +548,8 @@ function AppV3() {
               isFinalizing={isFinalizingCard}
               finalizeMessage={finalizeMessage}
               captureCycle={cardCaptureCycle}
+              cardDriveUrl={resultCardUrl}
+              avatarDriveUrl={avatarDriveUrl}
             />
           )}
         </main>

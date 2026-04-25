@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import './Result.css';
 import { type FinalResult, type HouseVariant } from './Quiz';
 import html2canvas from 'html2canvas';
@@ -23,6 +23,8 @@ interface ResultProps {
     isFinalizing?: boolean;
     finalizeMessage?: string | null;
     captureCycle?: number;
+    cardDriveUrl?: string | null;
+    avatarDriveUrl?: string | null;
 }
 
 const houseDetails: Record<string, { motto: string; traits: string[]; color: string }> = {
@@ -65,9 +67,12 @@ const Result: React.FC<ResultProps> = ({
     isFinalizing = false,
     finalizeMessage = null,
     captureCycle = 0,
+    cardDriveUrl = null,
+    avatarDriveUrl = null,
 }) => {
     const [showPrompt, setShowPrompt] = useState(false);
     const [cardReady, setCardReady] = useState(false);
+    const [showQR, setShowQR] = useState(false);
     const [isCapturing, setIsCapturing] = useState(false);
     const [heroImageLoaded, setHeroImageLoaded] = useState(false);
     const [cachedCardImage, setCachedCardImage] = useState<string | null>(null);
@@ -80,6 +85,24 @@ const Result: React.FC<ResultProps> = ({
 
     const details = houseDetails[result.house] || { motto: '', traits: [], color: '#333' };
     const dossier = getDossierInsights(result.scores, result.house);
+
+    const extractDriveId = (url: string) => url.match(/\/d\/([a-zA-Z0-9_-]+)/)?.[1] ?? null;
+
+    const downloadPageUrl = useMemo(() => {
+        if (!cardDriveUrl) return null;
+        const cardId = extractDriveId(cardDriveUrl);
+        if (!cardId) return null;
+        const avatarId = avatarDriveUrl ? extractDriveId(avatarDriveUrl) : null;
+        const base = typeof window !== 'undefined' ? window.location.origin : '';
+        const params = new URLSearchParams({ card: cardId, name: userName, house: result.house });
+        if (avatarId) params.set('avatar', avatarId);
+        return `${base}/api/download-page?${params.toString()}`;
+    }, [cardDriveUrl, avatarDriveUrl, userName, result.house]);
+
+    const qrCodeUrl = useMemo(() => {
+        if (!downloadPageUrl) return null;
+        return `https://api.qrserver.com/v1/create-qr-code/?size=260x260&data=${encodeURIComponent(downloadPageUrl)}&color=ffd700&bgcolor=03060d&margin=12`;
+    }, [downloadPageUrl]);
 
     const waitForFonts = async () => {
         if (document.fonts && 'ready' in document.fonts) {
@@ -485,10 +508,31 @@ const Result: React.FC<ResultProps> = ({
                 <div className="primary-action-btn print-btn disabled">
                     TAP CARD TO OPEN
                 </div>
+                {qrCodeUrl && (
+                    <button className="primary-action-btn scan-btn" onClick={() => setShowQR(true)}>
+                        SCAN TO DOWNLOAD
+                    </button>
+                )}
                 <button className="secondary-action-btn restart-btn" onClick={onRestart}>
                     BEGIN NEW CEREMONY
                 </button>
             </div>
+
+            {showQR && qrCodeUrl && (
+                <div className="qr-overlay" onClick={() => setShowQR(false)}>
+                    <div className="qr-modal" onClick={(e) => e.stopPropagation()}>
+                        <p className="qr-eyebrow">SCAN WITH YOUR PHONE CAMERA</p>
+                        <div className="qr-frame">
+                            <img src={qrCodeUrl} alt="Download QR Code" className="qr-image" />
+                        </div>
+                        <p className="qr-sub">Opens a download page in your browser</p>
+                        <p className="qr-sub">Card + AI Portrait — no app needed</p>
+                        <button className="qr-close-btn" onClick={() => setShowQR(false)}>
+                            CLOSE
+                        </button>
+                    </div>
+                </div>
+            )}
 
             {showCardModal && modalImage && (
                 <div className="card-preview-overlay" onClick={() => setShowCardModal(false)}>

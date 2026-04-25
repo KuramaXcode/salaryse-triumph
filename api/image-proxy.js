@@ -15,6 +15,12 @@ export default async function handler(req, res) {
 
     res.setHeader('Content-Type', contentType);
     res.setHeader('Cache-Control', 'public, max-age=3600');
+
+    if (req.query.download === '1') {
+      const filename = req.query.filename || 'download.jpg';
+      res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+    }
+
     res.status(200).send(buffer);
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
