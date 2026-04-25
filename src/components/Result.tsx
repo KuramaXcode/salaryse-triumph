@@ -79,7 +79,7 @@ const Result: React.FC<ResultProps> = ({
     const captureAttemptRef = useRef(0);
 
     const details = houseDetails[result.house] || { motto: '', traits: [], color: '#333' };
-    const dossier = getDossierInsights(result.scores);
+    const dossier = getDossierInsights(result.scores, result.house);
 
     const waitForFonts = async () => {
         if (document.fonts && 'ready' in document.fonts) {

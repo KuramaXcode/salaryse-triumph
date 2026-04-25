@@ -18,270 +18,182 @@ export interface Question {
     answers: Answer[];
 }
 
+// ── Harry Potter ──────────────────────────────────────────────────────────────
+
 const hpQuestions: Question[] = [
     {
         id: 'hp_1',
-        text: 'You receive your first paycheck as a newly graduated wizard. What\'s your first move?',
+        text: 'The Sorting Hat whispers it sees two paths ahead. One guarantees a comfortable, stable life. The other holds extraordinary power — but a real chance of losing everything. Which calls to you?',
         answers: [
-            { text: 'Splurge on immediate upgrades for my broomstick and wardrobe! (Easy come, easy go)', trait: 'risk_taker', points: 3 },
-            { text: 'Start a detailed ledger of my living expenses in Diagon Alley.', trait: 'analytical', points: 3 },
-            { text: 'Use it to buy rare potion ingredients in bulk to sell for a profit later.', trait: 'wealth_builder', points: 3 },
-            { text: 'Hide most of it securely in my Gringotts vault for a rainy day.', trait: 'cautious_saver', points: 3 },
+            { text: 'The risky path. If I fall, at least I fell reaching for something extraordinary.', trait: 'risk_taker', points: 3 },
+            { text: 'I need the exact odds and expected outcomes of each path before I decide anything.', trait: 'analytical', points: 3 },
+            { text: 'The risky path — but I\'ll spend tonight studying every possible advantage I can gain first.', trait: 'wealth_builder', points: 3 },
+            { text: 'The safe path. Consistent comfort compounds into something extraordinary over a lifetime.', trait: 'cautious_saver', points: 3 },
         ]
     },
     {
         id: 'hp_2',
-        text: 'A mysterious wizard offers you an investment in a "guaranteed" magical artifact. How do you respond?',
+        text: 'You\'ve just discovered a forgotten Gringotts vault stuffed with 10,000 Galleons. The goblins confirm it\'s legally yours. What\'s your very first move?',
         answers: [
-            { text: 'I trust my gut and invest everything for the chance at a massive return.', trait: 'risk_taker', points: 3 },
-            { text: 'I demand to see the artifact\'s historical magical appraisal and return projections.', trait: 'analytical', points: 3 },
-            { text: 'I negotiate to only invest if I get exclusive distribution rights.', trait: 'wealth_builder', points: 3 },
-            { text: 'I politely decline. I only put my Galleons into Gringotts-approved funds.', trait: 'cautious_saver', points: 3 },
+            { text: 'Invest the entire vault in a volatile new magical enterprise. Fortune favours the bold.', trait: 'risk_taker', points: 3 },
+            { text: 'Map every investment category in the wizarding economy before touching a single Galleon.', trait: 'analytical', points: 3 },
+            { text: 'Use it as leverage to acquire a controlling stake in Weasleys\' Wizard Wheezes.', trait: 'wealth_builder', points: 3 },
+            { text: 'Move it to the most secure Gringotts vault tier and protect it first. Everything else can wait.', trait: 'cautious_saver', points: 3 },
         ]
     },
     {
         id: 'hp_3',
-        text: 'Your friend wants to borrow money to start a joke shop. What do you do?',
+        text: 'A shady wizard offers you a "guaranteed" 10x return on your Galleons in 30 days. Everyone around you is rushing to sign. Your gut says...?',
         answers: [
-            { text: 'Ask to see their business plan and target market analysis first.', trait: 'analytical', points: 3 },
-            { text: 'Give them the money! It sounds like a fun adventure.', trait: 'risk_taker', points: 3 },
-            { text: 'Give them the money, but only after making them sign a contract giving me 25% of the profits.', trait: 'wealth_builder', points: 3 },
-            { text: 'Tell them I\'d rather help them build a budget than risk my own savings.', trait: 'cautious_saver', points: 3 },
+            { text: 'I\'m in. The potential 10x is worth the risk of losing it all.', trait: 'risk_taker', points: 3 },
+            { text: 'I demand a full audit of their books and a verified sample transaction before committing anything.', trait: 'analytical', points: 3 },
+            { text: 'I invest a small amount first — if it pays out, I negotiate for a bigger cut with exclusive terms.', trait: 'wealth_builder', points: 3 },
+            { text: 'Hard pass. In the wizarding world, if it sounds too good to be true, it\'s always a trap.', trait: 'cautious_saver', points: 3 },
         ]
     },
-    {
-        id: 'hp_4',
-        text: 'You discover a spell that can double your money, but it has a 30% chance of vanishing it entirely. Do you cast it?',
-        answers: [
-            { text: 'Absolutely! A 70% chance to double is a risk worth taking.', trait: 'risk_taker', points: 3 },
-            { text: 'I force someone else to cast it on a small amount of my money first to test the risk.', trait: 'wealth_builder', points: 3 },
-            { text: 'Never. I work too hard for my Galleons to risk them vanishing.', trait: 'cautious_saver', points: 3 },
-            { text: 'I would calculate if the expected value outpaces my current interest rates before deciding.', trait: 'analytical', points: 3 },
-        ]
-    },
-    {
-        id: 'hp_5',
-        text: 'What is your ultimate financial goal in the magical world?',
-        answers: [
-            { text: 'Having enough wealth to live comfortably without ever worrying about surprise expenses.', trait: 'cautious_saver', points: 3 },
-            { text: 'Achieving perfect financial efficiency so my money works for me invisibly.', trait: 'analytical', points: 3 },
-            { text: 'Using my wealth to gain influence, power, and the finest magical items.', trait: 'wealth_builder', points: 3 },
-            { text: 'Having the freedom to fund wild expeditions and dangerous magical experiments.', trait: 'risk_taker', points: 3 },
-        ]
-    }
 ];
+
+// ── Game of Thrones ───────────────────────────────────────────────────────────
 
 const gotQuestions: Question[] = [
     {
         id: 'got_1',
-        text: 'You inherit a small piece of land in Westeros. What\'s your strategy?',
+        text: 'The Iron Throne is empty. Every Great House is rallying. You have one season to prepare before the war begins. What do you do with the crown\'s treasury?',
         answers: [
-            { text: 'Build modest defenses and stockpile food for the winter.', trait: 'cautious_saver', points: 3 },
-            { text: 'Survey the land for natural resources and calculate crop yields for the next decade.', trait: 'analytical', points: 3 },
-            { text: 'Immediately pledge it to a larger house in exchange for a massive loan to throw a huge tournament.', trait: 'risk_taker', points: 3 },
-            { text: 'Start taxing the local peasants heavily to build my own personal army.', trait: 'wealth_builder', points: 3 },
+            { text: 'March immediately. Strike before anyone else can consolidate power.', trait: 'risk_taker', points: 3 },
+            { text: 'Survey every house\'s bannermen, outstanding debts, and secret alliances. Information is the real weapon.', trait: 'analytical', points: 3 },
+            { text: 'Forge a loan deal with the Iron Bank of Braavos. Whoever controls Westeros\'s debt controls Westeros.', trait: 'wealth_builder', points: 3 },
+            { text: 'Fortify my own castle and stockpile grain. Let the others bleed each other out before I move.', trait: 'cautious_saver', points: 3 },
         ]
     },
     {
         id: 'got_2',
-        text: 'Winter is finally here. How did you prepare financially?',
+        text: 'Chaos erupts in King\'s Landing. Your advisors give you three minutes: burn assets and flee, hold everything, or buy while others panic. You...',
         answers: [
-            { text: 'I established lucrative trade routes with Essos years ago to keep my wealth growing.', trait: 'wealth_builder', points: 3 },
-            { text: 'I saved every copper I could and avoided all unnecessary spending for years.', trait: 'cautious_saver', points: 3 },
-            { text: 'I calculated the exact amount of grain needed per person and bought it during the summer dip.', trait: 'analytical', points: 3 },
-            { text: 'I didn\'t. I\'ll just conquer a neighboring castle if I need resources.', trait: 'risk_taker', points: 3 },
+            { text: 'Buy everything in sight. Chaos is just opportunity wearing a bad reputation.', trait: 'risk_taker', points: 3 },
+            { text: 'Buy only the three assets my models predict will recover fastest once order is restored.', trait: 'analytical', points: 3 },
+            { text: 'Acquire distressed properties and trade routes at rock-bottom prices to build an empire from the ashes.', trait: 'wealth_builder', points: 3 },
+            { text: 'Hold everything and wait. Patience has kept my family\'s gold intact through four kings.', trait: 'cautious_saver', points: 3 },
         ]
     },
     {
         id: 'got_3',
-        text: 'A powerful merchant offers you a loan with very high interest to fund a war. Do you take it?',
+        text: 'A raven arrives: the Iron Bank is calling in debts from all your rivals simultaneously, and privately offers YOU a massive loan at 2% interest. What do you do?',
         answers: [
-            { text: 'Yes, if winning the war means I can seize their bank later and cancel the debt.', trait: 'wealth_builder', points: 3 },
-            { text: 'Yes! I need the gold now to win the glory, I\'ll figure out how to pay it back later.', trait: 'risk_taker', points: 3 },
-            { text: 'Only if my strategists determine the war effort has an 80%+ chance of success.', trait: 'analytical', points: 3 },
-            { text: 'I prefer to avoid debt entirely, relying only on what my own lands produce.', trait: 'cautious_saver', points: 3 },
+            { text: 'Take everything they\'ll give me and bet it all on a lightning military campaign right now.', trait: 'risk_taker', points: 3 },
+            { text: 'Calculate the exact ROI needed to justify every possible use of the loan before signing.', trait: 'analytical', points: 3 },
+            { text: 'Take it, but only to buy strategic assets — ports, mines, grain stores that outlast any war.', trait: 'wealth_builder', points: 3 },
+            { text: 'Decline entirely. I will not owe the Iron Bank anything. My house survives debt-free or not at all.', trait: 'cautious_saver', points: 3 },
         ]
     },
-    {
-        id: 'got_4',
-        text: 'You\'ve acquired a rare, valuable Valyrian steel sword. What\'s your financial play?',
-        answers: [
-            { text: 'Have it appraised and use it as collateral to secure massive loans at favorable rates.', trait: 'analytical', points: 3 },
-            { text: 'Sell it to the highest bidder to fund my campaign for the Iron Throne.', trait: 'wealth_builder', points: 3 },
-            { text: 'Lock it deep in my family\'s vault as the ultimate emergency fund asset.', trait: 'cautious_saver', points: 3 },
-            { text: 'Wield it in battle to strike fear into my enemies and claim their lands.', trait: 'risk_taker', points: 3 },
-        ]
-    },
-    {
-        id: 'got_5',
-        text: 'What makes a great leader of a Great House?',
-        answers: [
-            { text: 'Having the largest gold reserves to buy loyalty whenever needed.', trait: 'wealth_builder', points: 3 },
-            { text: 'The audacity to make high-stakes gambles that reshape the entire map.', trait: 'risk_taker', points: 3 },
-            { text: 'The ability to outsmart opponents through superior economic data networks.', trait: 'analytical', points: 3 },
-            { text: 'Never putting the family\'s core assets at risk, ensuring survival across generations.', trait: 'cautious_saver', points: 3 },
-        ]
-    }
 ];
+
+// ── Marvel ────────────────────────────────────────────────────────────────────
 
 const marvelQuestions: Question[] = [
     {
         id: 'marvel_1',
-        text: 'Stark Industries offers you a massive signing bonus. What do you do with it?',
+        text: 'Tony Stark calls personally. He\'s offering you a seat on the Avengers\' financial board — but the salary is entirely in volatile Stark Industries stock options, not cash. "I\'m betting on myself," he says. Do you take it?',
         answers: [
-            { text: 'Start a high-tech venture capital firm to fund the next big startup.', trait: 'wealth_builder', points: 3 },
-            { text: 'Invest it entirely in a promising but volatile energy sector stock.', trait: 'risk_taker', points: 3 },
-            { text: 'Analyze global market trends and diversify across 12 different sectors.', trait: 'analytical', points: 3 },
-            { text: 'Put it in a high-yield savings account and stick to my original financial plan.', trait: 'cautious_saver', points: 3 },
+            { text: 'Absolutely. If Tony Stark is betting on himself, I\'m betting alongside him.', trait: 'risk_taker', points: 3 },
+            { text: 'Send me the last 10 years of Stark Industries financials and the full options vesting schedule first.', trait: 'analytical', points: 3 },
+            { text: 'Yes — but I\'m negotiating for double the options and a board seat with actual voting rights.', trait: 'wealth_builder', points: 3 },
+            { text: 'No. I need a stable cash salary. I can\'t pay rent with options in a company attacked by aliens.', trait: 'cautious_saver', points: 3 },
         ]
     },
     {
         id: 'marvel_2',
-        text: 'You discover a new element that could revolutionize clean energy. How do you monetize it?',
+        text: 'A Quantum Realm anomaly lets you see three possible futures. In two of them, early investors in vibranium-backed tokens become billionaires. In one, it collapses to zero. You have ₹5,00,000 to deploy right now. What do you do?',
         answers: [
-            { text: 'Patent it immediately and license it exclusively to the highest bidders.', trait: 'wealth_builder', points: 3 },
-            { text: 'Launch a massive IPO and hype it up before the tech is fully proven.', trait: 'risk_taker', points: 3 },
-            { text: 'Run extensive cost-benefit analyses on production and supply chain logistics before moving.', trait: 'analytical', points: 3 },
-            { text: 'Keep it a secret until I\'ve secured enough capital to manufacture it safely myself.', trait: 'cautious_saver', points: 3 },
+            { text: 'All ₹5,00,000 in. Two good outcomes outweigh one bad one.', trait: 'risk_taker', points: 3 },
+            { text: 'Split it: one third invest, one third hedge, one third wait for more data.', trait: 'analytical', points: 3 },
+            { text: 'Invest ₹4,00,000 but also buy equity in the company issuing the tokens. Control the supply chain.', trait: 'wealth_builder', points: 3 },
+            { text: 'Keep all ₹5,00,000. I don\'t invest in anything I can\'t fully understand and verify.', trait: 'cautious_saver', points: 3 },
         ]
     },
     {
         id: 'marvel_3',
-        text: 'The Avengers need funding to rebuild their headquarters. How do you raise the capital?',
+        text: 'Nick Fury walks in. The Avengers need emergency funding and ask you to personally guarantee a ₹500 crore loan. In return, you get 0.1% of all future Avengers IP and global merchandise forever. Do you sign?',
         answers: [
-            { text: 'Leverage the Avengers brand into a global merchandising empire.', trait: 'wealth_builder', points: 3 },
-            { text: 'Bet big on a single high-yield, high-risk government defense contract.', trait: 'risk_taker', points: 3 },
-            { text: 'Create a detailed business plan outlining projected costs and ROI for major investors.', trait: 'analytical', points: 3 },
-            { text: 'Cut unnecessary superhero expenses and slowly save up the funds from existing operations.', trait: 'cautious_saver', points: 3 },
+            { text: 'Sign immediately. 0.1% of the Avengers brand compounds into more than ₹500 crore within a decade.', trait: 'risk_taker', points: 3 },
+            { text: 'I need a full actuarial assessment of the Avengers\' survival probability before I guarantee anything.', trait: 'analytical', points: 3 },
+            { text: 'Counter: 1% of IP plus veto rights on all licensing deals. Then we have a conversation.', trait: 'wealth_builder', points: 3 },
+            { text: 'Absolutely not. I will not personally guarantee ₹500 crore for anyone, regardless of the upside.', trait: 'cautious_saver', points: 3 },
         ]
     },
-    {
-        id: 'marvel_4',
-        text: 'A portal to another dimension opens, offering alien technology for trade. Your move?',
-        answers: [
-            { text: 'Dive in head-first and start trading! First-mover advantage is everything.', trait: 'risk_taker', points: 3 },
-            { text: 'Send an economic assessment team to evaluate currency exchange rates and demand.', trait: 'analytical', points: 3 },
-            { text: 'Draft exclusive trade agreements and monopolize the inter-dimensional market.', trait: 'wealth_builder', points: 3 },
-            { text: 'Wait and watch. Let others test the volatile market while I protect my earthly assets.', trait: 'cautious_saver', points: 3 },
-        ]
-    },
-    {
-        id: 'marvel_5',
-        text: 'If you could pick one superpower for managing your investments, what would it be?',
-        answers: [
-            { text: 'Super intelligence to perfectly model every market variable and beat the algorithms.', trait: 'analytical', points: 3 },
-            { text: 'Time travel, so I can know exactly what high-risk stock will explode next.', trait: 'risk_taker', points: 3 },
-            { text: 'Mind control, ensuring everyone agrees to my terms in every massive negotiation.', trait: 'wealth_builder', points: 3 },
-            { text: 'Invulnerability, knowing no economic crash or financial crisis can ever hurt me.', trait: 'cautious_saver', points: 3 },
-        ]
-    }
 ];
+
+// ── Star Wars ─────────────────────────────────────────────────────────────────
 
 const swQuestions: Question[] = [
     {
         id: 'sw_1',
-        text: 'You\'ve acquired a beat-up old freighter. What\'s your business plan?',
+        text: 'You\'ve stumbled upon a crashed Republic cruiser loaded with 500,000 credits and decommissioned weapons in the Outer Rim. No one knows it\'s there. What do you do?',
         answers: [
-            { text: 'Run highly dangerous, highly lucrative smuggling routes past Imperial blockades.', trait: 'risk_taker', points: 3 },
-            { text: 'Use it to corner the local shipping market by undercutting larger competitors.', trait: 'wealth_builder', points: 3 },
-            { text: 'Calculate the maximum fuel efficiency routes for steady, reliable cargo hauling.', trait: 'analytical', points: 3 },
-            { text: 'Keep it docked until I\'ve saved up enough credits for a full insurance policy and repairs.', trait: 'cautious_saver', points: 3 },
+            { text: 'Strip it fast, sell everything through the Hutt black market, and vanish before anyone notices.', trait: 'risk_taker', points: 3 },
+            { text: 'Catalogue every item, research real-time market rates across five systems, then sell strategically.', trait: 'analytical', points: 3 },
+            { text: 'Use the weapons cache as negotiating leverage to secure a long-term Mandalorian trade partnership.', trait: 'wealth_builder', points: 3 },
+            { text: 'Take only what I immediately need. The Empire\'s enemies have very long memories.', trait: 'cautious_saver', points: 3 },
         ]
     },
     {
         id: 'sw_2',
-        text: 'The galactic economy is crashing. How do you protect your credits?',
+        text: 'The galactic credit is collapsing. Hutts are hoarding spice, bankers are fleeing Coruscant, and smugglers are converting to Beskar. You have 48 hours before the markets freeze solid. Your move?',
         answers: [
-            { text: 'Convert all my credits to physical beskar—it holds value no matter who\'s in power.', trait: 'cautious_saver', points: 3 },
-            { text: 'Diversify across multiple star systems to minimize regional economic risk.', trait: 'analytical', points: 3 },
-            { text: 'Buy up distressed planetary assets at rock-bottom prices and build an empire.', trait: 'wealth_builder', points: 3 },
-            { text: 'Short-sell the core worlds\' markets and profit massively from the chaos.', trait: 'risk_taker', points: 3 },
+            { text: 'Short-sell the galactic credit aggressively. The bigger the crash, the bigger my gain.', trait: 'risk_taker', points: 3 },
+            { text: 'Run probability models to identify which three asset classes will emerge as the new reserve currency.', trait: 'analytical', points: 3 },
+            { text: 'Buy every distressed cargo route available. When currency collapses, trade routes become the new gold.', trait: 'wealth_builder', points: 3 },
+            { text: 'Convert everything to physical Beskar immediately. It holds value under any government, any empire.', trait: 'cautious_saver', points: 3 },
         ]
     },
     {
         id: 'sw_3',
-        text: 'You are negotiating a major deal with a Hutt crime lord. What is your strategy?',
+        text: 'A Jedi Master senses your financial instincts in the Force. She says: "Your greatest strength is also your greatest danger." Which truth lands hardest?',
         answers: [
-            { text: 'I bluff completely, demanding double their offer and threatening to walk away.', trait: 'risk_taker', points: 3 },
-            { text: 'I play them against a rival syndicate to negotiate the absolute best price for myself.', trait: 'wealth_builder', points: 3 },
-            { text: 'I bring my own protocol droid to audit their ledgers and ensure due diligence.', trait: 'analytical', points: 3 },
-            { text: 'I take a safe, smaller deal and leave quickly. It\'s not worth angering a Hutt.', trait: 'cautious_saver', points: 3 },
+            { text: 'My boldness creates opportunity — but one unchecked gamble could destroy everything I\'ve built.', trait: 'risk_taker', points: 3 },
+            { text: 'My analysis protects me — but sometimes I calculate so long the opportunity simply disappears.', trait: 'analytical', points: 3 },
+            { text: 'My ambition builds empires — but I risk losing the people around me in the relentless pursuit of more.', trait: 'wealth_builder', points: 3 },
+            { text: 'My discipline keeps me safe — but playing it too safe means I never reach my true potential.', trait: 'cautious_saver', points: 3 },
         ]
     },
-    {
-        id: 'sw_4',
-        text: 'What do you consider your most valuable asset in the galaxy?',
-        answers: [
-            { text: 'My expanding network of profitable trade routes and mining colonies.', trait: 'wealth_builder', points: 3 },
-            { text: 'My deep understanding of galactic interest rates and market fluctuations.', trait: 'analytical', points: 3 },
-            { text: 'My untouchable emergency fund hidden safely on a remote ice planet.', trait: 'cautious_saver', points: 3 },
-            { text: 'My willingness to make the boldest, most unpredictable moves when others hesitate.', trait: 'risk_taker', points: 3 },
-        ]
-    },
-    {
-        id: 'sw_5',
-        text: 'A rebellion threatens intergalactic trade. Where do you align financially?',
-        answers: [
-            { text: 'I supply both sides with resources, ensuring I profit regardless of who wins.', trait: 'wealth_builder', points: 3 },
-            { text: 'I analyze the probability of the rebellion\'s success before committing any capital.', trait: 'analytical', points: 3 },
-            { text: 'I bet everything on the underdog rebellion—the potential return on investment is astronomical.', trait: 'risk_taker', points: 3 },
-            { text: 'I withdraw my investments from conflict zones entirely and wait for stability to return.', trait: 'cautious_saver', points: 3 },
-        ]
-    }
 ];
+
+// ── Money Heist ───────────────────────────────────────────────────────────────
 
 const mhQuestions: Question[] = [
     {
         id: 'mh_1',
-        text: 'You\'ve successfully pulled off a massive heist. What\'s your first financial move?',
+        text: 'The Professor lays out the plan. The heist nets €1 billion. Your cut is €50 million — but there\'s a 25% chance it all collapses and you walk away with nothing. The alternative: leave right now with €2 million guaranteed. What do you do?',
         answers: [
-            { text: 'Hide the money securely in multiple locations and live modestly to avoid detection.', trait: 'cautious_saver', points: 3 },
-            { text: 'Create a complex network of offshore accounts and shell companies to launder it perfectly.', trait: 'analytical', points: 3 },
-            { text: 'Invest it all into legitimate businesses to build an untouchable financial empire.', trait: 'wealth_builder', points: 3 },
-            { text: 'Blow a massive chunk on an extravagant party—what\'s the point of money if you don\'t live?', trait: 'risk_taker', points: 3 },
+            { text: 'Stay. €50 million or nothing. That\'s why I joined in the first place.', trait: 'risk_taker', points: 3 },
+            { text: 'Run the expected value: 75% × €50M = €37.5M vs €2M guaranteed. The math says stay. I\'m in.', trait: 'analytical', points: 3 },
+            { text: 'Stay — but I\'m negotiating my cut up to €70 million before the heist clock starts.', trait: 'wealth_builder', points: 3 },
+            { text: 'Take the €2 million and walk. A guaranteed fortune is worth more than a spectacular gamble.', trait: 'cautious_saver', points: 3 },
         ]
     },
     {
         id: 'mh_2',
-        text: 'The police are closing in, offering a deal: take 10% of the vault safely, or risk it all for 100%. Choose.',
+        text: 'You\'re inside the mint. Police have surrounded the building. Inspector Sierra offers a deal: surrender now, keep 20% of what\'s already printed, full immunity. The Professor\'s voice crackles: "Don\'t you dare." You...',
         answers: [
-            { text: 'Risk it all! 100% or nothing—that\'s why we started this.', trait: 'risk_taker', points: 3 },
-            { text: 'Negotiate for 50% immunity AND a cut of the seized funds.', trait: 'wealth_builder', points: 3 },
-            { text: 'Calculate the precise statistical probability of escape before deciding.', trait: 'analytical', points: 3 },
-            { text: 'Take the guaranteed 10%. A safe fortune beats spending life in prison.', trait: 'cautious_saver', points: 3 },
+            { text: 'Ignore the offer entirely. We finish what we started, all or nothing. Bella Ciao.', trait: 'risk_taker', points: 3 },
+            { text: 'Quietly calculate the statistical probability of the Professor\'s escape plan succeeding from here.', trait: 'analytical', points: 3 },
+            { text: 'Counter Sierra directly: 40% and full witness protection, or I\'m not moving an inch.', trait: 'wealth_builder', points: 3 },
+            { text: '20% and immunity is more than most people earn in ten lifetimes. That\'s a life. I take it.', trait: 'cautious_saver', points: 3 },
         ]
     },
     {
         id: 'mh_3',
-        text: 'How do you prefer your team to handle the group\'s communal expenses?',
+        text: 'The heist is over. You\'ve escaped to a safe house on the Portuguese coast with your full share. How do you build a real life with this money?',
         answers: [
-            { text: 'Strict rationing and a dedicated emergency fund for unexpected crises.', trait: 'cautious_saver', points: 3 },
-            { text: 'Detailed spreadsheets tracking every single euro spent and projected.', trait: 'analytical', points: 3 },
-            { text: 'Invest the communal fund in high-yield short-term assets to grow our operational budget.', trait: 'wealth_builder', points: 3 },
-            { text: 'Keep it loose. If we need more money for gear, we\'ll figure out a way to get it quickly.', trait: 'risk_taker', points: 3 },
+            { text: 'Fund a series of high-risk startups across three continents. I didn\'t survive this to live small.', trait: 'risk_taker', points: 3 },
+            { text: 'Build a sophisticated offshore portfolio with professional advisors. Make it invisible and permanent.', trait: 'analytical', points: 3 },
+            { text: 'Acquire several legitimate businesses to launder and grow the money into a proper, untouchable empire.', trait: 'wealth_builder', points: 3 },
+            { text: 'Live modestly, never touch the principal, and survive comfortably on the interest for the rest of my life.', trait: 'cautious_saver', points: 3 },
         ]
     },
-    {
-        id: 'mh_4',
-        text: 'A rival crew offers to buy your exclusive heist plans for a hefty sum. What do you say?',
-        answers: [
-            { text: 'Sell them the plans, but establish a royalty system so I get a cut of their take.', trait: 'wealth_builder', points: 3 },
-            { text: 'Refuse. I only execute plans where I have total control of the risk variables.', trait: 'analytical', points: 3 },
-            { text: 'Never. I keep my intellectual property secure and trust no one outside the team.', trait: 'cautious_saver', points: 3 },
-            { text: 'Sell them a slightly altered, riskier plan and bet against them succeeding.', trait: 'risk_taker', points: 3 },
-        ]
-    },
-    {
-        id: 'mh_5',
-        text: 'The Professor offers you a second, infinitely more dangerous heist. Your response?',
-        answers: [
-            { text: 'I\'m in! The adrenaline and the legendary payout are exactly what I live for.', trait: 'risk_taker', points: 3 },
-            { text: 'Only if I am designated the primary financial controller with a larger equity stake.', trait: 'wealth_builder', points: 3 },
-            { text: 'Show me the blueprints. If the risk-reward matrix checks out, I\'m on board.', trait: 'analytical', points: 3 },
-            { text: 'No way. We got away clean. I\'m retiring to protect what I already have.', trait: 'cautious_saver', points: 3 },
-        ]
-    }
 ];
+
+// ── Score Resolution ──────────────────────────────────────────────────────────
 
 export interface FinalResult {
     house: string;
@@ -294,7 +206,6 @@ export interface FinalResult {
 type ScoreResult = Omit<FinalResult, 'selectedAnswers' | 'scores'>;
 
 const resolveScore = (scores: Record<FinancialTrait, number>, theme: HouseVariant): ScoreResult => {
-    // Find highest trait
     let dominantTrait: FinancialTrait = 'cautious_saver';
     let maxScore = -1;
     const traits: FinancialTrait[] = ['risk_taker', 'analytical', 'wealth_builder', 'cautious_saver'];
@@ -308,39 +219,41 @@ const resolveScore = (scores: Record<FinancialTrait, number>, theme: HouseVarian
 
     const houseMap: Record<HouseVariant, Record<FinancialTrait, ScoreResult>> = {
         hp: {
-            risk_taker: { house: 'Gryffindor', trait: 'risk_taker', description: 'Bold and impulsive! You make financial moves with courage, seeking high rewards.' },
-            analytical: { house: 'Ravenclaw', trait: 'analytical', description: 'Strategic and wise! You research the markets thoroughly before parting with a single Knut.' },
-            wealth_builder: { house: 'Slytherin', trait: 'wealth_builder', description: 'Ambitious and cunning! You know the value of compounding wealth and always seek the upper hand in a deal.' },
-            cautious_saver: { house: 'Hufflepuff', trait: 'cautious_saver', description: 'Loyal and prepared! You prefer the safety of a full vault and only invest in reliable, steady ventures.' },
+            risk_taker:    { house: 'Gryffindor',     trait: 'risk_taker',    description: 'Bold and fearless! You charge markets the way Gryffindors charge Dark wizards — with courage before the full picture is clear.' },
+            analytical:    { house: 'Ravenclaw',       trait: 'analytical',    description: 'Strategic and precise! You read a balance sheet the way Ravenclaws read restricted texts — with depth, care, and genuine curiosity.' },
+            wealth_builder:{ house: 'Slytherin',       trait: 'wealth_builder',description: 'Cunning and ambitious! You see leverage where others see risk, and opportunity where others see obstacles.' },
+            cautious_saver:{ house: 'Hufflepuff',      trait: 'cautious_saver',description: 'Steady and unshakeable! Your financial foundation is solid. While others rebuild after every crash, you simply continue growing.' },
         },
         got: {
-            risk_taker: { house: 'House Targaryen', trait: 'risk_taker', description: 'Fire and Blood! You take massive financial risks, burning through capital to conquer new markets.' },
-            analytical: { house: 'House Baratheon', trait: 'analytical', description: 'Ours is the Fury, tempered with strategy. You are practical and calculated in your economic conquests.' },
-            wealth_builder: { house: 'House Lannister', trait: 'wealth_builder', description: 'Hear Me Roar! You understand that gold is power, and you aggressively accumulate wealth to maintain your status.' },
-            cautious_saver: { house: 'House Stark', trait: 'cautious_saver', description: 'Winter is Coming! You are conservative with your coin, always saving for leaner times and preferring deep security over flashy investments.' },
+            risk_taker:    { house: 'House Targaryen', trait: 'risk_taker',    description: 'Fire and blood! You invest with dragon-blooded conviction — all-in, trusting your vision will reshape the entire landscape.' },
+            analytical:    { house: 'House Baratheon', trait: 'analytical',    description: 'Strategic fury! You combine gut instinct with data — a rare combination that most investors spend careers trying to develop.' },
+            wealth_builder:{ house: 'House Lannister', trait: 'wealth_builder',description: 'A Lannister always pays their debts — and always structures the deal so those debts earn a return. Leverage is your native language.' },
+            cautious_saver:{ house: 'House Stark',     trait: 'cautious_saver',description: 'Winter is coming — and you\'re the only one prepared. When the financial winter hits, you\'re the one with reserves to survive and acquire.' },
         },
         marvel: {
-            risk_taker: { house: 'Team Thor', trait: 'risk_taker', description: 'Worthy of Mjölnir! You charge into financial battles with thunderous confidence, trusting bold moves will pay off.' },
-            analytical: { house: 'Team Strange', trait: 'analytical', description: 'You\'ve seen 14 million possible outcomes. Every investment is calculated, every risk is modeled, every move is precise.' },
-            wealth_builder: { house: 'Team Iron Man', trait: 'wealth_builder', description: 'Genius, billionaire, investor. You build financial empires with relentless innovation and strategic acquisitions.' },
-            cautious_saver: { house: 'Team Cap', trait: 'cautious_saver', description: 'I can do this all day. You protect your financial position with unwavering discipline and serve the greater good.' },
+            risk_taker:    { house: 'Team Thor',       trait: 'risk_taker',    description: 'Lightning-strike investor! You make decisions with Mjolnir-level conviction. When you commit, you commit fully — and it shows in your returns.' },
+            analytical:    { house: 'Team Strange',    trait: 'analytical',    description: 'Multiversal seer! You\'ve run 14 million scenarios before making a move. Your downside protection is exceptional because you\'ve already lived the bad outcomes.' },
+            wealth_builder:{ house: 'Team Iron Man',   trait: 'wealth_builder',description: 'Genius-level wealth engineer! You don\'t just invest in the future — you build it. Your portfolio reads like a blueprint for the next decade.' },
+            cautious_saver:{ house: 'Team Cap',        trait: 'cautious_saver',description: 'I can do this all day — and so can your portfolio. Your discipline in down markets is where most investors\' wealth quietly transfers to yours.' },
         },
         sw: {
-            risk_taker: { house: 'The Sith Order', trait: 'risk_taker', description: 'The Dark Side fuels your ambition! You embrace aggressive financial plays, knowing passion and daring lead to power.' },
-            analytical: { house: 'The Jedi Council', trait: 'analytical', description: 'Patience, young investor. You meditate on every financial decision, seeking balance and wisdom before acting.' },
-            wealth_builder: { house: 'The Mandalorians', trait: 'wealth_builder', description: 'This is the way. You are a bounty hunter of opportunity, accumulating beskar and assets through relentless dealing.' },
-            cautious_saver: { house: 'The Rebel Alliance', trait: 'cautious_saver', description: 'Hope is your greatest asset. You protect what you have, build grassroots wealth, and fight for financial freedom.' },
+            risk_taker:    { house: 'The Sith Order',      trait: 'risk_taker',    description: 'Passion and power! Your drive for financial victory generates returns that balanced investors only read about in case studies.' },
+            analytical:    { house: 'The Jedi Council',    trait: 'analytical',    description: 'Patience, young investor. Your willingness to wait for the right entry means you almost never overpay for an asset.' },
+            wealth_builder:{ house: 'The Mandalorians',    trait: 'wealth_builder',description: 'This is the way. You are a bounty hunter of opportunity — when a deal is worth pursuing, you pursue it relentlessly and close on your terms.' },
+            cautious_saver:{ house: 'The Rebel Alliance',  trait: 'cautious_saver',description: 'Rebellions — and financial independence — are built on hope backed by preparation. Your reserves are your firepower.' },
         },
         mh: {
-            risk_taker: { house: 'Team Tokyo', trait: 'risk_taker', description: 'All in, no regrets! You live for the adrenaline of high-stakes financial moves. Calculated? Maybe. Exciting? Always.' },
-            analytical: { house: 'Team Professor', trait: 'analytical', description: 'Every detail is planned. You are the mastermind who sees 20 moves ahead, turning financial chaos into clockwork precision.' },
-            wealth_builder: { house: 'Team Berlin', trait: 'wealth_builder', description: 'Elegant, strategic, and relentless. You treat wealth accumulation as an art form and negotiation as your masterpiece.' },
-            cautious_saver: { house: 'Team Nairobi', trait: 'cautious_saver', description: 'Let the matriarchy begin! You protect the team\'s assets, ensure production runs smooth, and never waste a single euro.' },
+            risk_taker:    { house: 'Team Tokyo',    trait: 'risk_taker',    description: 'All in, no regrets! You have nothing to lose — and that fearlessness is your most bankable asset. You enter positions others are too scared to touch.' },
+            analytical:    { house: 'Team Professor',trait: 'analytical',    description: 'The plan. Always the plan. Your financial blueprints account for variables that others don\'t even know to consider.' },
+            wealth_builder:{ house: 'Team Berlin',   trait: 'wealth_builder',description: 'Elegant empire builder! You treat wealth accumulation as a masterpiece. Every deal is negotiated with the precision of someone who knows their worth.' },
+            cautious_saver:{ house: 'Team Nairobi',  trait: 'cautious_saver',description: 'Let the matriarchy begin! You run the numbers, protect the assets, and ensure not a single euro is wasted in operation.' },
         },
     };
 
     return houseMap[theme][dominantTrait];
 };
+
+// ── Component ─────────────────────────────────────────────────────────────────
 
 interface QuizProps {
     theme: HouseVariant;
@@ -358,15 +271,20 @@ const Quiz: React.FC<QuizProps> = ({ theme, onComplete }) => {
     });
     const [timeLeft, setTimeLeft] = useState(30);
 
-    // Timer logic
     React.useEffect(() => {
         const timer = setInterval(() => {
             setTimeLeft((prev) => (prev > 0 ? prev - 1 : 0));
         }, 1000);
         return () => clearInterval(timer);
-    }, [currentQuestionIndex]); // Reset timer on each question
+    }, [currentQuestionIndex]);
 
-    const questionMap: Record<HouseVariant, Question[]> = { hp: hpQuestions, got: gotQuestions, marvel: marvelQuestions, sw: swQuestions, mh: mhQuestions };
+    const questionMap: Record<HouseVariant, Question[]> = {
+        hp: hpQuestions,
+        got: gotQuestions,
+        marvel: marvelQuestions,
+        sw: swQuestions,
+        mh: mhQuestions,
+    };
     const questions = questionMap[theme];
     const question = questions[currentQuestionIndex];
 
@@ -380,7 +298,6 @@ const Quiz: React.FC<QuizProps> = ({ theme, onComplete }) => {
         if (currentQuestionIndex < questions.length - 1) {
             setCurrentQuestionIndex(currentQuestionIndex + 1);
         } else {
-            // Finished
             const result = resolveScore(newScores, theme);
             onComplete({ ...result, selectedAnswers: newAnswers, scores: newScores });
         }
