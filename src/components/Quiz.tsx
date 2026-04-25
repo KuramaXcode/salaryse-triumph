@@ -163,12 +163,12 @@ const swQuestions: Question[] = [
 const mhQuestions: Question[] = [
     {
         id: 'mh_1',
-        text: 'The Professor lays out the plan. The heist nets €1 billion. Your cut is €50 million — but there\'s a 25% chance it all collapses and you walk away with nothing. The alternative: leave right now with €2 million guaranteed. What do you do?',
+        text: 'The Professor lays out the plan. The heist nets ₹8,000 crore. Your cut is ₹400 crore — but there\'s a 25% chance it all collapses and you walk away with nothing. The alternative: leave right now with ₹16 crore guaranteed. What do you do?',
         answers: [
-            { text: 'Stay. €50 million or nothing. That\'s why I joined in the first place.', trait: 'risk_taker', points: 3 },
-            { text: 'Run the expected value: 75% × €50M = €37.5M vs €2M guaranteed. The math says stay. I\'m in.', trait: 'analytical', points: 3 },
-            { text: 'Stay — but I\'m negotiating my cut up to €70 million before the heist clock starts.', trait: 'wealth_builder', points: 3 },
-            { text: 'Take the €2 million and walk. A guaranteed fortune is worth more than a spectacular gamble.', trait: 'cautious_saver', points: 3 },
+            { text: 'Stay. ₹400 crore or nothing. That\'s why I joined in the first place.', trait: 'risk_taker', points: 3 },
+            { text: 'Run the expected value: 75% × ₹400 Cr = ₹300 Cr vs ₹16 Cr guaranteed. The math says stay. I\'m in.', trait: 'analytical', points: 3 },
+            { text: 'Stay — but I\'m negotiating my cut up to ₹600 crore before the heist clock starts.', trait: 'wealth_builder', points: 3 },
+            { text: 'Take the ₹16 crore and walk. A guaranteed fortune is worth more than a spectacular gamble.', trait: 'cautious_saver', points: 3 },
         ]
     },
     {
@@ -246,7 +246,7 @@ const resolveScore = (scores: Record<FinancialTrait, number>, theme: HouseVarian
             risk_taker:    { house: 'Team Tokyo',    trait: 'risk_taker',    description: 'All in, no regrets! You have nothing to lose — and that fearlessness is your most bankable asset. You enter positions others are too scared to touch.' },
             analytical:    { house: 'Team Professor',trait: 'analytical',    description: 'The plan. Always the plan. Your financial blueprints account for variables that others don\'t even know to consider.' },
             wealth_builder:{ house: 'Team Berlin',   trait: 'wealth_builder',description: 'Elegant empire builder! You treat wealth accumulation as a masterpiece. Every deal is negotiated with the precision of someone who knows their worth.' },
-            cautious_saver:{ house: 'Team Nairobi',  trait: 'cautious_saver',description: 'Let the matriarchy begin! You run the numbers, protect the assets, and ensure not a single euro is wasted in operation.' },
+            cautious_saver:{ house: 'Team Nairobi',  trait: 'cautious_saver',description: 'Let the matriarchy begin! You run the numbers, protect the assets, and ensure not a single rupee is wasted in operation.' },
         },
     };
 

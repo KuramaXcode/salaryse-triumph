@@ -136,7 +136,7 @@ const houseInsightsMap: Record<string, HouseInsight> = {
     },
     'Team Nairobi': {
         salutation: 'THE MATRIARCH OF CAPITAL',
-        strength1: 'Let the matriarchy begin. You run the numbers, protect the assets, and ensure not a single euro is wasted in operation.',
+        strength1: 'Let the matriarchy begin. You run the numbers, protect the assets, and ensure not a single rupee is wasted in operation.',
         strength2: 'Your operational discipline is exceptional. You know exactly where every resource is allocated and you hold people accountable to the plan.',
         weakness: 'You protect so well that you sometimes protect from the upside too. A managed-risk growth sleeve would give your impeccable base real room to compound.',
     },
