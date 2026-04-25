@@ -1,5 +1,5 @@
 const FALLBACK_WEBHOOK_URL =
-  'https://script.google.com/macros/s/AKfycbzhl0hN5wQbw0e9Lm3vm12n2M3onomtL-iAIIG-TXcBnWH7bL13cNbbQwguYcTNSq_E/exec';
+  'https://script.google.com/macros/s/AKfycbxV8CX8SutJlaEQOi9BXCZb4htGgFE7TzYLPgclT1YWNDF3ZhCdFIhMkaVqSsZAHaCt/exec';
 
 export const config = {
   api: { bodyParser: { sizeLimit: '10mb' } },

@@ -36,4 +36,4 @@ export const AI_CONFIG = {
 };
 
 // Google Sheets webhook URL
-export const SHEET_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbzhl0hN5wQbw0e9Lm3vm12n2M3onomtL-iAIIG-TXcBnWH7bL13cNbbQwguYcTNSq_E/exec';
+export const SHEET_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxV8CX8SutJlaEQOi9BXCZb4htGgFE7TzYLPgclT1YWNDF3ZhCdFIhMkaVqSsZAHaCt/exec';
