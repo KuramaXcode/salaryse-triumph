@@ -1,0 +1,264 @@
+.app-container {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+}
+
+/* LANDING PAGE STYLES */
+.landing-page {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+}
+
+.landing-page header {
+  margin-bottom: 4rem;
+  animation: fadeInDown 1s ease-out;
+}
+
+.landing-page h1 {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.landing-page p {
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+  font-weight: 300;
+}
+
+.theme-selectors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1100px;
+  justify-content: center;
+}
+
+.theme-btn {
+  flex: 0 1 calc(33.333% - 2rem);
+  padding: 2.5rem 1.5rem;
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.theme-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.05));
+  transition: opacity 0.3s;
+  opacity: 0;
+}
+
+.theme-btn:hover {
+  transform: translateY(-10px) scale(1.02);
+  border-color: var(--accent-color);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(212, 175, 55, 0.2);
+}
+
+.theme-btn:hover::before {
+  opacity: 1;
+}
+
+.theme-btn h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--accent-color);
+  z-index: 2;
+}
+
+.theme-btn p {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  z-index: 2;
+}
+
+/* HP Specific styling hints */
+.hp-btn:hover {
+  border-color: #d4af37;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(212, 175, 55, 0.3);
+}
+
+.hp-btn h2 {
+  color: #d4af37;
+}
+
+/* GoT Specific styling hints */
+.got-btn:hover {
+  border-color: #a82e2e;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(168, 46, 46, 0.3);
+}
+
+.got-btn h2 {
+  color: #a82e2e;
+}
+
+/* Marvel */
+.marvel-btn:hover {
+  border-color: #e23636;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(226, 54, 54, 0.3);
+}
+
+.marvel-btn h2 {
+  color: #e23636;
+}
+
+/* Star Wars */
+.sw-btn:hover {
+  border-color: #ffd700;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(255, 215, 0, 0.3);
+}
+
+.sw-btn h2 {
+  color: #ffd700;
+}
+
+/* Money Heist */
+.mh-btn:hover {
+  border-color: #cc0000;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(204, 0, 0, 0.3);
+}
+
+.mh-btn h2 {
+  color: #cc0000;
+}
+
+/* ACTIVE APP STYLES */
+.active-app {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  animation: fadeIn 0.8s ease-out;
+}
+
+.app-header {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 2rem;
+}
+
+.back-btn {
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+}
+
+.back-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+  border-color: var(--text-primary);
+}
+
+.quiz-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.quiz-container h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  color: var(--accent-color);
+}
+
+.quiz-container p {
+  font-size: 1.5rem;
+  margin-bottom: 3rem;
+  color: var(--text-secondary);
+}
+
+.start-btn {
+  background-color: var(--accent-color);
+  color: var(--bg-primary);
+  font-size: 1.5rem;
+  padding: 1rem 3rem;
+  border-radius: 30px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.start-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4), 0 0 15px var(--accent-color);
+  filter: brightness(1.1);
+}
+
+/* ANIMATIONS */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* RESPONSIVE IPAD PRO TWEAKS */
+@media (max-width: 1024px) {
+  .landing-page h1 {
+    font-size: 2.5rem;
+  }
+
+  .theme-selectors {
+    gap: 1.5rem;
+    padding: 0 1rem;
+  }
+
+  .theme-btn {
+    flex: 0 1 calc(50% - 1.5rem);
+    padding: 1.5rem 1rem;
+    min-height: 180px;
+  }
+
+  .theme-btn h2 {
+    font-size: 1.3rem;
+  }
+}

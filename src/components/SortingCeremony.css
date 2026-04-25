@@ -1,0 +1,408 @@
+.ceremony-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    overflow: hidden;
+}
+
+.ceremony-container.hp {
+    background: radial-gradient(ellipse at center, #1a1a3e 0%, #0a0a15 70%, #000 100%);
+}
+
+.ceremony-container.got {
+    background: radial-gradient(ellipse at center, #1a0a0a 0%, #0a0505 70%, #000 100%);
+}
+
+.ceremony-container.marvel {
+    background: radial-gradient(ellipse at center, #1a0a14 0%, #0c0410 70%, #000 100%);
+}
+
+.ceremony-container.sw {
+    background: radial-gradient(ellipse at center, #0a0a1e 0%, #000008 70%, #000 100%);
+}
+
+.ceremony-container.mh {
+    background: radial-gradient(ellipse at center, #1a0505 0%, #0a0000 70%, #000 100%);
+}
+
+/* Intensity Aura */
+.ceremony-aura {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.hp .ceremony-aura {
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
+}
+
+.got .ceremony-aura {
+    background: radial-gradient(circle, rgba(204, 51, 51, 0.15) 0%, transparent 70%);
+}
+
+.marvel .ceremony-aura {
+    background: radial-gradient(circle, rgba(226, 54, 54, 0.15) 0%, transparent 70%);
+}
+
+.sw .ceremony-aura {
+    background: radial-gradient(circle, rgba(79, 195, 247, 0.15) 0%, transparent 70%);
+}
+
+.mh .ceremony-aura {
+    background: radial-gradient(circle, rgba(204, 0, 0, 0.15) 0%, transparent 70%);
+}
+
+/* Floating particles */
+.particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    bottom: -10px;
+    border-radius: 50%;
+    animation: floatUp linear infinite;
+    opacity: 0;
+}
+
+.hp .particle {
+    background-color: #d4af37;
+    box-shadow: 0 0 6px #d4af37, 0 0 12px rgba(212, 175, 55, 0.5);
+}
+
+.got .particle {
+    background-color: #cc3333;
+    box-shadow: 0 0 6px #cc3333, 0 0 12px rgba(204, 51, 51, 0.5);
+}
+
+.marvel .particle {
+    background-color: #e23636;
+    box-shadow: 0 0 6px #e23636, 0 0 12px rgba(226, 54, 54, 0.5);
+}
+
+.sw .particle {
+    background-color: #4fc3f7;
+    box-shadow: 0 0 6px #4fc3f7, 0 0 12px rgba(79, 195, 247, 0.5);
+}
+
+.mh .particle {
+    background-color: #cc0000;
+    box-shadow: 0 0 6px #cc0000, 0 0 12px rgba(204, 0, 0, 0.5);
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) scale(0);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.8;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+
+    100% {
+        transform: translateY(-100vh) scale(1);
+        opacity: 0;
+    }
+}
+
+/* Ceremony content */
+.ceremony-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    max-width: 800px;
+    padding: 2rem;
+}
+
+.message-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeInScale 0.6s ease-out;
+}
+
+.ceremony-message {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    color: var(--text-primary);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    line-height: 1.4;
+    min-height: 4.5rem;
+}
+
+.typing-cursor {
+    display: inline-block;
+    animation: blink 0.6s step-end infinite;
+    font-weight: 100;
+    opacity: 0.8;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+.message-counter {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    letter-spacing: 3px;
+    margin-top: 1.5rem;
+    opacity: 0.5;
+}
+
+.hp .ceremony-message {
+    text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+}
+
+.got .ceremony-message {
+    text-shadow: 0 0 30px rgba(204, 51, 51, 0.3);
+}
+
+.marvel .ceremony-message {
+    text-shadow: 0 0 30px rgba(226, 54, 54, 0.3);
+}
+
+.sw .ceremony-message {
+    text-shadow: 0 0 30px rgba(79, 195, 247, 0.3);
+}
+
+.mh .ceremony-message {
+    text-shadow: 0 0 30px rgba(204, 0, 0, 0.3);
+}
+
+/* Pulsing ring below text */
+.pulse-ring {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-top: 2rem;
+    animation: pulseRing 1.5s ease-in-out infinite;
+}
+
+.hp .pulse-ring {
+    border: 2px solid rgba(212, 175, 55, 0.5);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+}
+
+.got .pulse-ring {
+    border: 2px solid rgba(204, 51, 51, 0.5);
+    box-shadow: 0 0 20px rgba(204, 51, 51, 0.3);
+}
+
+.marvel .pulse-ring {
+    border: 2px solid rgba(226, 54, 54, 0.5);
+    box-shadow: 0 0 20px rgba(226, 54, 54, 0.3);
+}
+
+.sw .pulse-ring {
+    border: 2px solid rgba(79, 195, 247, 0.5);
+    box-shadow: 0 0 20px rgba(79, 195, 247, 0.3);
+}
+
+.mh .pulse-ring {
+    border: 2px solid rgba(204, 0, 0, 0.5);
+    box-shadow: 0 0 20px rgba(204, 0, 0, 0.3);
+}
+
+@keyframes pulseRing {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.4);
+        opacity: 0.4;
+    }
+}
+
+/* House reveal */
+.house-reveal {
+    animation: houseReveal 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    position: relative;
+}
+
+.reveal-flash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: white;
+    animation: flashBang 0.8s ease-out forwards;
+    pointer-events: none;
+    z-index: 100;
+}
+
+@keyframes flashBang {
+    0% {
+        opacity: 0.8;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.house-name {
+    font-size: 6rem;
+    font-family: var(--font-heading);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+.reveal-trait {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    letter-spacing: 4px;
+    margin-top: 1rem;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease 0.5s forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 0.6;
+        transform: translateY(0);
+    }
+}
+
+.hp .house-name {
+    color: #d4af37;
+    text-shadow:
+        0 0 20px rgba(212, 175, 55, 0.8),
+        0 0 40px rgba(212, 175, 55, 0.4),
+        0 0 80px rgba(212, 175, 55, 0.2);
+}
+
+.hp .reveal-trait {
+    color: #d4af37;
+}
+
+.got .house-name {
+    color: #cc3333;
+    text-shadow:
+        0 0 20px rgba(204, 51, 51, 0.8),
+        0 0 40px rgba(204, 51, 51, 0.4),
+        0 0 80px rgba(204, 51, 51, 0.2);
+}
+
+.got .reveal-trait {
+    color: #cc3333;
+}
+
+.marvel .house-name {
+    color: #e23636;
+    text-shadow:
+        0 0 20px rgba(226, 54, 54, 0.8),
+        0 0 40px rgba(226, 54, 54, 0.4),
+        0 0 80px rgba(226, 54, 54, 0.2);
+}
+
+.marvel .reveal-trait {
+    color: #e23636;
+}
+
+.sw .house-name {
+    color: #ffd700;
+    text-shadow:
+        0 0 20px rgba(255, 215, 0, 0.8),
+        0 0 40px rgba(255, 215, 0, 0.4),
+        0 0 80px rgba(255, 215, 0, 0.2);
+}
+
+.sw .reveal-trait {
+    color: #ffd700;
+}
+
+.mh .house-name {
+    color: #cc0000;
+    text-shadow:
+        0 0 20px rgba(204, 0, 0, 0.8),
+        0 0 40px rgba(204, 0, 0, 0.4),
+        0 0 80px rgba(204, 0, 0, 0.2);
+}
+
+.mh .reveal-trait {
+    color: #cc0000;
+}
+
+@keyframes houseReveal {
+    0% {
+        opacity: 0;
+        transform: scale(0.3) rotateX(90deg);
+        filter: blur(20px);
+    }
+
+    60% {
+        opacity: 1;
+        transform: scale(1.15) rotateX(0deg);
+        filter: blur(0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) rotateX(0deg);
+        filter: blur(0);
+    }
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* iPad responsive */
+@media (max-width: 1024px) {
+    .ceremony-message {
+        font-size: 2.2rem;
+    }
+
+    .house-name {
+        font-size: 4rem;
+    }
+}

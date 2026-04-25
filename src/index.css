@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&family=Bebas+Neue&display=swap');
+
+:root {
+  /* Default Theme */
+  --font-heading: 'Cinzel', serif;
+  --font-body: 'Montserrat', sans-serif;
+
+  --bg-primary: #121212;
+  --bg-secondary: #1e1e1e;
+  --text-primary: #f5f5f5;
+  --text-secondary: #b3b3b3;
+  --accent-color: #d4af37;
+
+  --transition-speed: 0.3s;
+}
+
+/* Harry Potter Theme Variables */
+[data-theme="hp"] {
+  --bg-primary: #0a0e17;
+  --bg-secondary: #1a2235;
+  --text-primary: #e6e6e6;
+  --text-secondary: #a3aab8;
+  --accent-color: #d4af37;
+
+  --gryffindor-primary: #740001;
+  --gryffindor-secondary: #d3a625;
+  --slytherin-primary: #1a472a;
+  --slytherin-secondary: #5d5d5d;
+  --ravenclaw-primary: #0e1a40;
+  --ravenclaw-secondary: #946b2d;
+  --hufflepuff-primary: #ffed86;
+  --hufflepuff-secondary: #000000;
+}
+
+/* Game of Thrones Theme Variables */
+[data-theme="got"] {
+  --bg-primary: #050505;
+  --bg-secondary: #141414;
+  --text-primary: #eaeaea;
+  --text-secondary: #8c8c8c;
+  --accent-color: #a82e2e;
+
+  --stark-primary: #ffffff;
+  --stark-secondary: #565656;
+  --lannister-primary: #8c0000;
+  --lannister-secondary: #ffd700;
+  --targaryen-primary: #000000;
+  --targaryen-secondary: #cc0000;
+}
+
+/* Marvel Theme Variables */
+[data-theme="marvel"] {
+  --bg-primary: #0c0c14;
+  --bg-secondary: #1a1a2e;
+  --text-primary: #f0f0f0;
+  --text-secondary: #9a9ab0;
+  --accent-color: #e23636;
+  --font-heading: 'Bebas Neue', sans-serif;
+}
+
+/* Star Wars Theme Variables */
+[data-theme="sw"] {
+  --bg-primary: #000000;
+  --bg-secondary: #0f0f1a;
+  --text-primary: #e8e8e8;
+  --text-secondary: #8899aa;
+  --accent-color: #ffd700;
+}
+
+/* Money Heist Theme Variables */
+[data-theme="mh"] {
+  --bg-primary: #0a0000;
+  --bg-secondary: #1a0808;
+  --text-primary: #f5f0f0;
+  --text-secondary: #b39999;
+  --accent-color: #cc0000;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: background-color var(--transition-speed), color var(--transition-speed);
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Global utility classes for cinematic feel */
+.cinematic-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: radial-gradient(circle, transparent 50%, rgba(0, 0, 0, 0.8) 150%);
+  z-index: 9999;
+}
+
+/* Subtle scanline overlay for techy themes */
+[data-theme="marvel"] .cinematic-overlay,
+[data-theme="sw"] .cinematic-overlay,
+[data-theme="mh"] .cinematic-overlay {
+  background:
+    repeating-linear-gradient(0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.03) 2px,
+      rgba(0, 0, 0, 0.03) 4px),
+    radial-gradient(circle, transparent 50%, rgba(0, 0, 0, 0.8) 150%);
+}
+
+/* Selection color based on theme */
+::selection {
+  background: var(--accent-color);
+  color: var(--bg-primary);
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
