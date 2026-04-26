@@ -218,6 +218,20 @@ async function generateWithStability(
     };
 }
 
+function buildAvatarResult(data: Record<string, unknown>, prompt: string): AvatarResult {
+    const inlineImageValue = typeof data.imageDataUrl === 'string' ? data.imageDataUrl : null;
+    const imageValue = typeof data.imageUrl === 'string' ? data.imageUrl : null;
+    const isDataUrl = !!inlineImageValue && inlineImageValue.startsWith('data:image/');
+    return {
+        success: !!(inlineImageValue || imageValue),
+        imageBase64: isDataUrl ? inlineImageValue : null,
+        imageUrl: isDataUrl ? null : imageValue,
+        error: (inlineImageValue || imageValue) ? null : 'No image returned',
+        prompt,
+        modelName: (data.model as string) || AI_CONFIG.model,
+    };
+}
+
 async function generateWithReplicate(
     prompt: string,
     referencePhotoBase64: string | null,
@@ -237,19 +251,33 @@ async function generateWithReplicate(
         throw new Error(`Avatar API error: ${response.status} - ${JSON.stringify(errData)}`);
     }
 
-    const data = await response.json();
-    const inlineImageValue = typeof data.imageDataUrl === 'string' ? data.imageDataUrl : null;
-    const imageValue = typeof data.imageUrl === 'string' ? data.imageUrl : null;
-    const isDataUrl = !!inlineImageValue && inlineImageValue.startsWith('data:image/');
+    const startData = await response.json();
 
-    return {
-        success: !!(inlineImageValue || imageValue),
-        imageBase64: isDataUrl ? inlineImageValue : null,
-        imageUrl: isDataUrl ? null : imageValue,
-        error: (inlineImageValue || imageValue) ? null : 'No image returned',
-        prompt,
-        modelName: data.model || AI_CONFIG.model,
-    };
+    // Local dev (server.mjs) returns the image directly — use it immediately.
+    if (startData.imageUrl || startData.imageDataUrl) {
+        return buildAvatarResult(startData, prompt);
+    }
+
+    // Vercel: predictions.create() returned a prediction ID — poll until ready.
+    const predictionId = startData.predictionId as string | undefined;
+    if (!predictionId) throw new Error('No prediction ID returned from avatar API');
+
+    const MAX_MS = 120_000;
+    const INTERVAL_MS = 2_500;
+    const deadline = Date.now() + MAX_MS;
+
+    while (Date.now() < deadline) {
+        await new Promise((resolve) => setTimeout(resolve, INTERVAL_MS));
+        const poll = await fetch(`/api/poll-avatar?id=${predictionId}`).catch(() => null);
+        if (!poll?.ok) continue;
+        const pollData = await poll.json();
+        if (pollData.status === 'succeeded') return buildAvatarResult(pollData, prompt);
+        if (pollData.status === 'failed' || pollData.status === 'canceled') {
+            throw new Error(pollData.error || 'Prediction failed');
+        }
+    }
+
+    throw new Error('Avatar generation timed out after 120 seconds');
 }
 
 async function generateWithNvidia(

@@ -1254,7 +1254,7 @@
     border: 1px solid rgba(255, 255, 255, 0.05);
     box-sizing: border-box;
     width: 100%;
-    text-align: left;
+    text-align: center;
 }
 
 .character-card.v2 .insight-box.strengths {
@@ -1283,15 +1283,11 @@
     color: #e6edf3;
     line-height: 1.3;
     margin-bottom: 3px;
-    position: relative;
-    padding-left: 15px;
     letter-spacing: 0.2px;
 }
 
 .character-card.v2 .insight-list li::before {
-    content: '◇';
-    position: absolute;
-    left: 0;
+    content: '◇ ';
     color: #ffd700;
     font-weight: bold;
 }
@@ -1305,9 +1301,8 @@
     /* Red top border for Weakness */
 }
 
-.character-card.v2 .insight-box.weakness-fix li::before {
+.character-card.v2 .insight-box.weakness-fix .insight-list li::before {
     color: #f87171;
-    /* Red bullet color */
 }
 
 

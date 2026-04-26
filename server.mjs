@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 import express from 'express';
 import cors from 'cors';
+import https from 'node:https';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import Replicate from 'replicate';
@@ -14,7 +15,7 @@ dotenv.config({ path: path.join(__dirname, '.env') });
 const PORT = Number(process.env.PORT || 8787);
 const REPLICATE_API_TOKEN = process.env.REPLICATE_API_TOKEN;
 const VISION_MODEL = 'lucataco/ollama-llama3.2-vision-11b:d4e81fc1472556464f1ee5cea4de177b2fe95a6eaadb5f63335df1ba654597af';
-const SHEET_WEBHOOK_URL = process.env.SHEET_WEBHOOK_URL || process.env.GAS_WEBHOOK_URL || 'https://script.google.com/macros/s/AKfycbzhl0hN5wQbw0e9Lm3vm12n2M3onomtL-iAIIG-TXcBnWH7bL13cNbbQwguYcTNSq_E/exec';
+const SHEET_WEBHOOK_URL = process.env.SHEET_WEBHOOK_URL || process.env.GAS_WEBHOOK_URL || 'https://script.google.com/macros/s/AKfycbxT0hIDHKvfMiVVNPqfB4ZwBl6E2v80uoEt4Ft7HymWIwxX9G1IT-tc6V3TwVKYgt_4/exec';
 
 if (!REPLICATE_API_TOKEN) {
   console.error('Missing REPLICATE_API_TOKEN. Set it in local .env or in Vercel Environment Variables.');
@@ -243,29 +244,90 @@ app.get('/api/image-proxy', async (req, res) => {
   }
 });
 
+// GAS web apps respond with a 302 redirect; Node fetch converts POST → GET on
+// redirect, hitting doGet instead of doPost. Use https.request directly so we
+// can intercept the redirect and re-POST to the Location URL.
+function httpsPostFollow(url, body) {
+  return new Promise((resolve, reject) => {
+    const bodyBuf = Buffer.from(body, 'utf8');
+    // Step 1: POST to the exec URL. GAS runs doPost internally and redirects
+    // to a signed output URL (script.googleusercontent.com/macros/echo?...).
+    // Step 2: GET that output URL to retrieve doPost's return value.
+    // Re-POSTing to the redirect URL returns 405 — it's a read-only output endpoint.
+    const parsed = new URL(url);
+    const req = https.request(
+      {
+        hostname: parsed.hostname,
+        path: parsed.pathname + parsed.search,
+        method: 'POST',
+        headers: {
+          'Content-Type': 'text/plain',
+          'Content-Length': bodyBuf.length,
+        },
+      },
+      (postRes) => {
+        console.log('[sheet-proxy] POST status', postRes.statusCode, '| location:', postRes.headers.location ?? '(none)');
+        postRes.resume();
+        if (postRes.statusCode >= 300 && postRes.statusCode < 400 && postRes.headers.location) {
+          const outputUrl = postRes.headers.location;
+          console.log('[sheet-proxy] GET ->', outputUrl);
+          const outParsed = new URL(outputUrl);
+          const getReq = https.request(
+            { hostname: outParsed.hostname, path: outParsed.pathname + outParsed.search, method: 'GET' },
+            (getRes) => {
+              console.log('[sheet-proxy] GET status', getRes.statusCode);
+              let data = '';
+              getRes.on('data', (chunk) => { data += chunk; });
+              getRes.on('end', () => {
+                console.log('[sheet-proxy] body preview:', data.substring(0, 120));
+                resolve({ statusCode: getRes.statusCode, body: data });
+              });
+            },
+          );
+          getReq.on('error', reject);
+          getReq.end();
+        } else {
+          // No redirect — read response body directly.
+          let data = '';
+          postRes.on('data', (chunk) => { data += chunk; });
+          postRes.on('end', () => resolve({ statusCode: postRes.statusCode, body: data }));
+        }
+      },
+    );
+    req.on('error', (err) => {
+      console.error('[sheet-proxy] request error:', err.message);
+      reject(err);
+    });
+    req.write(bodyBuf);
+    req.end();
+  });
+}
+
 app.post('/api/sheet-proxy', async (req, res) => {
   try {
     const payload = req.body ?? {};
-    const upstream = await fetch(SHEET_WEBHOOK_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'text/plain' },
-      body: JSON.stringify(payload),
-    });
+    const upstream = await httpsPostFollow(SHEET_WEBHOOK_URL, JSON.stringify(payload));
 
-    const raw = await upstream.text();
+    const raw = upstream.body;
+    const ok = upstream.statusCode >= 200 && upstream.statusCode < 300;
     try {
       const parsed = JSON.parse(raw);
-      return res.status(upstream.ok ? 200 : 502).json(parsed);
+      return res.status(ok ? 200 : 502).json(parsed);
     } catch {
-      return res.status(upstream.ok ? 200 : 502).json({
-        status: upstream.ok ? 'success' : 'error',
-        message: raw || (upstream.ok ? 'Request completed' : 'Upstream webhook error'),
+      return res.status(ok ? 200 : 502).json({
+        status: ok ? 'success' : 'error',
+        message: raw || (ok ? 'Request completed' : 'Upstream webhook error'),
       });
     }
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
     return res.status(500).json({ status: 'error', message });
   }
+});
+
+app.get('/api/poll-avatar', async (req, res) => {
+  const { default: handler } = await import('./api/poll-avatar.js');
+  handler(req, res);
 });
 
 app.get('/api/download-page', async (req, res) => {
