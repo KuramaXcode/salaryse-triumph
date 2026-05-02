@@ -138,10 +138,10 @@ const Result: React.FC<ResultProps> = ({
         if (!cardRef.current) return null;
         const sourceNode = cardRef.current;
 
-        // Always capture at the card's intended design size (420×800) so the
+        // Always capture at the card's intended design size (350×590) so the
         // downloaded image looks identical regardless of the user's screen size.
-        const CARD_W = 420;
-        const CARD_H = 800;
+        const CARD_W = 350;
+        const CARD_H = 590;
 
         const clone = sourceNode.cloneNode(true) as HTMLElement;
         clone.classList.add('capture-safe');
@@ -161,11 +161,19 @@ const Result: React.FC<ResultProps> = ({
             if (heroSection && src) {
                 heroSection.style.backgroundImage = `url("${src}")`;
                 heroSection.style.backgroundSize = 'cover';
-                heroSection.style.backgroundPosition = 'center 15%';
+                heroSection.style.backgroundPosition = 'center center';
                 heroSection.style.backgroundRepeat = 'no-repeat';
                 heroImg.style.visibility = 'hidden';
             }
         }
+
+        // html2canvas can clip absolutely-positioned children (like the identity bar)
+        // when an ancestor has overflow:hidden. Force visible on the inner frame so
+        // the name + salutation that overlap below the hero section are always rendered.
+        const innerFrame = clone.querySelector('.card-inner-frame') as HTMLElement | null;
+        if (innerFrame) innerFrame.style.overflow = 'visible';
+        const heroSection2 = clone.querySelector('.card-hero-section') as HTMLElement | null;
+        if (heroSection2) heroSection2.style.overflow = 'visible';
 
         const wrapper = document.createElement('div');
         wrapper.className = 'capture-clone-wrapper';
@@ -178,7 +186,7 @@ const Result: React.FC<ResultProps> = ({
             await waitForFonts();
             await waitForImages(clone);
             const canvas = await html2canvas(clone, {
-                backgroundColor: '#03060d',
+                backgroundColor: '#ffffff',
                 scale,
                 logging: false,
                 useCORS: true,
@@ -296,10 +304,8 @@ const Result: React.FC<ResultProps> = ({
     };
 
     const handleOpenCardModal = async () => {
-        let imageDataUrl = cachedCardImage;
-        if (!imageDataUrl) {
-            imageDataUrl = await captureCardImage('image/png', 2);
-        }
+        // Always fresh capture so the modal matches exactly what's on screen.
+        let imageDataUrl = await captureCardImage('image/png', 2);
         if (!imageDataUrl) {
             await new Promise((resolve) => setTimeout(resolve, 220));
             imageDataUrl = await captureCardImage('image/png', 1.25);
@@ -314,9 +320,11 @@ const Result: React.FC<ResultProps> = ({
 
     const handlePrintCard = async () => {
         const fileBase = `${userName || 'Character'}_Dossier_Card`.replace(/[^a-zA-Z0-9_-]/g, '_');
-        let imageDataUrl = cachedCardImage;
+        // Always fresh capture for print.
+        let imageDataUrl = await captureCardImage('image/png', 2);
         if (!imageDataUrl) {
-            imageDataUrl = await captureCardImage('image/png', 2);
+            await new Promise((resolve) => setTimeout(resolve, 220));
+            imageDataUrl = await captureCardImage('image/png', 1.25);
         }
         if (!imageDataUrl) {
             window.alert('Could not prepare print preview right now. Please wait a moment and try again.');
@@ -338,7 +346,7 @@ const Result: React.FC<ResultProps> = ({
       padding: 0;
       width: 100%;
       height: 100%;
-      background: #000;
+      background: #fff;
     }
     .wrap {
       width: 100%;

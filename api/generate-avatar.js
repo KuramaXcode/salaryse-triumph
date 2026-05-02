@@ -18,20 +18,19 @@ export default async function handler(req, res) {
         imageInput.push(referenceImage);
       }
       input = {
-        size: '2K',
-        width: 2048,
-        height: 1152,
+        width: 1024,
+        height: 682,
         prompt,
         max_images: 1,
         image_input: imageInput,
-        aspect_ratio: '16:9',
+        aspect_ratio: '3:2',
         enhance_prompt: false,
         sequential_image_generation: 'disabled',
       };
     } else if (model === 'prunaai/z-image-turbo') {
       input = {
         width: 1024,
-        height: 1024,
+        height: 682,
         prompt,
         go_fast: false,
         output_format: 'jpg',
@@ -42,7 +41,7 @@ export default async function handler(req, res) {
     } else {
       input = {
         prompt,
-        aspect_ratio: '1:1',
+        aspect_ratio: '3:2',
         safety_filter_level: 'block_medium_and_above',
       };
     }

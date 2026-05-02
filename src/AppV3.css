@@ -56,6 +56,12 @@
   text-shadow: 0 0 30px var(--accent-color);
 }
 
+.fps3-brand-logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
 @keyframes float {
 
   0%,
