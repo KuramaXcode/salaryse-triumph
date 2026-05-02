@@ -262,12 +262,15 @@ async function generateWithReplicate(
     const predictionId = startData.predictionId as string | undefined;
     if (!predictionId) throw new Error('No prediction ID returned from avatar API');
 
-    const MAX_MS = 120_000;
-    const INTERVAL_MS = 2_500;
+    const MAX_MS = 180_000;
     const deadline = Date.now() + MAX_MS;
+    let attempt = 0;
 
     while (Date.now() < deadline) {
-        await new Promise((resolve) => setTimeout(resolve, INTERVAL_MS));
+        // Poll faster in the first 30s (warm models finish quickly), then slow down
+        const interval = attempt < 12 ? 2_500 : 5_000;
+        await new Promise((resolve) => setTimeout(resolve, interval));
+        attempt++;
         const poll = await fetch(`/api/poll-avatar?id=${predictionId}`).catch(() => null);
         if (!poll?.ok) continue;
         const pollData = await poll.json();
@@ -277,7 +280,7 @@ async function generateWithReplicate(
         }
     }
 
-    throw new Error('Avatar generation timed out after 120 seconds');
+    throw new Error('Avatar generation timed out after 180 seconds');
 }
 
 async function generateWithNvidia(

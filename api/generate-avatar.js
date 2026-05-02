@@ -13,20 +13,15 @@ export default async function handler(req, res) {
 
     let input;
     if (model === 'bytedance/seedream-4' || model === 'bytedance/seedream-4.5') {
-      const imageInput = [];
-      if (typeof referenceImage === 'string' && referenceImage.length > 0) {
-        imageInput.push(referenceImage);
-      }
       input = {
-        width: 1024,
-        height: 682,
         prompt,
-        max_images: 1,
-        image_input: imageInput,
         aspect_ratio: '3:2',
         enhance_prompt: false,
-        sequential_image_generation: 'disabled',
       };
+      // Only include image_input when a reference photo is actually provided
+      if (typeof referenceImage === 'string' && referenceImage.length > 0) {
+        input.image_input = [referenceImage];
+      }
     } else if (model === 'prunaai/z-image-turbo') {
       input = {
         width: 1024,
