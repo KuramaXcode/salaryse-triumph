@@ -63,48 +63,12 @@ export function playCameraShutter() {
 }
 
 export function playAmbient(_theme: string): () => void {
-    if (!SOUND_ENABLED) return () => { };
-
-    try {
-        if (activeAmbient) {
-            activeAmbient.pause();
-            activeAmbient.currentTime = 0;
-            activeAmbient = null;
-        }
-
-        if (_theme === 'intro-loop') {
-            const audio = new Audio('/audio/intro_theme.mp3');
-            audio.preload = 'auto';
-            audio.loop = true;
-            audio.volume = 0.32;
-            void audio.play().catch(() => { });
-            activeAmbient = audio;
-        } else if (_theme === 'quiz-loop') {
-            const audio = new Audio(soundMap.quizLoop);
-            audio.preload = 'auto';
-            audio.loop = true;
-            audio.volume = 0.3;
-            void audio.play().catch(() => { });
-            activeAmbient = audio;
-        } else if (_theme === 'result-loop') {
-            const audio = new Audio(soundMap.resultLoop);
-            audio.preload = 'auto';
-            audio.loop = true;
-            audio.volume = 0.3;
-            void audio.play().catch(() => { });
-            activeAmbient = audio;
-        }
-    } catch {
-        // silent fail on autoplay-restricted platforms
+    if (activeAmbient) {
+        activeAmbient.pause();
+        activeAmbient.currentTime = 0;
+        activeAmbient = null;
     }
-
-    return () => {
-        if (activeAmbient) {
-            activeAmbient.pause();
-            activeAmbient.currentTime = 0;
-            activeAmbient = null;
-        }
-    };
+    return () => { };
 }
 
 export function playReveal(_theme: string = 'default') {

@@ -940,15 +940,20 @@
 }
 
 .character-card.v2 .card-universe-label {
-    padding: 3px 0;
-    font-size: 0.6rem;
-    font-weight: 900;
-    letter-spacing: 4px;
+    padding: 2px 0;
     background: linear-gradient(90deg, transparent, rgba(184, 134, 11, 0.06), transparent);
     border-bottom: 1px solid rgba(184, 134, 11, 0.2);
-    color: #777;
-    text-transform: uppercase;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
+}
+
+.character-card.v2 .card-brand-logo {
+    height: 14px;
+    width: auto;
+    display: block;
 }
 
 .character-card.v2 .card-hero-section {
