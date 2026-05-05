@@ -60,15 +60,12 @@ const Result: React.FC<ResultProps> = ({
     aiError,
     aiPrompt,
     aiModel,
-    aiSuccess = false,
     isGeneratingAvatar = false,
     onRetryArt,
     onFinalize,
     isFinalizing = false,
     finalizeMessage = null,
     captureCycle = 0,
-    cardDriveUrl = null,
-    avatarDriveUrl = null,
 }) => {
     const [showPrompt, setShowPrompt] = useState(false);
     const [cardReady, setCardReady] = useState(false);
