@@ -232,11 +232,10 @@ const Result: React.FC<ResultProps> = ({
             if (cancelled) return;
             captureAttemptRef.current += 1;
             try {
-                const dataUrl = await captureCardImage('image/jpeg', 2, 0.9);
-                const uploadUrl = await captureCardImage('image/jpeg', 1, 0.65);
-                if (dataUrl && uploadUrl) {
+                const dataUrl = await captureCardImage('image/png', 2);
+                if (dataUrl) {
                     setCachedCardImage(dataUrl);
-                    onCaptureReady(uploadUrl, 'v2');
+                    onCaptureReady(dataUrl, 'v2');
                     uploadedCycleRef.current = captureCycle;
                     return;
                 }
