@@ -325,10 +325,10 @@ const Quiz: React.FC<QuizProps> = ({ theme, onComplete }) => {
                 <div className="answers-grid">
                     {question.answers.map((ans, idx) => (
                         <button
-                            key={idx}
+                            key={`${currentQuestionIndex}-${idx}`}
                             className="answer-btn"
                             onMouseEnter={playHoverTick}
-                            onClick={() => { playClick(); handleAnswerClick(ans.trait, ans.points, ans.text); }}
+                            onClick={(e) => { e.currentTarget.blur(); playClick(); handleAnswerClick(ans.trait, ans.points, ans.text); }}
                         >
                             {ans.text}
                         </button>

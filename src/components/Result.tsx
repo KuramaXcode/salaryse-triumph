@@ -12,6 +12,7 @@ interface ResultProps {
     userPhoto: string | null;
     userName: string;
     onRestart: () => void;
+    onFullReset?: () => void;
     onCaptureReady?: (imageData: string, version: CardVersion) => void;
     aiError?: string | null;
     aiPrompt?: string | null;
@@ -19,8 +20,6 @@ interface ResultProps {
     aiSuccess?: boolean;
     isGeneratingAvatar?: boolean;
     onRetryArt?: () => void;
-    onFinalize?: () => void | Promise<void>;
-    isFinalizing?: boolean;
     finalizeMessage?: string | null;
     captureCycle?: number;
     cardDriveUrl?: string | null;
@@ -56,14 +55,13 @@ const Result: React.FC<ResultProps> = ({
     userPhoto,
     userName,
     onRestart,
+    onFullReset,
     onCaptureReady,
     aiError,
     aiPrompt,
     aiModel,
     isGeneratingAvatar = false,
     onRetryArt,
-    onFinalize,
-    isFinalizing = false,
     finalizeMessage = null,
     captureCycle = 0,
 }) => {
@@ -108,6 +106,34 @@ const Result: React.FC<ResultProps> = ({
         }));
     };
 
+    const rasterizeCover = (src: string, width: number, height: number): Promise<string | null> => {
+        return new Promise((resolve) => {
+            const img = new Image();
+            img.crossOrigin = 'anonymous';
+            const finish = (result: string | null) => resolve(result);
+            img.onload = () => {
+                try {
+                    const c = document.createElement('canvas');
+                    c.width = width;
+                    c.height = height;
+                    const ctx = c.getContext('2d');
+                    if (!ctx || !img.naturalWidth || !img.naturalHeight) return finish(null);
+                    const ar = img.naturalWidth / img.naturalHeight;
+                    const tar = width / height;
+                    let dw: number, dh: number, dx: number, dy: number;
+                    if (ar > tar) { dh = height; dw = ar * dh; dx = (width - dw) / 2; dy = 0; }
+                    else { dw = width; dh = dw / ar; dx = 0; dy = (height - dh) / 2; }
+                    ctx.drawImage(img, dx, dy, dw, dh);
+                    finish(c.toDataURL('image/png'));
+                } catch {
+                    finish(null);
+                }
+            };
+            img.onerror = () => finish(null);
+            img.src = src;
+        });
+    };
+
     const captureCardImage = async (
         format: 'image/png' | 'image/jpeg' = 'image/png',
         scale = 2,
@@ -131,13 +157,15 @@ const Result: React.FC<ResultProps> = ({
         clone.style.transform = 'none';
         clone.style.transformOrigin = 'top left';
 
-        // html2canvas doesn't honour object-fit on <img>; swap to a CSS background instead.
+        // html2canvas doesn't honour object-fit on <img> and chokes on huge base64
+        // data URLs in CSS background-image. Pre-rasterize to a small fitted PNG first.
         const heroImg = clone.querySelector('img.hero-image') as HTMLImageElement | null;
         if (heroImg) {
             const heroSection = heroImg.closest('.card-hero-section') as HTMLElement | null;
             const src = heroImg.currentSrc || heroImg.src;
             if (heroSection && src) {
-                heroSection.style.backgroundImage = `url("${src}")`;
+                const fittedSrc = await rasterizeCover(src, CARD_W * 2, 240 * 2);
+                heroSection.style.backgroundImage = `url("${fittedSrc || src}")`;
                 heroSection.style.backgroundSize = 'cover';
                 heroSection.style.backgroundPosition = 'center center';
                 heroSection.style.backgroundRepeat = 'no-repeat';
@@ -281,11 +309,13 @@ const Result: React.FC<ResultProps> = ({
     };
 
     const handleOpenCardModal = async () => {
-        // Always fresh capture so the modal matches exactly what's on screen.
         let imageDataUrl = await captureCardImage('image/png', 2);
         if (!imageDataUrl) {
             await new Promise((resolve) => setTimeout(resolve, 220));
             imageDataUrl = await captureCardImage('image/png', 1.25);
+        }
+        if (!imageDataUrl && cachedCardImage) {
+            imageDataUrl = cachedCardImage;
         }
         if (!imageDataUrl) {
             window.alert('Could not prepare the card preview right now. Please wait a moment and try again.');
@@ -499,11 +529,6 @@ const Result: React.FC<ResultProps> = ({
                         {isGeneratingAvatar ? 'RETRYING ART...' : 'RETRY ART'}
                     </button>
                 )}
-                {onFinalize && (
-                    <button className="ops-btn finalize-btn" onClick={() => onFinalize()} disabled={isFinalizing || isGeneratingAvatar}>
-                        {isFinalizing ? 'FINALIZING...' : 'FINALIZE CARD'}
-                    </button>
-                )}
             </div>
             {finalizeMessage && <p className="finalize-note">{finalizeMessage}</p>}
 
@@ -511,6 +536,11 @@ const Result: React.FC<ResultProps> = ({
                 <button className="secondary-action-btn restart-btn" onClick={onRestart}>
                     BEGIN NEW CEREMONY
                 </button>
+                {onFullReset && (
+                    <button className="secondary-action-btn restart-btn" onClick={onFullReset}>
+                        START OVER
+                    </button>
+                )}
             </div>
 
             {showCardModal && modalImage && (

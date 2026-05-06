@@ -5,7 +5,7 @@ import SortingCeremony from './components/SortingCeremony';
 import Result from './components/Result';
 import DynamicBackground from './components/DynamicBackground';
 import PageTransition from './components/PageTransition';
-import { uploadPhotoToDrive, submitFinalCardToSheet, submitToGoogleSheet } from './utils/googleSheets';
+import { uploadPhotoToDrive, submitToGoogleSheet } from './utils/googleSheets';
 import { generateAvatar, type AvatarResult } from './services/avatarService';
 import { playClick, playAmbient, playHoverTick } from './hooks/useSound';
 import './AppV3.css';
@@ -69,8 +69,6 @@ function AppV3() {
   const avatarPromiseRef = useRef<Promise<AvatarResult> | null>(null);
   const [cardCaptureCycle, setCardCaptureCycle] = useState(0);
   const [resultCardUrl, setResultCardUrl] = useState<string | null>(null);
-  const [latestCardImageData, setLatestCardImageData] = useState<string | null>(null);
-  const [isFinalizingCard, setIsFinalizingCard] = useState(false);
   const [finalizeMessage, setFinalizeMessage] = useState<string | null>(null);
   const [healthWarning, setHealthWarning] = useState<string | null>(null);
   const [avatarDriveUrl, setAvatarDriveUrl] = useState<string | null>(null);
@@ -171,7 +169,6 @@ function AppV3() {
     setUserPhoto(imageSrc);
     setRawPhoto(imageSrc);
     setResultCardUrl(null);
-    setLatestCardImageData(null);
     setFinalizeMessage(null);
 
     // Upload to Drive in background
@@ -296,7 +293,6 @@ function AppV3() {
 
   const handleUploadResultCard = async (imageData: string, version: 'v2') => {
     if (version !== 'v2') return;
-    setLatestCardImageData(imageData);
     console.log('📤 Uploading result card to Drive...');
     const uploadRes = await uploadPhotoToDrive(userName, imageData, 'result', 'v2');
     const isRealDriveUrl = (url: string | null) =>
@@ -321,36 +317,6 @@ function AppV3() {
     startAvatarGeneration(finalResult, theme, referencePhoto);
   };
 
-  const handleFinalizeCard = async () => {
-    if (!theme || !finalResult) return;
-    let selectedUrl = resultCardUrl;
-    if (!selectedUrl && latestCardImageData) {
-      const uploadRes = await uploadPhotoToDrive(userName, latestCardImageData, 'result', 'v2');
-      if (uploadRes.success && uploadRes.photoUrl) {
-        selectedUrl = uploadRes.photoUrl;
-        setResultCardUrl(uploadRes.photoUrl);
-      }
-    }
-    if (!selectedUrl) {
-      setCardCaptureCycle((v) => v + 1);
-      setFinalizeMessage('Card is preparing. Wait 2-3 seconds and tap FINALIZE CARD again.');
-      return;
-    }
-
-    setIsFinalizingCard(true);
-    setFinalizeMessage(null);
-    const result = await submitFinalCardToSheet({
-      userName,
-      theme,
-      house: finalResult.house,
-      trait: finalResult.trait,
-      cardVersion: 'v2',
-      cardUrl: selectedUrl,
-    });
-    setIsFinalizingCard(false);
-    setFinalizeMessage(result.success ? 'Finalized card for printing.' : (result.error || 'Failed to finalize card.'));
-  };
-
   const handleRestart = () => {
     playClick();
     setTheme(null);
@@ -358,7 +324,6 @@ function AppV3() {
     setAvatarResult(null);
     setIsGeneratingAvatar(false);
     setResultCardUrl(null);
-    setLatestCardImageData(null);
     setFinalizeMessage(null);
     setAvatarDriveUrl(null);
     avatarPromiseRef.current = null;
@@ -377,7 +342,6 @@ function AppV3() {
     setAvatarResult(null);
     setIsGeneratingAvatar(false);
     setResultCardUrl(null);
-    setLatestCardImageData(null);
     setFinalizeMessage(null);
     setAvatarDriveUrl(null);
     avatarPromiseRef.current = null;
@@ -567,6 +531,7 @@ function AppV3() {
               userPhoto={resultImage || null}
               userName={userName}
               onRestart={handleRestart}
+              onFullReset={handleFullReset}
               onCaptureReady={handleUploadResultCard}
               aiError={avatarResult?.error}
               aiPrompt={avatarResult?.prompt}
@@ -574,8 +539,6 @@ function AppV3() {
               aiSuccess={avatarResult?.success || false}
               isGeneratingAvatar={isGeneratingAvatar}
               onRetryArt={handleRetryArt}
-              onFinalize={handleFinalizeCard}
-              isFinalizing={isFinalizingCard}
               finalizeMessage={finalizeMessage}
               captureCycle={cardCaptureCycle}
               cardDriveUrl={resultCardUrl}
