@@ -1,4 +1,15 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
+
+if (import.meta.env.VITE_APP_CLOSED === 'true') {
+    document.body.innerHTML = `
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;background:#0a0a0a;color:#fff;font-family:sans-serif;text-align:center;gap:16px;">
+            <div style="font-size:48px;">🏆</div>
+            <h1 style="font-size:28px;font-weight:700;margin:0;">The Event Has Concluded</h1>
+            <p style="font-size:16px;color:#888;margin:0;">Thank you for being part of SalarySe Triumph.</p>
+        </div>`;
+    throw new Error('App closed');
+}
+
 import Camera from './components/Camera';
 import Quiz, { type FinalResult, type HouseVariant } from './components/Quiz';
 import SortingCeremony from './components/SortingCeremony';
