@@ -11,7 +11,8 @@ import {
     universeStyles,
     houseAccents,
     traitDescriptions,
-    getBaseInstructions
+    getBaseInstructions,
+    getIdentityPreamble
 } from './promptConfig';
 
 // ── Prompt Building ──
@@ -29,13 +30,13 @@ export function buildPrompt(ctx: PromptContext, isTextOnly: boolean): string {
     const traitDesc = traitDescriptions[ctx.trait] || '';
 
     const promptParts = [
-        `Subject: A person styled as a ${ctx.house} member from ${ctx.universe.toUpperCase()}.`,
-        'The person looks like: realistic human portrait matching the uploaded selfie, preserving facial identity and hair details.',
-        `Art Style: ${style.artStyle}.`,
-        `Setting: ${style.setting}.`,
-        `Lighting & Mood: ${style.mood}.`,
-        `Vibe: ${traitDesc}.`,
-        `Specific Details: ${houseAccent}.`,
+        ...getIdentityPreamble(isTextOnly),
+        `Subject: the same person from the reference photo, styled as a ${ctx.house} member from the ${ctx.universe.toUpperCase()} universe.`,
+        `Wardrobe & background: ${houseAccent}.`,
+        `Expression: ${traitDesc}.`,
+        `Art style: ${style.artStyle}.`,
+        `Environment: ${style.setting}, kept softly out of focus so the face remains the focal point.`,
+        `Lighting & mood: ${style.mood}, with key light on the face for clean skin-tone reproduction.`,
         ...getBaseInstructions(isTextOnly)
     ];
 

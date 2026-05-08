@@ -106,38 +106,10 @@ const Result: React.FC<ResultProps> = ({
         }));
     };
 
-    const rasterizeCover = (src: string, width: number, height: number): Promise<string | null> => {
-        return new Promise((resolve) => {
-            const img = new Image();
-            img.crossOrigin = 'anonymous';
-            const finish = (result: string | null) => resolve(result);
-            img.onload = () => {
-                try {
-                    const c = document.createElement('canvas');
-                    c.width = width;
-                    c.height = height;
-                    const ctx = c.getContext('2d');
-                    if (!ctx || !img.naturalWidth || !img.naturalHeight) return finish(null);
-                    const ar = img.naturalWidth / img.naturalHeight;
-                    const tar = width / height;
-                    let dw: number, dh: number, dx: number, dy: number;
-                    if (ar > tar) { dh = height; dw = ar * dh; dx = (width - dw) / 2; dy = 0; }
-                    else { dw = width; dh = dw / ar; dx = 0; dy = (height - dh) / 2; }
-                    ctx.drawImage(img, dx, dy, dw, dh);
-                    finish(c.toDataURL('image/png'));
-                } catch {
-                    finish(null);
-                }
-            };
-            img.onerror = () => finish(null);
-            img.src = src;
-        });
-    };
-
     const captureCardImage = async (
         format: 'image/png' | 'image/jpeg' = 'image/png',
-        scale = 2,
-        quality = 0.9,
+        scale = 4,
+        quality = 0.95,
     ): Promise<string | null> => {
         if (!cardRef.current) return null;
         const sourceNode = cardRef.current;
@@ -157,19 +129,35 @@ const Result: React.FC<ResultProps> = ({
         clone.style.transform = 'none';
         clone.style.transformOrigin = 'top left';
 
-        // html2canvas doesn't honour object-fit on <img> and chokes on huge base64
-        // data URLs in CSS background-image. Pre-rasterize to a small fitted PNG first.
+        // html2canvas doesn't honour CSS object-fit, so manually position the <img>
+        // to mimic object-fit: cover. This preserves the FULL native resolution of the
+        // Replicate render (no lossy intermediate), giving a much sharper download.
+        const HERO_W = CARD_W;
+        const HERO_H = 240; // matches .card-hero-section design height
         const heroImg = clone.querySelector('img.hero-image') as HTMLImageElement | null;
         if (heroImg) {
             const heroSection = heroImg.closest('.card-hero-section') as HTMLElement | null;
-            const src = heroImg.currentSrc || heroImg.src;
-            if (heroSection && src) {
-                const fittedSrc = await rasterizeCover(src, CARD_W * 2, 240 * 2);
-                heroSection.style.backgroundImage = `url("${fittedSrc || src}")`;
-                heroSection.style.backgroundSize = 'cover';
-                heroSection.style.backgroundPosition = 'center center';
-                heroSection.style.backgroundRepeat = 'no-repeat';
-                heroImg.style.visibility = 'hidden';
+            const sourceImg = sourceNode.querySelector('img.hero-image') as HTMLImageElement | null;
+            const natW = sourceImg?.naturalWidth || 0;
+            const natH = sourceImg?.naturalHeight || 0;
+            if (heroSection && natW && natH) {
+                const ar = natW / natH;
+                const tar = HERO_W / HERO_H;
+                let dw: number, dh: number, dx: number, dy: number;
+                if (ar > tar) { dh = HERO_H; dw = ar * dh; dx = (HERO_W - dw) / 2; dy = 0; }
+                else { dw = HERO_W; dh = dw / ar; dx = 0; dy = (HERO_H - dh) / 2; }
+                heroSection.style.position = 'relative';
+                heroSection.style.overflow = 'hidden';
+                heroImg.style.position = 'absolute';
+                heroImg.style.left = `${dx}px`;
+                heroImg.style.top = `${dy}px`;
+                heroImg.style.width = `${dw}px`;
+                heroImg.style.height = `${dh}px`;
+                heroImg.style.maxWidth = 'none';
+                heroImg.style.maxHeight = 'none';
+                heroImg.style.objectFit = 'fill';
+                heroImg.style.visibility = 'visible';
+                heroImg.crossOrigin = 'anonymous';
             }
         }
 
@@ -260,7 +248,7 @@ const Result: React.FC<ResultProps> = ({
             if (cancelled) return;
             captureAttemptRef.current += 1;
             try {
-                const dataUrl = await captureCardImage('image/png', 2);
+                const dataUrl = await captureCardImage('image/png', 4);
                 if (dataUrl) {
                     setCachedCardImage(dataUrl);
                     onCaptureReady(dataUrl, 'v2');
@@ -287,7 +275,11 @@ const Result: React.FC<ResultProps> = ({
     const handleDownloadCard = async () => {
         const fileBase = `${userName || 'Character'}_Dossier_Card`.replace(/[^a-zA-Z0-9_-]/g, '_');
 
-        let imageDataUrl = await captureCardImage('image/png', 2);
+        let imageDataUrl = await captureCardImage('image/png', 4);
+        if (!imageDataUrl) {
+            await new Promise((resolve) => setTimeout(resolve, 220));
+            imageDataUrl = await captureCardImage('image/png', 2);
+        }
         if (!imageDataUrl) {
             await new Promise((resolve) => setTimeout(resolve, 220));
             imageDataUrl = await captureCardImage('image/png', 1.25);
@@ -309,7 +301,11 @@ const Result: React.FC<ResultProps> = ({
     };
 
     const handleOpenCardModal = async () => {
-        let imageDataUrl = await captureCardImage('image/png', 2);
+        let imageDataUrl = await captureCardImage('image/png', 4);
+        if (!imageDataUrl) {
+            await new Promise((resolve) => setTimeout(resolve, 220));
+            imageDataUrl = await captureCardImage('image/png', 2);
+        }
         if (!imageDataUrl) {
             await new Promise((resolve) => setTimeout(resolve, 220));
             imageDataUrl = await captureCardImage('image/png', 1.25);
@@ -328,7 +324,11 @@ const Result: React.FC<ResultProps> = ({
     const handlePrintCard = async () => {
         const fileBase = `${userName || 'Character'}_Dossier_Card`.replace(/[^a-zA-Z0-9_-]/g, '_');
         // Always fresh capture for print.
-        let imageDataUrl = await captureCardImage('image/png', 2);
+        let imageDataUrl = await captureCardImage('image/png', 4);
+        if (!imageDataUrl) {
+            await new Promise((resolve) => setTimeout(resolve, 220));
+            imageDataUrl = await captureCardImage('image/png', 2);
+        }
         if (!imageDataUrl) {
             await new Promise((resolve) => setTimeout(resolve, 220));
             imageDataUrl = await captureCardImage('image/png', 1.25);
