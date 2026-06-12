@@ -329,12 +329,6 @@ function AppV3() {
     }
   };
 
-  const handleRetryArt = () => {
-    const referencePhoto = rawPhoto || photoUrl;
-    if (!finalResult || !theme || !referencePhoto || isGeneratingAvatar) return;
-    startAvatarGeneration(finalResult, theme, referencePhoto);
-  };
-
   const handleRestart = () => {
     playClick();
     setTheme(null);
@@ -555,8 +549,6 @@ function AppV3() {
               aiPrompt={avatarResult?.prompt}
               aiModel={avatarResult?.modelName}
               aiSuccess={avatarResult?.success || false}
-              isGeneratingAvatar={isGeneratingAvatar}
-              onRetryArt={handleRetryArt}
               finalizeMessage={finalizeMessage}
               captureCycle={cardCaptureCycle}
               cardDriveUrl={resultCardUrl}

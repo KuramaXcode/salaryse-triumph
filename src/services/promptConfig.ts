@@ -53,13 +53,13 @@ export const houseAccents: Record<string, string> = {
     'House Targaryen': 'wearing dark Targaryen leather garb with subtle dragon-scale texture on the shoulders, distant fire glow softly out of focus behind',
     'House Lannister': 'wearing crimson and gold Lannister attire with a small lion sigil at the collar, Casterly Rock hall softly out of focus behind',
     'House Stark': 'wearing fur-lined northern garb with a small direwolf sigil at the collar, snowy Winterfell courtyard softly out of focus behind',
-    'House Baratheon': 'wearing black and gold Baratheon attire with a small stag sigil at the collar, Storm’s End hall softly out of focus behind',
+    'House Baratheon': 'wearing black and gold Baratheon attire with a small stag sigil at the collar, Storm\'s End hall softly out of focus behind',
 
     // Marvel
-    ‘Team Thor’: ‘wearing Asgardian ceremonial armor on the shoulders and chest, soft lightning glow in the background — face and facial features preserved from reference photo, stylized in MCU cinematic aesthetic, no objects in front of the face’,
-    ‘Team Strange’: ‘wearing the Cloak of Levitation\’s collar and a hint of mystical orange sigils glowing softly in the background — face and facial features preserved from reference photo, stylized in MCU cinematic aesthetic, no objects in front of the face’,
-    ‘Team Iron Man’: ‘wearing a sleek nanotech chest plate with a soft arc-reactor glow at sternum level, faint HUD lines in the background — face and facial features preserved from reference photo, stylized in MCU cinematic aesthetic, no helmet on’,
-    ‘Team Cap’: ‘wearing the patriotic suit visible at the shoulders with a small star on the chest, dawn light softly out of focus behind — face and facial features preserved from reference photo, stylized in MCU cinematic aesthetic, shield is not in frame’,
+    'Team Thor': 'wearing Asgardian ceremonial armor on the shoulders and chest, soft lightning glow in the background — face and facial features preserved from reference photo, stylized in MCU cinematic aesthetic, no objects in front of the face',
+    'Team Strange': 'wearing the Cloak of Levitation\'s collar and a hint of mystical orange sigils glowing softly in the background — face and facial features preserved from reference photo, stylized in MCU cinematic aesthetic, no objects in front of the face',
+    'Team Iron Man': 'wearing a sleek nanotech chest plate with a soft arc-reactor glow at sternum level, faint HUD lines in the background — face and facial features preserved from reference photo, stylized in MCU cinematic aesthetic, no helmet on',
+    'Team Cap': 'wearing the patriotic suit visible at the shoulders with a small star on the chest, dawn light softly out of focus behind — face and facial features preserved from reference photo, stylized in MCU cinematic aesthetic, shield is not in frame',
 
     // Star Wars
     'The Sith Order': 'wearing dark Sith robes at the shoulders, faint red glow in the background — no lightsaber or hands in front of the face',

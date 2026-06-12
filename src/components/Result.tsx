@@ -18,8 +18,6 @@ interface ResultProps {
     aiPrompt?: string | null;
     aiModel?: string | null;
     aiSuccess?: boolean;
-    isGeneratingAvatar?: boolean;
-    onRetryArt?: () => void;
     finalizeMessage?: string | null;
     captureCycle?: number;
     cardDriveUrl?: string | null;
@@ -64,8 +62,6 @@ const Result: React.FC<ResultProps> = ({
     aiError,
     aiPrompt,
     aiModel,
-    isGeneratingAvatar = false,
-    onRetryArt,
     finalizeMessage = null,
     captureCycle = 0,
 }) => {
@@ -337,72 +333,6 @@ const Result: React.FC<ResultProps> = ({
         }
         setModalImage(imageDataUrl);
         setShowCardModal(true);
-    };
-
-    const handlePrintCard = async () => {
-        const fileBase = `${userName || 'Character'}_Dossier_Card`.replace(/[^a-zA-Z0-9_-]/g, '_');
-        // Always fresh capture for print.
-        let imageDataUrl = await captureCardImage('image/png', 4);
-        if (!imageDataUrl) {
-            await new Promise((resolve) => setTimeout(resolve, 220));
-            imageDataUrl = await captureCardImage('image/png', 2);
-        }
-        if (!imageDataUrl) {
-            await new Promise((resolve) => setTimeout(resolve, 220));
-            imageDataUrl = await captureCardImage('image/png', 1.25);
-        }
-        if (!imageDataUrl) {
-            window.alert('Could not prepare print preview right now. Please wait a moment and try again.');
-            return;
-        }
-
-        const printWindow = window.open('', '_blank', 'width=900,height=1200');
-        if (!printWindow) return;
-
-        printWindow.document.write(`
-<!doctype html>
-<html>
-<head>
-  <title>${fileBase}</title>
-  <style>
-    @page { size: auto; margin: 0; }
-    html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      background: #fff;
-    }
-    .wrap {
-      width: 100%;
-      min-height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    img {
-      width: auto;
-      height: 100vh;
-      max-width: 100vw;
-      object-fit: contain;
-      display: block;
-    }
-  </style>
-</head>
-<body>
-  <div class="wrap"><img id="cardImage" src="${imageDataUrl}" alt="Dossier Card" /></div>
-  <script>
-    const img = document.getElementById('cardImage');
-    if (img) {
-      img.onload = () => setTimeout(() => window.print(), 150);
-      img.onerror = () => { document.body.innerHTML = '<div style="color:white;font-family:sans-serif;padding:24px;">Failed to load card image for print preview.</div>'; };
-    }
-  </script>
-</body>
-</html>
-        `);
-        printWindow.document.close();
-        printWindow.focus();
     };
 
     const handleShareCard = async () => {
