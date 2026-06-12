@@ -43,13 +43,21 @@ const messageMap: Record<HouseVariant, string[]> = {
         "Your destiny is clear...",
         "You are aligned with..."
     ],
-    mh: [
-        "The Professor studies your file...",
-        "Running probability calculations...",
-        "Your risk profile is... fascinating...",
-        "Bella Ciao echoes in the distance...",
-        "The plan requires you for one role...",
-        "Your code name is..."
+    mbh: [
+        "Vyasa lifts his quill...",
+        "Ganesha listens, ready to transcribe your fate...",
+        "The eighteen days of Kurukshetra flash before you...",
+        "Krishna whispers the Gita into your soul...",
+        "The Dharmachakra has measured your path...",
+        "You are destined for..."
+    ],
+    dbz: [
+        "The Dragon Balls are gathering...",
+        "Scouter is scanning your power level...",
+        "IT'S OVER 9,000!!",
+        "The Dragon speaks your destiny...",
+        "Your ki has been measured...",
+        "You fight alongside..."
     ],
 };
 

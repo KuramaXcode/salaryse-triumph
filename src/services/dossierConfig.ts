@@ -115,30 +115,56 @@ const houseInsightsMap: Record<string, HouseInsight> = {
         weakness: 'Hope alone does not win. Your rebellion needs a strike team: allocate a focused portion to high-conviction growth to take the fight to the Empire.',
     },
 
-    // ── Money Heist ──────────────────────────────────────────────────────────
-    'Team Tokyo': {
-        salutation: 'THE ALL-IN ADRENALINE INVESTOR',
-        strength1: 'You have nothing to lose — and that fearlessness is your most bankable asset. You enter positions that others are genuinely too scared to touch.',
-        strength2: 'Your emotional intensity becomes a weapon in high-stakes moments. When it matters most, you do not flinch.',
-        weakness: 'Tokyo\'s story is a warning too. Emotional investing without a written exit plan turns courage into a beautiful disaster. Write your rules before you enter.',
+    // ── Dragon Ball Z ────────────────────────────────────────────────────────
+    'Team Goku': {
+        salutation: 'THE SAIYAN MARKET WARRIOR',
+        strength1: 'You are strongest when the odds are stacked against you. Volatility does not scare you — it powers you up. Your best entries happen precisely when everyone else is running.',
+        strength2: 'You push past perceived limits constantly. Where others see a ceiling, you see the next level. That relentless drive turns small positions into transformative ones over time.',
+        weakness: 'Even Goku needed a Senzu Bean. Going Ultra Instinct on every trade without a recovery plan means one bad fight can set you back an entire saga. Build your reserve before the next arc.',
     },
-    'Team Professor': {
-        salutation: 'THE MASTER PLAN ARCHITECT',
-        strength1: 'The plan. Always the plan. Your financial blueprints account for variables that others do not even know to consider.',
-        strength2: 'You prepare for failure as rigorously as success. Your contingency planning means setbacks are speed bumps, never walls.',
-        weakness: 'Even the Professor\'s plan nearly collapsed because he underestimated emotion. Build human variables into your models — markets are made of people.',
+    'Capsule Corp': {
+        salutation: 'THE GENIUS EMPIRE ARCHITECT',
+        strength1: 'You think like Bulma and execute like Vegeta. You combine brilliant systems thinking with relentless ambition to build something that outlasts any single market cycle.',
+        strength2: 'You invest in infrastructure, not just assets. The businesses, systems, and networks you build compound in ways a pure trader never experiences.',
+        weakness: 'Not every problem needs a time machine. Over-engineering your financial systems can delay execution. Sometimes the best capsule is the one you open, not the one you are still designing.',
     },
-    'Team Berlin': {
-        salutation: 'THE ELEGANT EMPIRE BUILDER',
-        strength1: 'You treat wealth accumulation as a masterpiece. Every deal is negotiated with the precision and confidence of someone who knows exactly their worth.',
-        strength2: 'Your composure in high-pressure financial moments is extraordinary. You never negotiate from fear — only ever from position.',
-        weakness: 'Berlin\'s fatal flaw was believing the plan was bigger than the people. The best portfolios diversify relationships as carefully as assets.',
+    'Frieza Force': {
+        salutation: 'THE GALACTIC MARKET EMPEROR',
+        strength1: 'You survey every sector with cold, calculated precision before committing a single credit. Your due diligence is legendary — you never enter a market without already knowing your exit.',
+        strength2: 'You understand power structures better than anyone. You know which assets are truly dominant and which ones merely look impressive. That distinction alone is worth a fortune.',
+        weakness: "Frieza's empire fell because he underestimated the intangibles. Not every competitive advantage shows up in the numbers. Leave room in your model for what the data cannot quantify.",
     },
-    'Team Nairobi': {
-        salutation: 'THE MATRIARCH OF CAPITAL',
-        strength1: 'Let the matriarchy begin. You run the numbers, protect the assets, and ensure not a single rupee is wasted in operation.',
-        strength2: 'Your operational discipline is exceptional. You know exactly where every resource is allocated and you hold people accountable to the plan.',
-        weakness: 'You protect so well that you sometimes protect from the upside too. A managed-risk growth sleeve would give your impeccable base real room to compound.',
+    'Namekian Guardians': {
+        salutation: 'THE GUARDIAN OF THE LONG GAME',
+        strength1: 'Like Piccolo mastering his potential through years of silent training, your wealth builds through unbreakable discipline rather than explosive bursts. Your consistency is your superpower.',
+        strength2: 'You guard your financial health with the same dedication Piccolo guards the Earth. While others overspend in bull markets, your reserves are always ready for the real opportunity.',
+        weakness: 'Even Piccolo eventually fused with Nail to unlock new power. A small growth allocation could dramatically amplify your already-solid base without compromising the foundation you have built.',
+    },
+
+    // ── Mahabharata ─────────────────────────────────────────────────────────────
+    "Karna's Path": {
+        salutation: 'THE FEARLESS VALOR INVESTOR',
+        strength1: "You back convictions the way Karna backed his — completely, no reserves held. That fearlessness lands you opportunities others only watch pass.",
+        strength2: "Your abundance mindset draws deals and partnerships that flow only to those who are never seen as small or afraid.",
+        weakness: "Karna's loyalty was both his power and his blindness. Know when devotion to a position has become the position that defeats you.",
+    },
+    "Krishna's Council": {
+        salutation: 'THE DIVINE MARKET STRATEGIST',
+        strength1: "You see the full Kurukshetra before the first arrow flies. Your decisions account for ripple effects most investors never model.",
+        strength2: "You grasp that timing IS the strategy. Patience has protected your wealth through cycles that demolished less disciplined portfolios.",
+        weakness: "The Gita was spoken in a moment of crisis. Stop waiting for cosmic clarity — the market rewards decisive entry, not perfect analysis.",
+    },
+    "Arjuna's Aim": {
+        salutation: 'THE PRECISE WEALTH ARCHER',
+        strength1: "Your focus is your Gandiva. When you commit to a position, you commit fully — no half measures, no distracted exits.",
+        strength2: "Your returns reflect expertise built through genuine study and practice, not luck. That edge compounds quietly for decades.",
+        weakness: "Even Arjuna needed Krishna to see the bigger picture. Narrow focus misses macro shifts — build one lens that challenges your thesis.",
+    },
+    "Yudhishthira's Dharma": {
+        salutation: 'THE DHARMIC WEALTH GUARDIAN',
+        strength1: "Your word is your bond and your portfolio reflects it. You never chase returns that compromise your peace of mind — genuinely rare.",
+        strength2: "You protect the kingdom before expanding it. Conservative allocations others dismiss have saved you from crises that wiped out the bold.",
+        weakness: "Even Yudhishthira's dharma led him to wager too cautiously. Allocate a disciplined growth portion — your kingdom deserves to expand.",
     },
 };
 

@@ -158,37 +158,72 @@ const swQuestions: Question[] = [
     },
 ];
 
-// ── Money Heist ───────────────────────────────────────────────────────────────
+// ── Mahabharata ───────────────────────────────────────────────────────────────
 
-const mhQuestions: Question[] = [
+const mbhQuestions: Question[] = [
     {
-        id: 'mh_1',
-        text: 'You\'ve successfully pulled off a massive heist. What\'s your first financial move?',
+        id: 'mbh_1',
+        text: "Shakuni's ivory dice glint under the torchlight of Hastinapur's sabha. The Pandavas have staked — and lost — Indraprastha in a single sitting. A high-stakes opportunity lands in your lap. What is your instinct?",
         answers: [
-            { text: 'Hide the money securely in multiple locations and live modestly to avoid detection.', trait: 'cautious_saver', points: 3 },
-            { text: 'Create a complex network of offshore accounts and shell companies to launder it perfectly.', trait: 'analytical', points: 3 },
-            { text: 'Invest it all into legitimate businesses to build an untouchable financial empire.', trait: 'wealth_builder', points: 3 },
-            { text: 'Blow a massive chunk on an extravagant party—what\'s the point of money if you don\'t live?', trait: 'risk_taker', points: 3 },
+            { text: "I play. An empire lost in one sitting can be built back greater. Bold conviction is its own dharma.", trait: 'risk_taker', points: 3 },
+            { text: "Shakuni's true weapon wasn't the dice — it was inside information. I study the full odds before I ever sit at the table.", trait: 'analytical', points: 3 },
+            { text: "I never stake Indraprastha on a single throw. My wealth spans enough kingdoms that no one loss can take it all.", trait: 'wealth_builder', points: 3 },
+            { text: "Yudhishthira's error was that he kept playing. I know when to walk away — protecting the principal is dharma.", trait: 'cautious_saver', points: 3 },
         ]
     },
     {
-        id: 'mh_2',
-        text: 'The police are closing in, offering a deal: take 10% of the vault safely, or risk it all for 100%. Choose.',
+        id: 'mbh_2',
+        text: "The Chakravyuha has closed around you — a seven-ringed market spiral designed to trap the underprepared. Abhimanyu knew how to enter but not how to exit. How do you move?",
         answers: [
-            { text: 'Risk it all! 100% or nothing—that\'s why we started this.', trait: 'risk_taker', points: 3 },
-            { text: 'Negotiate for 50% immunity AND a cut of the seized funds.', trait: 'wealth_builder', points: 3 },
-            { text: 'Calculate the precise statistical probability of escape before deciding.', trait: 'analytical', points: 3 },
-            { text: 'Take the guaranteed 10%. A safe fortune beats spending life in prison.', trait: 'cautious_saver', points: 3 },
+            { text: "I charge to the innermost ring. Volatility forges warriors. I buy deepest when the formation is tightest.", trait: 'risk_taker', points: 3 },
+            { text: "Abhimanyu fell for incomplete knowledge. I map every ring — every exit — before I commit a single rupee.", trait: 'analytical', points: 3 },
+            { text: "I build income streams from outside the formation and let the trapped fight their way through while I compound.", trait: 'wealth_builder', points: 3 },
+            { text: "I do not enter a formation I cannot exit. Holding reserves outside the Chakravyuha is its own form of victory.", trait: 'cautious_saver', points: 3 },
         ]
     },
     {
-        id: 'mh_3',
-        text: 'How do you prefer your team to handle the group\'s communal expenses?',
+        id: 'mbh_3',
+        text: "On the eve of Kurukshetra, three advisors each offer you one truth to carry into your financial life. Whose counsel shapes you?",
         answers: [
-            { text: 'Strict rationing and a dedicated emergency fund for unexpected crises.', trait: 'cautious_saver', points: 3 },
-            { text: 'Detailed spreadsheets tracking every single euro spent and projected.', trait: 'analytical', points: 3 },
-            { text: 'Invest the communal fund in high-yield short-term assets to grow our operational budget.', trait: 'wealth_builder', points: 3 },
-            { text: 'Keep it loose. If we need more money for gear, we\'ll figure out a way to get it quickly.', trait: 'risk_taker', points: 3 },
+            { text: "Karna's: 'Even knowing the outcome, I stand and fight with everything I have.' Full conviction over safe calculation.", trait: 'risk_taker', points: 3 },
+            { text: "Krishna's: 'See the full field, know every warrior, understand the war before the first arrow flies.' Knowledge wins.", trait: 'analytical', points: 3 },
+            { text: "Vidura's: 'True wealth flows from dharmic action sustained across decades — not seized in a single battle.' Compounding is the path.", trait: 'wealth_builder', points: 3 },
+            { text: "Yudhishthira's: 'The kingdom we already hold is worth more than the empire we might gain.' Guard the foundation above all.", trait: 'cautious_saver', points: 3 },
+        ]
+    },
+];
+
+// ── Dragon Ball Z ─────────────────────────────────────────────────────────────
+
+const dbzQuestions: Question[] = [
+    {
+        id: 'dbz_1',
+        text: 'Your power level just hit 9,000 — and the market just opened. What\'s your move?',
+        answers: [
+            { text: 'All in. Maximum power means maximum position size. I\'m going beyond!', trait: 'risk_taker', points: 3 },
+            { text: 'Channel the energy into building long-term infrastructure, not short-term glory.', trait: 'wealth_builder', points: 3 },
+            { text: 'Scan every sector\'s battle data before committing a single Zeni to the fight.', trait: 'analytical', points: 3 },
+            { text: 'Conserve my ki. A steady reserve beats burning out before the real battle begins.', trait: 'cautious_saver', points: 3 },
+        ]
+    },
+    {
+        id: 'dbz_2',
+        text: 'You find all seven Dragon Balls. Instead of immortality, you wish for financial wisdom. What do you ask for?',
+        answers: [
+            { text: 'The courage to go all-in on the highest-stakes opportunities without hesitation.', trait: 'risk_taker', points: 3 },
+            { text: 'The blueprint to build a company as dominant and enduring as Capsule Corporation.', trait: 'wealth_builder', points: 3 },
+            { text: 'Perfect knowledge of every market — every power level, every weakness, every cycle.', trait: 'analytical', points: 3 },
+            { text: 'Complete financial security for myself and everyone I care about, guaranteed forever.', trait: 'cautious_saver', points: 3 },
+        ]
+    },
+    {
+        id: 'dbz_3',
+        text: 'A rival threatens to destroy your financial base. How do you respond?',
+        answers: [
+            { text: 'Meet it head-on. I don\'t dodge — I power up and dominate the threat completely.', trait: 'risk_taker', points: 3 },
+            { text: 'Diversify my income streams so no single attack can ever bring down the empire.', trait: 'wealth_builder', points: 3 },
+            { text: 'Study their tactics completely first. I need to know their power level before I act.', trait: 'analytical', points: 3 },
+            { text: 'Hold strict defensive positioning. Protect the base. Never overextend in battle.', trait: 'cautious_saver', points: 3 },
         ]
     },
 ];
@@ -242,11 +277,17 @@ const resolveScore = (scores: Record<FinancialTrait, number>, theme: HouseVarian
             wealth_builder:{ house: 'The Mandalorians',    trait: 'wealth_builder',description: 'This is the way. You are a bounty hunter of opportunity — when a deal is worth pursuing, you pursue it relentlessly and close on your terms.' },
             cautious_saver:{ house: 'The Rebel Alliance',  trait: 'cautious_saver',description: 'Rebellions — and financial independence — are built on hope backed by preparation. Your reserves are your firepower.' },
         },
-        mh: {
-            risk_taker:    { house: 'Team Tokyo',    trait: 'risk_taker',    description: 'All in, no regrets! You have nothing to lose — and that fearlessness is your most bankable asset. You enter positions others are too scared to touch.' },
-            analytical:    { house: 'Team Professor',trait: 'analytical',    description: 'The plan. Always the plan. Your financial blueprints account for variables that others don\'t even know to consider.' },
-            wealth_builder:{ house: 'Team Berlin',   trait: 'wealth_builder',description: 'Elegant empire builder! You treat wealth accumulation as a masterpiece. Every deal is negotiated with the precision of someone who knows their worth.' },
-            cautious_saver:{ house: 'Team Nairobi',  trait: 'cautious_saver',description: 'Let the matriarchy begin! You run the numbers, protect the assets, and ensure not a single rupee is wasted in operation.' },
+        mbh: {
+            risk_taker:    { house: "Karna's Path",          trait: 'risk_taker',    description: "Karna's fearlessness is yours. You back your convictions completely and go all-in where others hesitate. That courage is your greatest financial weapon." },
+            analytical:    { house: "Krishna's Council",     trait: 'analytical',    description: "You see the full Kurukshetra before the first arrow flies. Strategy, timing, and cosmic patience — your financial decisions are already three moves ahead." },
+            wealth_builder:{ house: "Arjuna's Aim",          trait: 'wealth_builder',description: "Focus is your weapon. You build wealth with the precision of Arjuna's Gandiva — no half measures, no distracted exits, only disciplined execution." },
+            cautious_saver:{ house: "Yudhishthira's Dharma", trait: 'cautious_saver',description: "Dharma before desire. You protect your financial kingdom with unwavering principle, building reserves that outlast every market storm." },
+        },
+        dbz: {
+            risk_taker:    { house: 'Team Goku',          trait: 'risk_taker',    description: 'It\'s over 9,000! You are strongest when the odds are against you. Volatility powers you up — your best entries happen when everyone else is running.' },
+            analytical:    { house: 'Frieza Force',        trait: 'analytical',    description: 'Cold, calculated, and precise. You survey every sector before committing a single Zeni — and you never enter a market without already knowing your exit.' },
+            wealth_builder:{ house: 'Capsule Corp',        trait: 'wealth_builder',description: 'Genius empire architect! You think like Bulma and execute like Vegeta — brilliant systems combined with relentless ambition to build something that outlasts any market cycle.' },
+            cautious_saver:{ house: 'Namekian Guardians',  trait: 'cautious_saver',description: 'Like Piccolo mastering his potential through silent training, your wealth builds through unbreakable discipline. Your consistency is your superpower.' },
         },
     };
 
@@ -283,7 +324,8 @@ const Quiz: React.FC<QuizProps> = ({ theme, onComplete }) => {
         got: gotQuestions,
         marvel: marvelQuestions,
         sw: swQuestions,
-        mh: mhQuestions,
+        mbh: mbhQuestions,
+        dbz: dbzQuestions,
     };
     const questions = questionMap[theme];
     const question = questions[currentQuestionIndex];

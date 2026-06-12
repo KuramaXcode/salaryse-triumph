@@ -18,7 +18,7 @@ export const universeStyles: Record<HouseVariant, UniverseStyle> = {
         mood: 'dark, dramatic, fire-lit, intense atmosphere',
     },
     marvel: {
-        artStyle: 'modern superhero comic art, vibrant digital illustration, Marvel cinematic poster style',
+        artStyle: 'semi-realistic cinematic portrait in the Marvel Cinematic Universe — stylized digital painting with bold heroic lighting and MCU concept art color grading, while the face retains the real person\'s photorealistic features and structure, NOT a comic-book illustration face',
         setting: 'high-tech Avengers headquarters with holographic displays in the background',
         mood: 'heroic, energetic, bold lighting with subtle lens flares',
     },
@@ -27,10 +27,15 @@ export const universeStyles: Record<HouseVariant, UniverseStyle> = {
         setting: 'starship bridge overlooking a galaxy with distant planets in the background',
         mood: 'epic, cosmic, blue and purple nebula lighting',
     },
-    mh: {
-        artStyle: 'stylish crime thriller, cinematic neo-noir digital art, Money Heist visual aesthetic',
-        setting: 'inside the Royal Mint of Spain vault with gold bars in the background',
-        mood: 'intense, red-tinted, dramatic shadows, heist atmosphere',
+    mbh: {
+        artStyle: 'semi-realistic digital portrait in the Mahabharata universe — richly detailed illustration with jewel-toned colors, golden divine lighting, and Indian epic film visual language, while the face retains the real person\'s photorealistic features and structure, NOT full stylized mythological illustration anatomy',
+        setting: 'grand Hastinapur palace with ornate golden pillars and royal war banners in the background',
+        mood: 'majestic, warm golden hour lighting, ancient Indian epic atmosphere with divine radiance',
+    },
+    dbz: {
+        artStyle: 'semi-realistic anime-influenced digital portrait in the Dragon Ball Z universe — stylized illustration with bold cel-shading, vibrant saturated colors, and DBZ energy aesthetics, while the face retains the real person\'s photorealistic features and structure, NOT full Toriyama cartoon anatomy',
+        setting: 'dramatic rocky landscape with distant mountains and golden ki energy crackling in the sky in the background',
+        mood: 'powerful, energetic, bold orange and gold lighting with glowing ki aura atmosphere',
     },
 };
 
@@ -51,10 +56,10 @@ export const houseAccents: Record<string, string> = {
     'House Baratheon': 'wearing black and gold Baratheon attire with a small stag sigil at the collar, Storm’s End hall softly out of focus behind',
 
     // Marvel
-    'Team Thor': 'wearing Asgardian ceremonial armor on the shoulders and chest, soft lightning glow in the background — no objects in front of the face',
-    'Team Strange': 'wearing the Cloak of Levitation’s collar and a hint of mystical orange sigils glowing softly in the background — no objects in front of the face',
-    'Team Iron Man': 'wearing a sleek nanotech chest plate with a soft arc-reactor glow at sternum level, faint HUD lines in the background — no helmet on, face fully visible',
-    'Team Cap': 'wearing the patriotic suit visible at the shoulders with a small star on the chest, dawn light softly out of focus behind — shield is not in frame',
+    ‘Team Thor’: ‘wearing Asgardian ceremonial armor on the shoulders and chest, soft lightning glow in the background — face and facial features preserved from reference photo, stylized in MCU cinematic aesthetic, no objects in front of the face’,
+    ‘Team Strange’: ‘wearing the Cloak of Levitation\’s collar and a hint of mystical orange sigils glowing softly in the background — face and facial features preserved from reference photo, stylized in MCU cinematic aesthetic, no objects in front of the face’,
+    ‘Team Iron Man’: ‘wearing a sleek nanotech chest plate with a soft arc-reactor glow at sternum level, faint HUD lines in the background — face and facial features preserved from reference photo, stylized in MCU cinematic aesthetic, no helmet on’,
+    ‘Team Cap’: ‘wearing the patriotic suit visible at the shoulders with a small star on the chest, dawn light softly out of focus behind — face and facial features preserved from reference photo, stylized in MCU cinematic aesthetic, shield is not in frame’,
 
     // Star Wars
     'The Sith Order': 'wearing dark Sith robes at the shoulders, faint red glow in the background — no lightsaber or hands in front of the face',
@@ -62,11 +67,17 @@ export const houseAccents: Record<string, string> = {
     'The Mandalorians': 'wearing Mandalorian beskar shoulder pauldrons, helmet OFF and held out of frame, starfield softly out of focus behind — face fully visible, no visor',
     'The Rebel Alliance': 'wearing an orange Rebel flight suit visible at the shoulders with the rebel insignia patch, hangar bay softly out of focus behind — helmet off, face fully visible',
 
-    // Money Heist
-    'Team Tokyo': 'wearing the red Money Heist jumpsuit at the shoulders and chest, Salvador Dalí mask is OFF and not in frame, vault corridor softly out of focus behind — face fully visible',
-    'Team Professor': 'wearing a tailored shirt under an open red jumpsuit collar, command-room blueprints and chess pieces softly out of focus behind — face fully visible',
-    'Team Berlin': 'wearing an elegant tailored suit under an open red jumpsuit collar, Royal Mint hall softly out of focus behind — face fully visible',
-    'Team Nairobi': 'wearing the red Money Heist jumpsuit at the shoulders and chest, gold-press machinery softly out of focus behind — face fully visible',
+    // Dragon Ball Z
+    'Team Goku': 'wearing a vibrant orange Saiyan gi with blue undershirt visible at the collar, grassy plains and distant mountains softly out of focus behind — face and facial features preserved from reference photo, stylized in DBZ illustration aesthetic, no aura effects in front of the face',
+    'Capsule Corp': 'wearing a sleek Capsule Corp branded jacket with the CC logo subtly on the chest, futuristic laboratory with holographic capsule displays softly out of focus behind — face and facial features preserved from reference photo, stylized in DBZ illustration aesthetic',
+    'Frieza Force': 'wearing elegant Frieza Force armor with white and purple shoulderpads, space battleship interior with planet views softly out of focus behind — face and facial features preserved from reference photo, stylized in DBZ illustration aesthetic, no helmet or visor',
+    'Namekian Guardians': 'wearing a martial arts gi with a weighted cape visible at the shoulders, lush green Namekian landscape softly out of focus behind — face and facial features preserved from reference photo, stylized in DBZ illustration aesthetic',
+
+    // Mahabharata
+    "Karna's Path": "wearing golden Karna kavach chest armor with sun-disc shoulder guards, a radiant sunset battlefield with scattered arrows softly out of focus behind — face and facial features preserved from reference photo, stylized in Indian epic film aesthetic, no weapons in front of face",
+    "Krishna's Council": "wearing a royal peacock-feather adorned turban and blue-gold uttariya draped at the shoulders, a celestial Kurukshetra landscape with divine light softly out of focus behind — face and facial features preserved from reference photo, stylized in Indian epic film aesthetic",
+    "Arjuna's Aim": "wearing Pandava warrior shoulder armor with a jeweled crown motif, a celestial chariot with golden divine light softly out of focus behind — face and facial features preserved from reference photo, stylized in Indian epic film aesthetic, no bow or weapons near the face",
+    "Yudhishthira's Dharma": "wearing a white and gold dharmaraj crown and royal Pandava court garb at the shoulders, the grand Indraprastha palace court with ornate pillars softly out of focus behind — face and facial features preserved from reference photo, stylized in Indian epic film aesthetic",
 };
 
 // Trait phrases now describe expression and energy ONLY — no pose verbs that would
