@@ -41,7 +41,7 @@ const houseInsightsMap: Record<string, HouseInsight> = {
     'House Targaryen': {
         salutation: 'THE DRAGON-BLOODED PIONEER',
         strength1: 'You invest like you have dragons behind you — all-in, with the conviction that your vision will reshape the entire landscape.',
-        strength2: 'You see paradigm shifts before they happen and position yourself to lead them, not follow them.',
+        strength2: 'You see paradigm shifts before they happen and always position to lead them, not follow. That foresight is a genuine, compounding edge.',
         weakness: 'Fire that burns everything leaves nothing to rule. A single flame-guard — a stop-loss, a hedge — protects the empire you are building.',
     },
     'House Lannister': {
@@ -72,9 +72,9 @@ const houseInsightsMap: Record<string, HouseInsight> = {
     },
     'Team Strange': {
         salutation: 'THE MULTIVERSAL MARKET SEER',
-        strength1: 'You have run 14 million scenarios before making a single move. Your downside protection is exceptional because you have already lived the bad outcomes.',
-        strength2: 'You see correlations and patterns that others genuinely cannot. Your portfolio construction is closer to architecture than speculation.',
-        weakness: 'In 14 million futures there is always a reason not to act. Trust the model you already built and execute. The perfect moment is usually right now.',
+        strength1: 'You run 14 million scenarios before a single move. Your downside protection is exceptional — you have already lived the bad outcomes.',
+        strength2: 'You see correlations others genuinely cannot. Your portfolio construction is closer to architecture than speculation.',
+        weakness: 'In 14 million futures there is always a reason not to act. Trust the model you built — execute. The perfect moment is right now.',
     },
     'Team Iron Man': {
         salutation: 'THE GENIUS WEALTH ENGINEER',
@@ -84,17 +84,17 @@ const houseInsightsMap: Record<string, HouseInsight> = {
     },
     'Team Cap': {
         salutation: 'THE DISCIPLINED SHIELD BEARER',
-        strength1: 'I can do this all day — and so can your portfolio. Your discipline in down markets is precisely where most other investors\' wealth quietly transfers to yours.',
-        strength2: 'You invest in alignment with your values, which means you sleep soundly at night and hold through volatility without ever panicking.',
-        weakness: 'The world has changed since the 1940s. Inflation quietly erodes what you protect. A modest growth allocation keeps your shield relevant today.',
+        strength1: 'I can do this all day. In down markets, your discipline is precisely where other investors\' wealth quietly transfers to yours.',
+        strength2: 'You invest aligned to your values — that means sleeping soundly and holding through volatility that makes others panic.',
+        weakness: 'The world has changed since 1940. Inflation quietly erodes what you protect. A modest growth allocation keeps your shield relevant.',
     },
 
     // ── Star Wars ────────────────────────────────────────────────────────────
     'The Sith Order': {
         salutation: 'THE DARK SIDE MARKET FORCE',
-        strength1: 'Your passion for financial victory drives returns that balanced investors only read about. You do not play not to lose — you play to dominate.',
-        strength2: 'You sense market disturbances before they fully form and position with speed and aggression that creates genuinely outsized gains.',
-        weakness: 'Anger is a weapon that eventually turns inward. A risk-management protocol — your personal Rule of Two — keeps the power from consuming the portfolio.',
+        strength1: 'Your passion for financial victory drives returns balanced investors only read about. You play to dominate, never just to survive.',
+        strength2: 'You sense disturbances before they form and position with speed and aggression that creates genuinely outsized gains.',
+        weakness: 'Anger is a weapon that eventually turns inward. A risk protocol — your personal Rule of Two — keeps the power from consuming the portfolio.',
     },
     'The Jedi Council': {
         salutation: 'THE FORCE-BALANCED STRATEGIST',
@@ -104,41 +104,41 @@ const houseInsightsMap: Record<string, HouseInsight> = {
     },
     'The Mandalorians': {
         salutation: 'THE BESKAR-GRADE ACCUMULATOR',
-        strength1: 'This is the way: accumulate hard assets, build diversified income streams, and protect them with Beskar-grade discipline and consistency.',
-        strength2: 'You are a bounty hunter of opportunity. When a deal is genuinely worth pursuing, you pursue it relentlessly and close entirely on your terms.',
-        weakness: 'Lone wolves miss foundational deals. A proper financial crew — accountant, advisor, tax strategist — multiplies your Beskar significantly over time.',
+        strength1: 'This is the way: accumulate hard assets, build diversified income streams, and protect them with Beskar-grade discipline.',
+        strength2: 'You are a bounty hunter of opportunity. When a deal is worth pursuing, you pursue it relentlessly and close entirely on your terms.',
+        weakness: 'Lone wolves miss foundational deals. A proper crew — accountant, advisor, tax strategist — multiplies your Beskar over time.',
     },
     'The Rebel Alliance': {
         salutation: 'THE HOPE-ANCHORED GUARDIAN',
         strength1: 'Rebellions — and financial independence — are built on hope backed by rigorous preparation. Your reserves are your real firepower.',
-        strength2: 'You protect what matters most. Your financial decisions are grounded in values, not hype — which keeps you from chasing expensive fads.',
-        weakness: 'Hope alone does not win. Your rebellion needs a strike team: allocate a focused portion to high-conviction growth to take the fight to the Empire.',
+        strength2: 'You protect what matters most. Decisions grounded in values, not hype, keep you from consistently chasing expensive fads.',
+        weakness: 'Hope alone does not win. Allocate a focused portion to high-conviction growth — your rebellion needs a proper strike team.',
     },
 
     // ── Dragon Ball Z ────────────────────────────────────────────────────────
     'Team Goku': {
         salutation: 'THE SAIYAN MARKET WARRIOR',
-        strength1: 'You are strongest when the odds are stacked against you. Volatility does not scare you — it powers you up. Your best entries happen precisely when everyone else is running.',
-        strength2: 'You push past perceived limits constantly. Where others see a ceiling, you see the next level. That relentless drive turns small positions into transformative ones over time.',
-        weakness: 'Even Goku needed a Senzu Bean. Going Ultra Instinct on every trade without a recovery plan means one bad fight can set you back an entire saga. Build your reserve before the next arc.',
+        strength1: 'Volatility does not scare you — it powers you up. Your best entries come precisely when everyone else is running for the exit.',
+        strength2: 'Where others see a ceiling, you see the next power level. That relentless drive turns small positions into transformative returns.',
+        weakness: 'Even Goku needed a Senzu Bean. Powering up on every trade without a recovery plan means one bad fight can set back the whole saga.',
     },
     'Capsule Corp': {
         salutation: 'THE GENIUS EMPIRE ARCHITECT',
-        strength1: 'You think like Bulma and execute like Vegeta. You combine brilliant systems thinking with relentless ambition to build something that outlasts any single market cycle.',
-        strength2: 'You invest in infrastructure, not just assets. The businesses, systems, and networks you build compound in ways a pure trader never experiences.',
-        weakness: 'Not every problem needs a time machine. Over-engineering your financial systems can delay execution. Sometimes the best capsule is the one you open, not the one you are still designing.',
+        strength1: 'You think like Bulma and execute like Vegeta. Systems thinking meets relentless ambition, built to outlast any market cycle.',
+        strength2: 'You invest in infrastructure, not just assets. The systems and networks you build compound in ways a pure trader never experiences.',
+        weakness: 'Not every problem needs a time machine. Over-engineering delays execution — the best capsule is the one you actually open.',
     },
     'Frieza Force': {
         salutation: 'THE GALACTIC MARKET EMPEROR',
-        strength1: 'You survey every sector with cold, calculated precision before committing a single credit. Your due diligence is legendary — you never enter a market without already knowing your exit.',
-        strength2: 'You understand power structures better than anyone. You know which assets are truly dominant and which ones merely look impressive. That distinction alone is worth a fortune.',
-        weakness: "Frieza's empire fell because he underestimated the intangibles. Not every competitive advantage shows up in the numbers. Leave room in your model for what the data cannot quantify.",
+        strength1: 'Cold, precise, and always prepared — you never enter a market without already knowing your exit. That discipline alone is legendary.',
+        strength2: 'You know which assets are truly dominant and which merely look impressive — that distinction compounds silently into outsized returns.',
+        weakness: "Frieza's empire fell to intangibles. Not every edge shows in the numbers — leave room in your model for what data cannot quantify.",
     },
     'Namekian Guardians': {
         salutation: 'THE GUARDIAN OF THE LONG GAME',
-        strength1: 'Like Piccolo mastering his potential through years of silent training, your wealth builds through unbreakable discipline rather than explosive bursts. Your consistency is your superpower.',
-        strength2: 'You guard your financial health with the same dedication Piccolo guards the Earth. While others overspend in bull markets, your reserves are always ready for the real opportunity.',
-        weakness: 'Even Piccolo eventually fused with Nail to unlock new power. A small growth allocation could dramatically amplify your already-solid base without compromising the foundation you have built.',
+        strength1: 'Your wealth grows like Piccolo trains — through silent, unbreakable discipline, not explosive bursts. Consistency is your edge.',
+        strength2: 'You guard your financial health the way Piccolo guards the Earth. While others overspend in bull markets, your reserves are always ready.',
+        weakness: 'Even Piccolo fused with Nail to unlock new power. A small growth slice can amplify your solid base without compromising the foundation.',
     },
 
     // ── Mahabharata ─────────────────────────────────────────────────────────────
