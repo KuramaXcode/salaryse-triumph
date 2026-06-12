@@ -9,7 +9,7 @@ export type UniversePack = {
   neonRgb: string;
 };
 
-export const UNIVERSE_ORDER: HouseVariant[] = ['hp', 'got', 'marvel', 'sw', 'mh'];
+export const UNIVERSE_ORDER: HouseVariant[] = ['hp', 'got', 'marvel', 'sw', 'mbh', 'dbz'];
 
 export const UNIVERSES: Record<HouseVariant, UniversePack> = {
   hp: {
@@ -44,13 +44,21 @@ export const UNIVERSES: Record<HouseVariant, UniversePack> = {
     neon: '#eaff61',
     neonRgb: '234, 255, 97',
   },
-  mh: {
-    id: 'mh',
-    title: 'Money Heist',
-    subtitle: 'Plan. Pressure. Profit.',
-    welcome: 'La Casa',
-    neon: '#ff2965',
-    neonRgb: '255, 41, 101',
+  mbh: {
+    id: 'mbh',
+    title: 'Mahabharata',
+    subtitle: 'Dharma. Strategy. Infinite returns.',
+    welcome: 'Hastinapur',
+    neon: '#d4880a',
+    neonRgb: '212, 136, 10',
+  },
+  dbz: {
+    id: 'dbz',
+    title: 'Dragon Ball Z',
+    subtitle: 'Power levels. Real returns.',
+    welcome: 'Earth',
+    neon: '#ff7a00',
+    neonRgb: '255, 122, 0',
   },
 };
 

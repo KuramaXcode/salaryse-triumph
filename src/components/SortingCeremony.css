@@ -27,8 +27,8 @@
     background: radial-gradient(ellipse at center, #0a0a1e 0%, #000008 70%, #000 100%);
 }
 
-.ceremony-container.mh {
-    background: radial-gradient(ellipse at center, #1a0505 0%, #0a0000 70%, #000 100%);
+.ceremony-container.mbh {
+    background: radial-gradient(ellipse at center, #1a0d00 0%, #0a0500 70%, #000 100%);
 }
 
 /* Intensity Aura */
@@ -60,8 +60,8 @@
     background: radial-gradient(circle, rgba(79, 195, 247, 0.15) 0%, transparent 70%);
 }
 
-.mh .ceremony-aura {
-    background: radial-gradient(circle, rgba(204, 0, 0, 0.15) 0%, transparent 70%);
+.mbh .ceremony-aura {
+    background: radial-gradient(circle, rgba(212, 136, 10, 0.15) 0%, transparent 70%);
 }
 
 /* Floating particles */
@@ -102,9 +102,9 @@
     box-shadow: 0 0 6px #4fc3f7, 0 0 12px rgba(79, 195, 247, 0.5);
 }
 
-.mh .particle {
-    background-color: #cc0000;
-    box-shadow: 0 0 6px #cc0000, 0 0 12px rgba(204, 0, 0, 0.5);
+.mbh .particle {
+    background-color: #d4880a;
+    box-shadow: 0 0 6px #d4880a, 0 0 12px rgba(212, 136, 10, 0.5);
 }
 
 @keyframes floatUp {
@@ -196,8 +196,8 @@
     text-shadow: 0 0 30px rgba(79, 195, 247, 0.3);
 }
 
-.mh .ceremony-message {
-    text-shadow: 0 0 30px rgba(204, 0, 0, 0.3);
+.mbh .ceremony-message {
+    text-shadow: 0 0 30px rgba(212, 136, 10, 0.3);
 }
 
 /* Pulsing ring below text */
@@ -229,9 +229,9 @@
     box-shadow: 0 0 20px rgba(79, 195, 247, 0.3);
 }
 
-.mh .pulse-ring {
-    border: 2px solid rgba(204, 0, 0, 0.5);
-    box-shadow: 0 0 20px rgba(204, 0, 0, 0.3);
+.mbh .pulse-ring {
+    border: 2px solid rgba(212, 136, 10, 0.5);
+    box-shadow: 0 0 20px rgba(212, 136, 10, 0.3);
 }
 
 @keyframes pulseRing {
@@ -352,16 +352,16 @@
     color: #ffd700;
 }
 
-.mh .house-name {
-    color: #cc0000;
+.mbh .house-name {
+    color: #d4880a;
     text-shadow:
-        0 0 20px rgba(204, 0, 0, 0.8),
-        0 0 40px rgba(204, 0, 0, 0.4),
-        0 0 80px rgba(204, 0, 0, 0.2);
+        0 0 20px rgba(212, 136, 10, 0.8),
+        0 0 40px rgba(212, 136, 10, 0.4),
+        0 0 80px rgba(212, 136, 10, 0.2);
 }
 
-.mh .reveal-trait {
-    color: #cc0000;
+.mbh .reveal-trait {
+    color: #d4880a;
 }
 
 @keyframes houseReveal {

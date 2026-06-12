@@ -197,42 +197,42 @@ export function UniverseMark({ theme, className, title }: MarkProps) {
           />
         </svg>
       );
-    case 'mh':
+    case 'mbh':
       return (
         <svg {...common}>
-          <path
-            d="M22 22 C22 14 28 10 32 10 C36 10 42 14 42 22 L42 36 C42 46 38 54 32 54 C26 54 22 46 22 36 Z"
-            stroke="currentColor"
-            strokeWidth="3"
-          />
-          <path
-            d="M26 30 C28 28 30 28 32 30 C34 28 36 28 38 30"
-            stroke="currentColor"
-            strokeWidth="2.8"
-            strokeLinecap="round"
-            opacity="0.9"
-          />
-          <path
-            d="M28 40 C30 42 34 42 36 40"
-            stroke="currentColor"
-            strokeWidth="2.8"
-            strokeLinecap="round"
-            opacity="0.9"
-          />
-          <path
-            d="M20 24 L16 28"
-            stroke="currentColor"
-            strokeWidth="3"
-            strokeLinecap="round"
-            opacity="0.7"
-          />
-          <path
-            d="M44 24 L48 28"
-            stroke="currentColor"
-            strokeWidth="3"
-            strokeLinecap="round"
-            opacity="0.7"
-          />
+          {/* Dharmachakra wheel */}
+          <circle cx="32" cy="32" r="16" stroke="currentColor" strokeWidth="3" opacity="0.95" />
+          {/* 8 spokes */}
+          <line x1="32" y1="16" x2="32" y2="8" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" opacity="0.85" />
+          <line x1="32" y1="48" x2="32" y2="56" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" opacity="0.85" />
+          <line x1="16" y1="32" x2="8" y2="32" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" opacity="0.85" />
+          <line x1="48" y1="32" x2="56" y2="32" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" opacity="0.85" />
+          <line x1="20.7" y1="20.7" x2="15" y2="15" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" opacity="0.7" />
+          <line x1="43.3" y1="43.3" x2="49" y2="49" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" opacity="0.7" />
+          <line x1="43.3" y1="20.7" x2="49" y2="15" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" opacity="0.7" />
+          <line x1="20.7" y1="43.3" x2="15" y2="49" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" opacity="0.7" />
+          {/* Hub */}
+          <circle cx="32" cy="32" r="3" fill="currentColor" opacity="0.9" />
+        </svg>
+      );
+    case 'dbz':
+      return (
+        <svg {...common}>
+          {/* Dragon Ball sphere */}
+          <circle cx="32" cy="28" r="16" stroke="currentColor" strokeWidth="3" opacity="0.95" />
+          {/* Star dots on the ball */}
+          <circle cx="32" cy="22" r="2" fill="currentColor" opacity="0.9" />
+          <circle cx="27" cy="30" r="2" fill="currentColor" opacity="0.9" />
+          <circle cx="37" cy="30" r="2" fill="currentColor" opacity="0.9" />
+          {/* Energy burst lines radiating outward */}
+          <path d="M32 8 L32 4" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" opacity="0.8" />
+          <path d="M48 12 L51 9" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" opacity="0.7" />
+          <path d="M54 28 L58 28" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" opacity="0.7" />
+          <path d="M16 12 L13 9" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" opacity="0.7" />
+          <path d="M10 28 L6 28" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" opacity="0.7" />
+          {/* Ground line */}
+          <path d="M18 52 L46 52" stroke="currentColor" strokeWidth="3" strokeLinecap="round" opacity="0.5" />
+          <path d="M22 56 L42 56" stroke="currentColor" strokeWidth="2" strokeLinecap="round" opacity="0.3" />
         </svg>
       );
     default:
@@ -411,43 +411,50 @@ export function UniverseWatermark({ theme, className }: WatermarkProps) {
           />
         </svg>
       );
-    case 'mh':
+    case 'mbh':
       return (
         <svg {...common}>
-          <path
-            d="M112 110 C112 76 138 60 160 60 C182 60 208 76 208 110 L208 176 C208 224 190 260 160 260 C130 260 112 224 112 176 Z"
-            stroke="currentColor"
-            strokeWidth="10"
-            opacity="0.22"
-          />
-          <path
-            d="M128 150 C140 140 152 140 160 150 C168 140 180 140 192 150"
-            stroke="currentColor"
-            strokeWidth="10"
-            strokeLinecap="round"
-            opacity="0.14"
-          />
-          <path
-            d="M140 198 C148 210 172 210 180 198"
-            stroke="currentColor"
-            strokeWidth="10"
-            strokeLinecap="round"
-            opacity="0.14"
-          />
-          <path
-            d="M80 90 H240"
-            stroke="currentColor"
-            strokeWidth="6"
-            strokeDasharray="10 10"
-            opacity="0.1"
-          />
-          <path
-            d="M80 230 H240"
-            stroke="currentColor"
-            strokeWidth="6"
-            strokeDasharray="10 10"
-            opacity="0.1"
-          />
+          {/* Large Dharmachakra */}
+          <circle cx="160" cy="160" r="90" stroke="currentColor" strokeWidth="10" opacity="0.18" />
+          <circle cx="160" cy="160" r="58" stroke="currentColor" strokeWidth="6" opacity="0.1" />
+          <circle cx="160" cy="160" r="20" stroke="currentColor" strokeWidth="8" opacity="0.14" />
+          {/* 8 spokes */}
+          <line x1="160" y1="70" x2="160" y2="102" stroke="currentColor" strokeWidth="7" strokeLinecap="round" opacity="0.14" />
+          <line x1="160" y1="218" x2="160" y2="250" stroke="currentColor" strokeWidth="7" strokeLinecap="round" opacity="0.14" />
+          <line x1="70" y1="160" x2="102" y2="160" stroke="currentColor" strokeWidth="7" strokeLinecap="round" opacity="0.14" />
+          <line x1="218" y1="160" x2="250" y2="160" stroke="currentColor" strokeWidth="7" strokeLinecap="round" opacity="0.14" />
+          <line x1="97" y1="97" x2="118" y2="118" stroke="currentColor" strokeWidth="6" strokeLinecap="round" opacity="0.1" />
+          <line x1="202" y1="202" x2="223" y2="223" stroke="currentColor" strokeWidth="6" strokeLinecap="round" opacity="0.1" />
+          <line x1="223" y1="97" x2="202" y2="118" stroke="currentColor" strokeWidth="6" strokeLinecap="round" opacity="0.1" />
+          <line x1="97" y1="223" x2="118" y2="202" stroke="currentColor" strokeWidth="6" strokeLinecap="round" opacity="0.1" />
+          {/* Decorative outer ring dots */}
+          <circle cx="160" cy="64" r="6" fill="currentColor" opacity="0.12" />
+          <circle cx="160" cy="256" r="6" fill="currentColor" opacity="0.12" />
+          <circle cx="64" cy="160" r="6" fill="currentColor" opacity="0.12" />
+          <circle cx="256" cy="160" r="6" fill="currentColor" opacity="0.12" />
+        </svg>
+      );
+    case 'dbz':
+      return (
+        <svg {...common}>
+          {/* Large Dragon Ball sphere */}
+          <circle cx="160" cy="148" r="80" stroke="currentColor" strokeWidth="10" opacity="0.2" />
+          <circle cx="160" cy="148" r="52" stroke="currentColor" strokeWidth="6" opacity="0.12" />
+          {/* Star dots */}
+          <circle cx="160" cy="118" r="9" fill="currentColor" opacity="0.18" />
+          <circle cx="136" cy="154" r="9" fill="currentColor" opacity="0.18" />
+          <circle cx="184" cy="154" r="9" fill="currentColor" opacity="0.18" />
+          {/* Energy burst — long radiating lines */}
+          <path d="M160 44 L160 18" stroke="currentColor" strokeWidth="8" strokeLinecap="round" opacity="0.16" />
+          <path d="M243 65 L263 45" stroke="currentColor" strokeWidth="8" strokeLinecap="round" opacity="0.13" />
+          <path d="M276 148 L302 148" stroke="currentColor" strokeWidth="8" strokeLinecap="round" opacity="0.13" />
+          <path d="M243 231 L263 251" stroke="currentColor" strokeWidth="8" strokeLinecap="round" opacity="0.13" />
+          <path d="M77 65 L57 45" stroke="currentColor" strokeWidth="8" strokeLinecap="round" opacity="0.13" />
+          <path d="M44 148 L18 148" stroke="currentColor" strokeWidth="8" strokeLinecap="round" opacity="0.13" />
+          <path d="M77 231 L57 251" stroke="currentColor" strokeWidth="8" strokeLinecap="round" opacity="0.13" />
+          {/* Ground shockwave rings */}
+          <path d="M80 262 C110 250 210 250 240 262" stroke="currentColor" strokeWidth="6" strokeLinecap="round" opacity="0.1" />
+          <path d="M60 278 C110 260 210 260 260 278" stroke="currentColor" strokeWidth="4" strokeLinecap="round" opacity="0.07" />
         </svg>
       );
     default:

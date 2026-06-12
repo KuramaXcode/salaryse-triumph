@@ -50,12 +50,19 @@ const themeConfig: Record<HouseVariant, { title: string; subtitle: string; welco
     className: 'sw-btn',
     icon: '✦',
   },
-  mh: {
-    title: 'Money Heist',
-    subtitle: 'Bella Ciao. The Professor needs you.',
-    welcome: 'La Casa de Papel',
-    className: 'mh-btn',
-    icon: '🎭',
+  mbh: {
+    title: 'Mahabharata',
+    subtitle: 'The Kurukshetra of wealth. Which dharma guides you?',
+    welcome: 'Hastinapur',
+    className: 'mbh-btn',
+    icon: '🏹',
+  },
+  dbz: {
+    title: 'Dragon Ball Z',
+    subtitle: 'Your power level is over 9,000. Prove it.',
+    welcome: 'Earth',
+    className: 'dbz-btn',
+    icon: '🔴',
   },
 };
 

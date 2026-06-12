@@ -22,7 +22,7 @@ const themeColors: Record<string, { primary: string; secondary: string; glow: st
   got: { primary: '#cc3333', secondary: '#8a1c1c', glow: 'rgba(204,51,51,0.12)' },
   marvel: { primary: '#e23636', secondary: '#9c1b1b', glow: 'rgba(226,54,54,0.12)' },
   sw: { primary: '#4fc3f7', secondary: '#0288d1', glow: 'rgba(79,195,247,0.1)' },
-  mh: { primary: '#cc0000', secondary: '#880000', glow: 'rgba(204,0,0,0.12)' },
+  mbh: { primary: '#d4880a', secondary: '#8a5500', glow: 'rgba(212,136,10,0.12)' },
 };
 
 function DynamicBackground({ theme }: DynamicBackgroundProps) {
@@ -144,21 +144,21 @@ function DynamicBackground({ theme }: DynamicBackgroundProps) {
               ctx.stroke();
             }
           });
-        } else if (activeTheme === 'mh') {
-          // Money rain / red smoke
+        } else if (activeTheme === 'mbh') {
+          // Golden dharma particles
           p.x += Math.sin(p.life * 0.03) * 1.2;
           p.y += p.speedY;
           p.opacity = Math.sin((p.life / p.maxLife) * Math.PI) * 0.4;
 
-          // Draw € symbols for some, circles for others
+          // Draw ॐ symbols for some, gold circles for others
           if (p.size > 2.5) {
             ctx.font = `${p.size * 4}px monospace`;
-            ctx.fillStyle = `rgba(204,0,0,${p.opacity})`;
-            ctx.fillText('€', p.x, p.y);
+            ctx.fillStyle = `rgba(212,136,10,${p.opacity})`;
+            ctx.fillText('ॐ', p.x, p.y);
           } else {
             ctx.beginPath();
             ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(204,0,0,${p.opacity * 0.6})`;
+            ctx.fillStyle = `rgba(212,136,10,${p.opacity * 0.6})`;
             ctx.fill();
           }
         }
@@ -240,7 +240,7 @@ function createParticle(
     };
   }
 
-  if (theme === 'mh') {
+  if (theme === 'mbh') {
     return {
       x: Math.random() * w,
       y: -10,
@@ -248,7 +248,7 @@ function createParticle(
       speedX: 0,
       speedY: 0.5 + Math.random() * 1.5,
       opacity: 0,
-      color: '#cc0000',
+      color: '#d4880a',
       life: 0,
       maxLife: (h / 1) + Math.random() * 200,
     };

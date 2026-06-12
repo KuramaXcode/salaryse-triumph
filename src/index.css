@@ -67,13 +67,22 @@
   --accent-color: #ffd700;
 }
 
-/* Money Heist Theme Variables */
-[data-theme="mh"] {
+/* Mahabharata Theme Variables */
+[data-theme="mbh"] {
   --bg-primary: #0a0000;
   --bg-secondary: #1a0808;
   --text-primary: #f5f0f0;
   --text-secondary: #b39999;
-  --accent-color: #cc0000;
+  --accent-color: #d4880a;
+}
+
+/* Dragon Ball Z Theme Variables */
+[data-theme="dbz"] {
+  --bg-primary: #0a0500;
+  --bg-secondary: #1a0d00;
+  --text-primary: #fff5ea;
+  --text-secondary: #b89060;
+  --accent-color: #ff7a00;
 }
 
 * {
@@ -127,7 +136,7 @@ button {
 /* Subtle scanline overlay for techy themes */
 [data-theme="marvel"] .cinematic-overlay,
 [data-theme="sw"] .cinematic-overlay,
-[data-theme="mh"] .cinematic-overlay {
+[data-theme="mbh"] .cinematic-overlay {
   background:
     repeating-linear-gradient(0deg,
       transparent,

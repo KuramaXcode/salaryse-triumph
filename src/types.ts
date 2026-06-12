@@ -1,2 +1,2 @@
-export type HouseVariant = 'hp' | 'got' | 'marvel' | 'sw' | 'mh';
+export type HouseVariant = 'hp' | 'got' | 'marvel' | 'sw' | 'mbh' | 'dbz';
 

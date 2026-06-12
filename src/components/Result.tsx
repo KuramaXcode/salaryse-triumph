@@ -47,6 +47,10 @@ const houseDetails: Record<string, { motto: string; traits: string[]; color: str
     'Team Professor': { motto: '"The plan. Always the plan."', traits: ['Master Strategist', 'Probability Calculator', 'Risk Mitigator', '20-Step-Ahead Planner'], color: '#1a1a1a' },
     'Team Berlin': { motto: '"I\'m not a good person."', traits: ['Luxury Investor', 'Power Negotiator', 'Status-Driven Buyer', 'Art Collector Mindset'], color: '#4e342e' },
     'Team Nairobi': { motto: '"Let the matriarchy begin!"', traits: ['Production Manager', 'Asset Protector', 'Steady Operator', 'Zero-Waste Investor'], color: '#880e4f' },
+    'Team Goku': { motto: '"It\'s over 9,000!!"', traits: ['Maximum Risk Taker', 'All-In Investor', 'Never-Give-Up Mindset', 'Volatility Powered'], color: '#cc4400' },
+    'Capsule Corp': { motto: '"Science is the ultimate power."', traits: ['Genius Empire Builder', 'Systems Investor', 'Infrastructure First', 'Compound Architect'], color: '#0066cc' },
+    'Frieza Force': { motto: '"I am the most powerful being in the universe."', traits: ['Cold Analyst', 'Market Dominator', 'Calculated Strategist', 'Empire Expander'], color: '#6600cc' },
+    'Namekian Guardians': { motto: '"Train harder than you did yesterday."', traits: ['Disciplined Saver', 'Long-Game Guardian', 'Steady Accumulator', 'Reserve Builder'], color: '#006633' },
 };
 
 const Result: React.FC<ResultProps> = ({
@@ -132,6 +136,8 @@ const Result: React.FC<ResultProps> = ({
         // html2canvas doesn't honour CSS object-fit, so manually position the <img>
         // to mimic object-fit: cover. This preserves the FULL native resolution of the
         // Replicate render (no lossy intermediate), giving a much sharper download.
+        // The image is wrapped in a clip-div (overflow:hidden) so the hero section itself
+        // can stay overflow:visible — required for the identity bar that overlaps 13px below.
         const HERO_W = CARD_W;
         const HERO_H = 240; // matches .card-hero-section design height
         const heroImg = clone.querySelector('img.hero-image') as HTMLImageElement | null;
@@ -146,8 +152,21 @@ const Result: React.FC<ResultProps> = ({
                 let dw: number, dh: number, dx: number, dy: number;
                 if (ar > tar) { dh = HERO_H; dw = ar * dh; dx = (HERO_W - dw) / 2; dy = 0; }
                 else { dw = HERO_W; dh = dw / ar; dx = 0; dy = (HERO_H - dh) / 2; }
+
+                const clipDiv = document.createElement('div');
+                clipDiv.style.position = 'absolute';
+                clipDiv.style.left = '0';
+                clipDiv.style.top = '0';
+                clipDiv.style.width = `${HERO_W}px`;
+                clipDiv.style.height = `${HERO_H}px`;
+                clipDiv.style.overflow = 'hidden';
+                clipDiv.style.borderRadius = '6px';
+
                 heroSection.style.position = 'relative';
-                heroSection.style.overflow = 'hidden';
+                heroSection.style.overflow = 'visible';
+                heroSection.insertBefore(clipDiv, heroImg);
+                clipDiv.appendChild(heroImg);
+
                 heroImg.style.position = 'absolute';
                 heroImg.style.left = `${dx}px`;
                 heroImg.style.top = `${dy}px`;
@@ -161,13 +180,12 @@ const Result: React.FC<ResultProps> = ({
             }
         }
 
-        // html2canvas can clip absolutely-positioned children (like the identity bar)
-        // when an ancestor has overflow:hidden. Force visible on the inner frame so
-        // the name + salutation that overlap below the hero section are always rendered.
+        // html2canvas ignores overflow:hidden+border-radius for clipping child content.
+        // Use clip-path on the inner-frame so the 8px rounded corners are actually applied.
+        // The identity bar (bottom:-13px inside hero-section) sits at ~269px from the
+        // inner-frame top — well inside its height — so clip-path won't cut it off.
         const innerFrame = clone.querySelector('.card-inner-frame') as HTMLElement | null;
-        if (innerFrame) innerFrame.style.overflow = 'visible';
-        const heroSection2 = clone.querySelector('.card-hero-section') as HTMLElement | null;
-        if (heroSection2) heroSection2.style.overflow = 'visible';
+        if (innerFrame) innerFrame.style.clipPath = 'inset(0 0 0 0 round 8px)';
 
         const wrapper = document.createElement('div');
         wrapper.className = 'capture-clone-wrapper';
@@ -387,6 +405,25 @@ const Result: React.FC<ResultProps> = ({
         printWindow.focus();
     };
 
+    const handleShareCard = async () => {
+        let imageDataUrl = cachedCardImage || await captureCardImage('image/png', 4);
+        if (!imageDataUrl) {
+            window.alert('Could not prepare the card for sharing. Please wait a moment and try again.');
+            return;
+        }
+        const fileBase = `${userName || 'Character'}_Dossier_Card`.replace(/[^a-zA-Z0-9_-]/g, '_');
+        const res = await fetch(imageDataUrl);
+        const blob = await res.blob();
+        const file = new File([blob], `${fileBase}.png`, { type: 'image/png' });
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+            await navigator.share({ files: [file], title: `${userName}'s Dossier Card` });
+        } else if (navigator.share) {
+            await navigator.share({ title: `${userName}'s Dossier Card`, text: 'Check out my SalarySe character card!' });
+        } else {
+            window.alert('Sharing is not supported on this device. Use the Download button instead.');
+        }
+    };
+
     return (
         <div className={`result-container ${theme}`}>
             <div className="house-glow" style={{ background: `radial-gradient(circle at center, ${details.color}25 0%, transparent 70%)` }} />
@@ -523,13 +560,6 @@ const Result: React.FC<ResultProps> = ({
                 </div>
             )}
 
-            <div className="external-ops">
-                {onRetryArt && (
-                    <button className="ops-btn retry-art-btn" onClick={onRetryArt} disabled={isGeneratingAvatar}>
-                        {isGeneratingAvatar ? 'RETRYING ART...' : 'RETRY ART'}
-                    </button>
-                )}
-            </div>
             {finalizeMessage && <p className="finalize-note">{finalizeMessage}</p>}
 
             <div className="result-actions">
@@ -548,11 +578,11 @@ const Result: React.FC<ResultProps> = ({
                     <div className="card-preview-modal" onClick={(e) => e.stopPropagation()}>
                         <img src={modalImage} alt="Dossier Card Preview" className="card-preview-image" />
                         <div className="card-preview-actions">
-                            <button className="primary-action-btn print-btn" onClick={handleDownloadCard}>
-                                DOWNLOAD IMAGE
+                            <button className="primary-action-btn print-btn" onClick={handleShareCard}>
+                                SHARE CARD
                             </button>
-                            <button className="secondary-action-btn print-btn" onClick={handlePrintCard}>
-                                PRINT CARD
+                            <button className="secondary-action-btn print-btn" onClick={handleDownloadCard}>
+                                DOWNLOAD IMAGE
                             </button>
                             <button className="secondary-action-btn restart-btn" onClick={() => setShowCardModal(false)}>
                                 CLOSE
