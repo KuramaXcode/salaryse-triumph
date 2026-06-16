@@ -41,7 +41,7 @@ const houseInsightsMap: Record<string, HouseInsight> = {
     'House Targaryen': {
         salutation: 'THE DRAGON-BLOODED PIONEER',
         strength1: 'You invest like you have dragons behind you — all-in, with the conviction that your vision will reshape the entire landscape.',
-        strength2: 'You see paradigm shifts before they happen and always position to lead them, not follow. That foresight is a genuine, compounding edge.',
+        strength2: 'You see paradigm shifts early and position to lead them, not follow. That foresight is a genuine, compounding edge.',
         weakness: 'Fire that burns everything leaves nothing to rule. A single flame-guard — a stop-loss, a hedge — protects the empire you are building.',
     },
     'House Lannister': {
@@ -52,9 +52,9 @@ const houseInsightsMap: Record<string, HouseInsight> = {
     },
     'House Stark': {
         salutation: 'THE WINTER-PROOF GUARDIAN',
-        strength1: 'When the financial winter arrives — and it always does — you are the only one with reserves deep enough to survive and then acquire.',
+        strength1: 'When financial winter arrives — and it always does — you are the only one with reserves deep enough to survive and then acquire.',
         strength2: 'Your emergency fund is not a safety net. It is a strategic weapon. You negotiate from strength, never from desperation.',
-        weakness: 'The Wall keeps out opportunity too. Dedicating even 10% of your portfolio to growth assets could dramatically shift your long-term trajectory.',
+        weakness: 'The Wall keeps out opportunity too. Even 10% of your portfolio in growth assets could dramatically shift your long-term trajectory.',
     },
     'House Baratheon': {
         salutation: 'THE STRATEGIC FURY ANALYST',
@@ -66,9 +66,9 @@ const houseInsightsMap: Record<string, HouseInsight> = {
     // ── Marvel ──────────────────────────────────────────────────────────────
     'Team Thor': {
         salutation: 'THE LIGHTNING-STRIKE INVESTOR',
-        strength1: 'You make decisions with Mjolnir-level conviction. When you fully commit to a position, that commitment itself often creates the outcome.',
+        strength1: 'You make decisions with Mjolnir-level conviction. When you fully commit to a position, that commitment often creates the outcome.',
         strength2: 'You thrive in volatile markets that paralyse others. Your composure under financial thunder is a genuine, sustainable edge.',
-        weakness: 'Even Thor needs the Warriors Three. Building a trusted advisor circle prevents worthy decisions from becoming unexpectedly costly ones.',
+        weakness: 'Even Thor needs the Warriors Three. A trusted advisor circle prevents worthy decisions from becoming unexpectedly costly ones.',
     },
     'Team Strange': {
         salutation: 'THE MULTIVERSAL MARKET SEER',
@@ -79,8 +79,8 @@ const houseInsightsMap: Record<string, HouseInsight> = {
     'Team Iron Man': {
         salutation: 'THE GENIUS WEALTH ENGINEER',
         strength1: 'You do not just invest in the future — you build it. Your portfolio reads like a working blueprint for the next decade.',
-        strength2: 'You innovate your financial strategy the way Stark upgrades the suit: constantly iterating toward something smarter and more effective.',
-        weakness: 'Mark I suits have exploded in caves before. Not every position needs to be cutting-edge. Sometimes boring and proven compounds beautifully.',
+        strength2: 'You innovate your strategy the way Stark upgrades the suit: constantly iterating toward something smarter and more effective.',
+        weakness: 'Mark I suits have exploded in caves before. Not every position needs to be cutting-edge — boring and proven compounds beautifully.',
     },
     'Team Cap': {
         salutation: 'THE DISCIPLINED SHIELD BEARER',
@@ -99,8 +99,8 @@ const houseInsightsMap: Record<string, HouseInsight> = {
     'The Jedi Council': {
         salutation: 'THE FORCE-BALANCED STRATEGIST',
         strength1: 'Patience, young investor. Your willingness to wait for the right entry point means you almost never overpay for any asset.',
-        strength2: 'You sense the market\'s rhythm through the Force of data. Your timing is often uncanny because you have studied deeply when not to act.',
-        weakness: 'The Council\'s greatest failure was hesitation at the critical moment. When your analysis signals action, trust it completely and move.',
+        strength2: 'You sense the market\'s rhythm through the Force of data. Your timing is often uncanny — you have studied deeply when not to act.',
+        weakness: 'The Council\'s greatest failure was hesitation at the critical moment. When your analysis signals action, trust it and move.',
     },
     'The Mandalorians': {
         salutation: 'THE BESKAR-GRADE ACCUMULATOR',
@@ -130,15 +130,15 @@ const houseInsightsMap: Record<string, HouseInsight> = {
     },
     'Frieza Force': {
         salutation: 'THE GALACTIC MARKET EMPEROR',
-        strength1: 'Cold, precise, and always prepared — you never enter a market without already knowing your exit. That discipline alone is legendary.',
+        strength1: 'Cold, precise, and always prepared — you never enter a market without knowing your exit. That discipline alone is legendary.',
         strength2: 'You know which assets are truly dominant and which merely look impressive — that distinction compounds silently into outsized returns.',
-        weakness: "Frieza's empire fell to intangibles. Not every edge shows in the numbers — leave room in your model for what data cannot quantify.",
+        weakness: "Frieza's empire fell to intangibles. Not every edge shows in the numbers — leave room in your model for what data can't quantify.",
     },
     'Namekian Guardians': {
         salutation: 'THE GUARDIAN OF THE LONG GAME',
         strength1: 'Your wealth grows like Piccolo trains — through silent, unbreakable discipline, not explosive bursts. Consistency is your edge.',
-        strength2: 'You guard your financial health the way Piccolo guards the Earth. While others overspend in bull markets, your reserves are always ready.',
-        weakness: 'Even Piccolo fused with Nail to unlock new power. A small growth slice can amplify your solid base without compromising the foundation.',
+        strength2: 'You guard your finances the way Piccolo guards the Earth. While others overspend in bull markets, your reserves are always ready.',
+        weakness: 'Even Piccolo fused with Nail to unlock new power. A small growth slice amplifies your solid base without compromising the foundation.',
     },
 
     // ── Mahabharata ─────────────────────────────────────────────────────────────
@@ -150,9 +150,9 @@ const houseInsightsMap: Record<string, HouseInsight> = {
     },
     "Krishna's Council": {
         salutation: 'THE DIVINE MARKET STRATEGIST',
-        strength1: "You see the full Kurukshetra before the first arrow flies. Your decisions account for ripple effects most investors never model.",
+        strength1: "You see the full Kurukshetra before the first arrow flies. Your decisions account for ripple effects most investors never see.",
         strength2: "You grasp that timing IS the strategy. Patience has protected your wealth through cycles that demolished less disciplined portfolios.",
-        weakness: "The Gita was spoken in a moment of crisis. Stop waiting for cosmic clarity — the market rewards decisive entry, not perfect analysis.",
+        weakness: "The Gita was spoken in a moment of crisis. Stop waiting for cosmic clarity — markets reward decisive entry, not perfect analysis.",
     },
     "Arjuna's Aim": {
         salutation: 'THE PRECISE WEALTH ARCHER',
@@ -163,7 +163,7 @@ const houseInsightsMap: Record<string, HouseInsight> = {
     "Yudhishthira's Dharma": {
         salutation: 'THE DHARMIC WEALTH GUARDIAN',
         strength1: "Your word is your bond and your portfolio reflects it. You never chase returns that compromise your peace of mind — genuinely rare.",
-        strength2: "You protect the kingdom before expanding it. Conservative allocations others dismiss have saved you from crises that wiped out the bold.",
+        strength2: "You protect before you expand. Conservative allocations others dismiss have kept you safe through crises that wiped out the bold.",
         weakness: "Even Yudhishthira's dharma led him to wager too cautiously. Allocate a disciplined growth portion — your kingdom deserves to expand.",
     },
 };

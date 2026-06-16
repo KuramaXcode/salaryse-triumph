@@ -163,32 +163,32 @@ const swQuestions: Question[] = [
 const mbhQuestions: Question[] = [
     {
         id: 'mbh_1',
-        text: "Shakuni's ivory dice glint under the torchlight of Hastinapur's sabha. The Pandavas have staked — and lost — Indraprastha in a single sitting. A high-stakes opportunity lands in your lap. What is your instinct?",
+        text: "Shakuni's scheme has collapsed Indraprastha's trade routes overnight. The merchants who supplied your region are gone and prices are in freefall. You still hold capital. What do you do?",
         answers: [
-            { text: "I play. An empire lost in one sitting can be built back greater. Bold conviction is its own dharma.", trait: 'risk_taker', points: 3 },
-            { text: "Shakuni's true weapon wasn't the dice — it was inside information. I study the full odds before I ever sit at the table.", trait: 'analytical', points: 3 },
-            { text: "I never stake Indraprastha on a single throw. My wealth spans enough kingdoms that no one loss can take it all.", trait: 'wealth_builder', points: 3 },
-            { text: "Yudhishthira's error was that he kept playing. I know when to walk away — protecting the principal is dharma.", trait: 'cautious_saver', points: 3 },
+            { text: "Buy aggressively. An empire's collapse is a trader's opportunity — I acquire distressed assets before anyone else recovers.", trait: 'risk_taker', points: 3 },
+            { text: "I study the full damage before touching a single rupee. Shakuni's weapon was rushing — I won't repeat that mistake.", trait: 'analytical', points: 3 },
+            { text: "I was diversified across enough kingdoms that this route's collapse barely touches me. Now I quietly buy what the panicked are selling.", trait: 'wealth_builder', points: 3 },
+            { text: "I liquidate my exposure to the affected region immediately and protect the principal. Preservation comes before opportunity.", trait: 'cautious_saver', points: 3 },
         ]
     },
     {
         id: 'mbh_2',
-        text: "The Chakravyuha has closed around you — a seven-ringed market spiral designed to trap the underprepared. Abhimanyu knew how to enter but not how to exit. How do you move?",
+        text: "A Chakravyuha has formed in the markets — prices have spiraled down 40% across all sectors in seven days. You have fresh capital ready to deploy. How do you move?",
         answers: [
-            { text: "I charge to the innermost ring. Volatility forges warriors. I buy deepest when the formation is tightest.", trait: 'risk_taker', points: 3 },
-            { text: "Abhimanyu fell for incomplete knowledge. I map every ring — every exit — before I commit a single rupee.", trait: 'analytical', points: 3 },
-            { text: "I build income streams from outside the formation and let the trapped fight their way through while I compound.", trait: 'wealth_builder', points: 3 },
-            { text: "I do not enter a formation I cannot exit. Holding reserves outside the Chakravyuha is its own form of victory.", trait: 'cautious_saver', points: 3 },
+            { text: "I charge into the deepest ring. Volatility forges wealth. I buy heaviest when the spiral is tightest.", trait: 'risk_taker', points: 3 },
+            { text: "Abhimanyu fell for entering without knowing every exit. I map every sector's recovery path before I commit a single rupee.", trait: 'analytical', points: 3 },
+            { text: "My income streams sit outside this formation. I let the spiral exhaust itself and compound quietly while others fight through it.", trait: 'wealth_builder', points: 3 },
+            { text: "I do not enter a formation I cannot exit. Holding dry powder outside the Chakravyuha is its own victory.", trait: 'cautious_saver', points: 3 },
         ]
     },
     {
         id: 'mbh_3',
-        text: "On the eve of Kurukshetra, three advisors each offer you one truth to carry into your financial life. Whose counsel shapes you?",
+        text: "The Pandava treasury must be allocated before Kurukshetra: recruit powerful new allies with gold, or hold reserves for a long campaign? How do you divide the war chest?",
         answers: [
-            { text: "Karna's: 'Even knowing the outcome, I stand and fight with everything I have.' Full conviction over safe calculation.", trait: 'risk_taker', points: 3 },
-            { text: "Krishna's: 'See the full field, know every warrior, understand the war before the first arrow flies.' Knowledge wins.", trait: 'analytical', points: 3 },
-            { text: "Vidura's: 'True wealth flows from dharmic action sustained across decades — not seized in a single battle.' Compounding is the path.", trait: 'wealth_builder', points: 3 },
-            { text: "Yudhishthira's: 'The kingdom we already hold is worth more than the empire we might gain.' Guard the foundation above all.", trait: 'cautious_saver', points: 3 },
+            { text: "Spend it all recruiting the most powerful warriors available. Like Karna, I back full conviction over half-measures — the battle is won before it starts.", trait: 'risk_taker', points: 3 },
+            { text: "Survey every allied kingdom's strength and cost before allocating a single coin. Krishna won by knowing the full field — I do the same.", trait: 'analytical', points: 3 },
+            { text: "Split the gold across multiple alliances so no single desertion breaks us. True strength is distributed, not concentrated in one great warrior.", trait: 'wealth_builder', points: 3 },
+            { text: "Hold most of it in reserve. The army we already have is our foundation — Yudhishthira's lesson is that overextending the treasury loses wars.", trait: 'cautious_saver', points: 3 },
         ]
     },
 ];
@@ -198,32 +198,32 @@ const mbhQuestions: Question[] = [
 const dbzQuestions: Question[] = [
     {
         id: 'dbz_1',
-        text: 'Your power level just hit 9,000 — and the market just opened. What\'s your move?',
+        text: "Capsule Corporation's new energy reactor just went public and the stock is surging. You have a sizeable chunk of Zeni saved up. What's your move?",
         answers: [
-            { text: 'All in. Maximum power means maximum position size. I\'m going beyond!', trait: 'risk_taker', points: 3 },
-            { text: 'Channel the energy into building long-term infrastructure, not short-term glory.', trait: 'wealth_builder', points: 3 },
-            { text: 'Scan every sector\'s battle data before committing a single Zeni to the fight.', trait: 'analytical', points: 3 },
-            { text: 'Conserve my ki. A steady reserve beats burning out before the real battle begins.', trait: 'cautious_saver', points: 3 },
+            { text: "All in, maximum position. It's Capsule Corp — this thing only goes beyond from here.", trait: 'risk_taker', points: 3 },
+            { text: "I take a stake now and funnel the gains into building long-term assets. One IPO win becomes the foundation for something bigger.", trait: 'wealth_builder', points: 3 },
+            { text: "I scan every financial report and tech spec before committing. Power level means nothing without knowing if the fundamentals back it up.", trait: 'analytical', points: 3 },
+            { text: "I wait for the hype to settle. A steady reserve beats burning out chasing the first surge — I'll invest when the dust clears.", trait: 'cautious_saver', points: 3 },
         ]
     },
     {
         id: 'dbz_2',
-        text: 'You find all seven Dragon Balls. Instead of immortality, you wish for financial wisdom. What do you ask for?',
+        text: "Bulma discovers a reactor that cuts energy costs by 80%. She offers you a private stake in Capsule Corp before the public announcement. What do you do?",
         answers: [
-            { text: 'The courage to go all-in on the highest-stakes opportunities without hesitation.', trait: 'risk_taker', points: 3 },
-            { text: 'The blueprint to build a company as dominant and enduring as Capsule Corporation.', trait: 'wealth_builder', points: 3 },
-            { text: 'Perfect knowledge of every market — every power level, every weakness, every cycle.', trait: 'analytical', points: 3 },
-            { text: 'Complete financial security for myself and everyone I care about, guaranteed forever.', trait: 'cautious_saver', points: 3 },
+            { text: "I take the maximum stake she'll allow. The upside is enormous and I trust my read on the opportunity.", trait: 'risk_taker', points: 3 },
+            { text: "I negotiate hard for a meaningful stake plus future licensing rights. One deal should open three more doors.", trait: 'wealth_builder', points: 3 },
+            { text: "I ask for the full technical specs and financial projections first. I need to know the power level of this investment before I commit.", trait: 'analytical', points: 3 },
+            { text: "I wait for the public launch and verified results before putting Zeni in. Inside information doesn't guarantee the tech actually works.", trait: 'cautious_saver', points: 3 },
         ]
     },
     {
         id: 'dbz_3',
-        text: 'A rival threatens to destroy your financial base. How do you respond?',
+        text: "Frieza's empire is buying up every trade route in your sector. In 30 days your primary income stream gets cut off. How do you respond?",
         answers: [
-            { text: 'Meet it head-on. I don\'t dodge — I power up and dominate the threat completely.', trait: 'risk_taker', points: 3 },
-            { text: 'Diversify my income streams so no single attack can ever bring down the empire.', trait: 'wealth_builder', points: 3 },
-            { text: 'Study their tactics completely first. I need to know their power level before I act.', trait: 'analytical', points: 3 },
-            { text: 'Hold strict defensive positioning. Protect the base. Never overextend in battle.', trait: 'cautious_saver', points: 3 },
+            { text: "I move aggressively to lock in alternative routes before Frieza completes the monopoly. Attack the problem head-on while there's still time.", trait: 'risk_taker', points: 3 },
+            { text: "I build three new income streams outside Frieza's reach before the deadline hits. No single enemy should ever be able to cut off my empire.", trait: 'wealth_builder', points: 3 },
+            { text: "I map every route Frieza hasn't acquired yet and move on the gaps strategically. Knowing their power level tells me exactly where the opening is.", trait: 'analytical', points: 3 },
+            { text: "I cut expenses immediately and build a cash reserve large enough to survive the income gap. Protect the base — then counter.", trait: 'cautious_saver', points: 3 },
         ]
     },
 ];

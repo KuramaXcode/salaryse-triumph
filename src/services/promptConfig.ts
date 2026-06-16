@@ -33,7 +33,7 @@ export const universeStyles: Record<HouseVariant, UniverseStyle> = {
         mood: 'majestic, warm golden hour lighting, ancient Indian epic atmosphere with divine radiance',
     },
     dbz: {
-        artStyle: 'semi-realistic anime-influenced digital portrait in the Dragon Ball Z universe — stylized illustration with bold cel-shading, vibrant saturated colors, and DBZ energy aesthetics, while the face retains the real person\'s photorealistic features and structure, NOT full Toriyama cartoon anatomy',
+        artStyle: 'Photorealistic portrait — the face is rendered with full lifelike detail, exact skin tone, ethnic features, and bone structure from the reference photo, NOT anime-stylized, NOT Toriyama cartoon face. The costume, ki energy aura, and background use Dragon Ball Z visual language: bold cel-shaded outfit, vibrant saturated colors, glowing golden ki effects. Face = photorealistic human. World = Dragon Ball Z universe.',
         setting: 'dramatic rocky landscape with distant mountains and golden ki energy crackling in the sky in the background',
         mood: 'powerful, energetic, bold orange and gold lighting with glowing ki aura atmosphere',
     },
@@ -68,10 +68,10 @@ export const houseAccents: Record<string, string> = {
     'The Rebel Alliance': 'wearing an orange Rebel flight suit visible at the shoulders with the rebel insignia patch, hangar bay softly out of focus behind — helmet off, face fully visible',
 
     // Dragon Ball Z
-    'Team Goku': 'wearing a vibrant orange Saiyan gi with blue undershirt visible at the collar, grassy plains and distant mountains softly out of focus behind — face and facial features preserved from reference photo, stylized in DBZ illustration aesthetic, no aura effects in front of the face',
-    'Capsule Corp': 'wearing a sleek Capsule Corp branded jacket with the CC logo subtly on the chest, futuristic laboratory with holographic capsule displays softly out of focus behind — face and facial features preserved from reference photo, stylized in DBZ illustration aesthetic',
-    'Frieza Force': 'wearing elegant Frieza Force armor with white and purple shoulderpads, space battleship interior with planet views softly out of focus behind — face and facial features preserved from reference photo, stylized in DBZ illustration aesthetic, no helmet or visor',
-    'Namekian Guardians': 'wearing a martial arts gi with a weighted cape visible at the shoulders, lush green Namekian landscape softly out of focus behind — face and facial features preserved from reference photo, stylized in DBZ illustration aesthetic',
+    'Team Goku': 'wearing a vibrant orange Saiyan gi with blue undershirt visible at the collar, grassy plains and distant mountains softly out of focus behind — face photorealistic and unmistakably the real person, outfit and background in DBZ aesthetic, no aura effects in front of the face',
+    'Capsule Corp': 'wearing a sleek Capsule Corp branded jacket with the CC logo subtly on the chest, futuristic laboratory with holographic capsule displays softly out of focus behind — face photorealistic and unmistakably the real person, outfit and background in DBZ aesthetic',
+    'Frieza Force': 'wearing elegant Frieza Force armor with white and purple shoulderpads, space battleship interior with planet views softly out of focus behind — face photorealistic and unmistakably the real person, outfit and background in DBZ aesthetic, no helmet or visor',
+    'Namekian Guardians': 'wearing a martial arts gi with a weighted cape visible at the shoulders, lush green Namekian landscape softly out of focus behind — face photorealistic and unmistakably the real person, outfit and background in DBZ aesthetic',
 
     // Mahabharata
     "Karna's Path": "wearing golden Karna kavach chest armor with sun-disc shoulder guards, a radiant sunset battlefield with scattered arrows softly out of focus behind — face and facial features preserved from reference photo, stylized in Indian epic film aesthetic, no weapons in front of face",
