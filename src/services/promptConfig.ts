@@ -13,12 +13,12 @@ export const universeStyles: Record<HouseVariant, UniverseStyle> = {
         mood: 'mystical, warm golden lighting, magical atmosphere',
     },
     got: {
-        artStyle: 'dark medieval fantasy, gritty realistic oil painting, Game of Thrones cinematic style',
+        artStyle: 'dark cinematic portrait, gritty realistic, Game of Thrones HBO series aesthetic',
         setting: 'Iron Throne room with dramatic stone architecture in the background',
         mood: 'dark, dramatic, fire-lit, intense atmosphere',
     },
     marvel: {
-        artStyle: 'semi-realistic cinematic portrait in the Marvel Cinematic Universe — stylized digital painting with bold heroic lighting and MCU concept art color grading, while the face retains the real person\'s photorealistic features and structure, NOT a comic-book illustration face',
+        artStyle: 'cinematic portrait in the Marvel Cinematic Universe, MCU live-action film aesthetic with bold dramatic lighting and vivid color grading',
         setting: 'high-tech Avengers headquarters with holographic displays in the background',
         mood: 'heroic, energetic, bold lighting with subtle lens flares',
     },
