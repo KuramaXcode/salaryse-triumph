@@ -64,6 +64,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    z-index: 3;
 }
 
 .capture-btn {
@@ -117,4 +118,76 @@
     background: var(--bg-primary);
     color: white;
     border: 1px solid var(--text-secondary);
+}
+
+/* ── Auto-capture overlay ─────────────────────────────────────────────── */
+
+.auto-capture-ring {
+    position: absolute;
+    width: min(260px, 72%);
+    height: min(320px, 82%);
+    border-radius: 50%;
+    left: 50%;
+    top: 8%;
+    transform: translateX(-50%);
+    /* Huge box-shadow dims everything outside the oval */
+    box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.55);
+    border: 3px solid rgba(255, 255, 255, 0.6);
+    transition: border-color 0.3s ease;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.auto-capture-ring.counting {
+    border-color: #22c55e;
+    animation: ring-pulse 800ms ease-in-out infinite;
+}
+
+@keyframes ring-pulse {
+    0%, 100% { transform: translateX(-50%) scale(1); }
+    50%       { transform: translateX(-50%) scale(1.02); }
+}
+
+.auto-capture-countdown {
+    position: absolute;
+    left: 50%;
+    /* oval top (8%) + half oval height = vertical center of oval */
+    top: calc(8% + min(160px, 41%));
+    transform: translate(-50%, -50%);
+    font-size: 5rem;
+    font-weight: 700;
+    color: white;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    pointer-events: none;
+    z-index: 2;
+}
+
+.auto-capture-hint {
+    position: absolute;
+    bottom: 110px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.875rem;
+    font-weight: 500;
+    white-space: nowrap;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* ── Full-screen flash ────────────────────────────────────────────────── */
+
+.screen-flash {
+    position: fixed;
+    inset: 0;
+    background: white;
+    z-index: 9999;
+    pointer-events: none;
+    animation: flash-fade 300ms ease-out forwards;
+}
+
+@keyframes flash-fade {
+    from { opacity: 1; }
+    to   { opacity: 0; }
 }
