@@ -23,7 +23,7 @@ export const universeStyles: Record<HouseVariant, UniverseStyle> = {
         mood: 'heroic, energetic, bold lighting with subtle lens flares',
     },
     sw: {
-        artStyle: 'sci-fi space opera, Star Wars concept art style, dramatic cinematic lighting',
+        artStyle: 'cinematic sci-fi portrait, Star Wars live-action film aesthetic, dramatic space lighting — no mask, helmet, or visor on the face under any circumstances, face fully visible',
         setting: 'starship bridge overlooking a galaxy with distant planets in the background',
         mood: 'epic, cosmic, blue and purple nebula lighting',
     },
@@ -62,10 +62,10 @@ export const houseAccents: Record<string, string> = {
     'Team Cap': 'wearing the patriotic suit visible at the shoulders with a small star on the chest, dawn light softly out of focus behind — face and facial features preserved from reference photo, stylized in MCU cinematic aesthetic, shield is not in frame',
 
     // Star Wars
-    'The Sith Order': 'wearing dark Sith robes at the shoulders, faint red glow in the background — no lightsaber or hands in front of the face',
-    'The Jedi Council': 'wearing simple Jedi robes at the shoulders, Jedi Temple pillars softly out of focus behind — no lightsaber or hands in front of the face',
-    'The Mandalorians': 'wearing Mandalorian beskar shoulder pauldrons, helmet OFF and held out of frame, starfield softly out of focus behind — face fully visible, no visor',
-    'The Rebel Alliance': 'wearing an orange Rebel flight suit visible at the shoulders with the rebel insignia patch, hangar bay softly out of focus behind — helmet off, face fully visible',
+    'The Sith Order': 'wearing dark Sith robes at the shoulders, faint red glow in the background — no mask, no helmet, no hood covering the face, no lightsaber or hands in front of the face, face fully visible',
+    'The Jedi Council': 'wearing simple Jedi robes at the shoulders, Jedi Temple pillars softly out of focus behind — no mask, no helmet, hood down and off the face, no lightsaber or hands in front of the face, face fully visible',
+    'The Mandalorians': 'wearing Mandalorian beskar shoulder pauldrons, helmet OFF and held out of frame, starfield softly out of focus behind — face fully visible, absolutely no visor or mask',
+    'The Rebel Alliance': 'wearing an orange Rebel flight suit visible at the shoulders with the rebel insignia patch, hangar bay softly out of focus behind — helmet off and out of frame, face fully visible, no mask',
 
     // Dragon Ball Z
     'Team Goku': 'wearing a vibrant orange Saiyan gi with blue undershirt visible at the collar, grassy plains and distant mountains softly out of focus behind — face photorealistic and unmistakably the real person, outfit and background in DBZ aesthetic, no aura effects in front of the face',
