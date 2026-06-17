@@ -113,9 +113,9 @@ const Camera: React.FC<CameraProps> = ({ onCapture, theme }) => {
         lastTickRef.current = performance.now();
         stillnessAccRef.current = 0;
         prevFrameRef.current = null;
-        personDetectedRef.current = false;
+        personDetectedRef.current = true;
         motionAccRef.current = 0;
-        setHasPresence(false);
+        setHasPresence(true);
 
         const tick = (now: number) => {
             if (captureStateRef.current === 'captured') return;
@@ -159,19 +159,17 @@ const Camera: React.FC<CameraProps> = ({ onCapture, theme }) => {
                         personDetectedRef.current = false;
                         motionAccRef.current = 0;
                         setHasPresence(false);
-                    } else if (!personDetectedRef.current) {
-                        // Brief initial motion = person entering the oval
-                        personDetectedRef.current = true;
-                        setHasPresence(true);
                     }
                 } else {
                     // Oval is still
+                    if (!personDetectedRef.current && motionAccRef.current > 0) {
+                        // Motion just stopped after a leave — person re-entered
+                        personDetectedRef.current = true;
+                        setHasPresence(true);
+                    }
                     motionAccRef.current = 0;
                     if (personDetectedRef.current) {
                         stillnessAccRef.current += elapsed;
-                    } else {
-                        // No person detected — static empty oval, never trigger countdown
-                        stillnessAccRef.current = 0;
                     }
                 }
 
