@@ -12,6 +12,7 @@ export default async function handler(req, res) {
   if (req.method !== 'GET') {
     return res.status(405).json({ ok: false, error: 'Method not allowed' });
   }
+  res.setHeader('Cache-Control', 'no-store');
 
   const { id } = req.query;
   if (!id) return res.status(400).json({ ok: false, error: 'id is required' });
