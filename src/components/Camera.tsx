@@ -31,7 +31,7 @@ const Camera: React.FC<CameraProps> = ({ onCapture, theme }) => {
     const startCamera = async () => {
         try {
             const stream = await navigator.mediaDevices.getUserMedia({
-                video: { facingMode: 'user', width: 1280, height: 720 }
+                video: { facingMode: 'user', width: { ideal: 1280 }, height: { ideal: 720 } }
             });
             if (videoRef.current) {
                 videoRef.current.srcObject = stream;
@@ -100,7 +100,7 @@ const Camera: React.FC<CameraProps> = ({ onCapture, theme }) => {
         const oc = offscreenCanvas.current;
         oc.width = 160;
         oc.height = 90;
-        const ctx = oc.getContext('2d');
+        const ctx = oc.getContext('2d', { willReadFrequently: true });
         if (!ctx) return;
 
         lastTickRef.current = performance.now();
@@ -119,10 +119,16 @@ const Camera: React.FC<CameraProps> = ({ onCapture, theme }) => {
             const elapsed = now - lastTickRef.current;
             lastTickRef.current = now;
 
-            ctx.drawImage(video, 0, 0, 160, 90);
-            const frame = ctx.getImageData(0, 0, 160, 90);
+            let frame: ImageData | null = null;
+            try {
+                ctx.drawImage(video, 0, 0, 160, 90);
+                frame = ctx.getImageData(0, 0, 160, 90);
+            } catch {
+                rafRef.current = requestAnimationFrame(tick);
+                return;
+            }
 
-            if (prevFrameRef.current) {
+            if (prevFrameRef.current && frame) {
                 const data = frame.data;
                 const prev = prevFrameRef.current;
                 let diff = 0;
@@ -155,7 +161,7 @@ const Camera: React.FC<CameraProps> = ({ onCapture, theme }) => {
                 }
             }
 
-            prevFrameRef.current = new Uint8ClampedArray(frame.data);
+            prevFrameRef.current = new Uint8ClampedArray(frame!.data);
             rafRef.current = requestAnimationFrame(tick);
         };
 
