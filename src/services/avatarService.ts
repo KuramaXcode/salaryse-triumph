@@ -272,7 +272,7 @@ async function generateWithReplicate(
         const interval = attempt < 12 ? 2_500 : 5_000;
         await new Promise((resolve) => setTimeout(resolve, interval));
         attempt++;
-        const poll = await fetch(`/api/poll-avatar?id=${predictionId}`).catch(() => null);
+        const poll = await fetch(`/api/poll-avatar?id=${predictionId}`, { cache: 'no-store' }).catch(() => null);
         if (!poll?.ok) continue;
         const pollData = await poll.json();
         if (pollData.status === 'succeeded') return buildAvatarResult(pollData, prompt);
