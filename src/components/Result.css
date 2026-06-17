@@ -1347,20 +1347,15 @@
     font-size: 0.85rem;
     font-weight: 900;
     color: #1a1a2e;
-    letter-spacing: 2px;
+    letter-spacing: 4px;
     font-family: 'Cinzel', serif;
     text-shadow: none;
     opacity: 1;
     text-align: center;
     border: 1px solid rgba(184, 134, 11, 0.45);
-    padding: 3px 10px;
+    padding: 3px 16px;
     background: rgba(184, 134, 11, 0.06);
     border-radius: 2px;
-    white-space: nowrap;
-    flex-shrink: 1;
-    min-width: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .character-card.v2 .card-footer {

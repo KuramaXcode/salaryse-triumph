@@ -5,10 +5,6 @@ import { playCameraShutter } from '../hooks/useSound';
 
 const STILL_THRESHOLD = 15;
 const STILLNESS_DURATION = 1500;
-// Oval region in the 160×90 detection canvas (conservative center — always inside the oval on any device)
-const OVAL_X = 56, OVAL_Y = 10, OVAL_W = 48, OVAL_H = 55;
-// Motion lasting this long = person left; shorter motion = brief adjustment, person stays "detected"
-const LEAVE_THRESHOLD = 300;
 type CaptureState = 'aligning' | 'countdown' | 'captured';
 
 interface CameraProps {
@@ -25,15 +21,12 @@ const Camera: React.FC<CameraProps> = ({ onCapture, theme }) => {
     const rafRef = useRef<number>(0);
     const stillnessAccRef = useRef<number>(0);
     const lastTickRef = useRef<number>(0);
-    const personDetectedRef = useRef<boolean>(false);
-    const motionAccRef = useRef<number>(0);
     const countdownTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     const [streamActive, setStreamActive] = useState<boolean>(false);
     const [errorMSG, setErrorMSG] = useState<string | null>(null);
     const [captureState, setCaptureStateRaw] = useState<CaptureState>('aligning');
     const [countdownValue, setCountdownValue] = useState<number | null>(null);
     const [flash, setFlash] = useState(false);
-    const [hasPresence, setHasPresence] = useState<boolean>(false);
 
     const startCamera = async () => {
         try {
@@ -113,9 +106,6 @@ const Camera: React.FC<CameraProps> = ({ onCapture, theme }) => {
         lastTickRef.current = performance.now();
         stillnessAccRef.current = 0;
         prevFrameRef.current = null;
-        personDetectedRef.current = true;
-        motionAccRef.current = 0;
-        setHasPresence(true);
 
         const tick = (now: number) => {
             if (captureStateRef.current === 'captured') return;
@@ -130,46 +120,28 @@ const Camera: React.FC<CameraProps> = ({ onCapture, theme }) => {
             lastTickRef.current = now;
 
             ctx.drawImage(video, 0, 0, 160, 90);
-            // Sample only the oval region — movement outside the oval is irrelevant
-            const oval = ctx.getImageData(OVAL_X, OVAL_Y, OVAL_W, OVAL_H);
+            const frame = ctx.getImageData(0, 0, 160, 90);
 
             if (prevFrameRef.current) {
-                const curr = oval.data;
+                const data = frame.data;
                 const prev = prevFrameRef.current;
                 let diff = 0;
-                for (let i = 0; i < curr.length; i += 4) {
-                    diff += Math.abs(curr[i]     - prev[i]);
-                    diff += Math.abs(curr[i + 1] - prev[i + 1]);
-                    diff += Math.abs(curr[i + 2] - prev[i + 2]);
+                for (let i = 0; i < data.length; i += 4) {
+                    diff += Math.abs(data[i]     - prev[i]);
+                    diff += Math.abs(data[i + 1] - prev[i + 1]);
+                    diff += Math.abs(data[i + 2] - prev[i + 2]);
                 }
-                const mad = diff / (OVAL_W * OVAL_H * 3);
+                const mad = diff / (160 * 90 * 3);
 
-                if (mad >= STILL_THRESHOLD) {
-                    // Motion in oval — cancel any active countdown
-                    motionAccRef.current += elapsed;
+                if (mad < STILL_THRESHOLD) {
+                    stillnessAccRef.current += elapsed;
+                } else {
                     stillnessAccRef.current = 0;
                     if (captureStateRef.current === 'countdown') {
                         if (countdownTimerRef.current) clearTimeout(countdownTimerRef.current);
                         countdownTimerRef.current = null;
                         setCaptureState('aligning');
                         setCountdownValue(null);
-                    }
-                    if (motionAccRef.current >= LEAVE_THRESHOLD) {
-                        // Sustained motion = person left the oval
-                        personDetectedRef.current = false;
-                        motionAccRef.current = 0;
-                        setHasPresence(false);
-                    }
-                } else {
-                    // Oval is still
-                    if (!personDetectedRef.current && motionAccRef.current > 0) {
-                        // Motion just stopped after a leave — person re-entered
-                        personDetectedRef.current = true;
-                        setHasPresence(true);
-                    }
-                    motionAccRef.current = 0;
-                    if (personDetectedRef.current) {
-                        stillnessAccRef.current += elapsed;
                     }
                 }
 
@@ -183,7 +155,7 @@ const Camera: React.FC<CameraProps> = ({ onCapture, theme }) => {
                 }
             }
 
-            prevFrameRef.current = new Uint8ClampedArray(oval.data);
+            prevFrameRef.current = new Uint8ClampedArray(frame.data);
             rafRef.current = requestAnimationFrame(tick);
         };
 
@@ -240,9 +212,7 @@ const Camera: React.FC<CameraProps> = ({ onCapture, theme }) => {
 
                             {/* Hint text — shown while waiting for stillness */}
                             {captureState === 'aligning' && (
-                                <div className="auto-capture-hint">
-                                    {hasPresence ? 'Hold still to capture' : 'Step in front of the camera'}
-                                </div>
+                                <div className="auto-capture-hint">Hold still to capture</div>
                             )}
 
                             {/* Manual fallback button */}
