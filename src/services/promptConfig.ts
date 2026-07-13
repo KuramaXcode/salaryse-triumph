@@ -13,27 +13,27 @@ export const universeStyles: Record<HouseVariant, UniverseStyle> = {
         mood: 'mystical, warm golden lighting, magical atmosphere',
     },
     got: {
-        artStyle: 'dark cinematic portrait, gritty realistic, Game of Thrones HBO series aesthetic',
+        artStyle: 'dark medieval fantasy illustration, gritty painterly style with visible brushwork, Game of Thrones cinematic aesthetic, while the face retains the real person\'s exact features and structure',
         setting: 'Iron Throne room with dramatic stone architecture in the background',
         mood: 'dark, dramatic, fire-lit, intense atmosphere',
     },
     marvel: {
-        artStyle: 'cinematic portrait in the Marvel Cinematic Universe, MCU live-action film aesthetic with bold dramatic lighting and vivid color grading',
+        artStyle: 'modern superhero comic-inspired illustration, bold painterly brushwork and stylized digital linework reminiscent of a Marvel poster painting, not a photograph, while the face retains the real person\'s exact features and structure',
         setting: 'high-tech Avengers headquarters with holographic displays in the background',
         mood: 'heroic, energetic, bold lighting with subtle lens flares',
     },
     sw: {
-        artStyle: 'cinematic sci-fi portrait, Star Wars live-action film aesthetic, dramatic space lighting — no mask, helmet, or visor on the face under any circumstances, face fully visible',
+        artStyle: 'sci-fi space opera illustration, painterly concept-art style with dramatic cosmic lighting, Star Wars cinematic aesthetic, while the face retains the real person\'s exact features and structure — no mask, helmet, or visor on the face under any circumstances, face fully visible',
         setting: 'starship bridge overlooking a galaxy with distant planets in the background',
         mood: 'epic, cosmic, blue and purple nebula lighting',
     },
     mbh: {
-        artStyle: 'semi-realistic digital portrait in the Mahabharata universe — richly detailed illustration with jewel-toned colors, golden divine lighting, and Indian epic film visual language, while the face retains the real person\'s photorealistic features and structure, NOT full stylized mythological illustration anatomy',
+        artStyle: 'Indian epic illustration, richly painted style with jewel-toned colors and golden divine lighting, Mahabharata cinematic visual language, while the face retains the real person\'s exact features and structure, NOT full stylized mythological illustration anatomy',
         setting: 'grand Hastinapur palace with ornate golden pillars and royal war banners in the background',
         mood: 'majestic, warm golden hour lighting, ancient Indian epic atmosphere with divine radiance',
     },
     dbz: {
-        artStyle: 'Photorealistic portrait — the face is rendered with full lifelike detail, exact skin tone, ethnic features, and bone structure from the reference photo, NOT anime-stylized, NOT Toriyama cartoon face. The costume, ki energy aura, and background use Dragon Ball Z visual language: bold cel-shaded outfit, vibrant saturated colors, glowing golden ki effects. Face = photorealistic human. World = Dragon Ball Z universe.',
+        artStyle: 'semi-realistic painted portrait with light digital-painting brushwork, vibrant saturated colors and glowing ki energy inspired by Dragon Ball Z, while the face is rendered with full photorealistic detail, exact skin tone, ethnic features, and bone structure from the reference photo — NOT anime-stylized, NOT cel-shaded, NOT Toriyama cartoon face, only the costume, aura, and background carry the DBZ visual language',
         setting: 'dramatic rocky landscape with distant mountains and golden ki energy crackling in the sky in the background',
         mood: 'powerful, energetic, bold orange and gold lighting with glowing ki aura atmosphere',
     },
@@ -80,13 +80,13 @@ export const houseAccents: Record<string, string> = {
     "Yudhishthira's Dharma": "wearing a white and gold dharmaraj crown and royal Pandava court garb at the shoulders, the grand Indraprastha palace court with ornate pillars softly out of focus behind — face and facial features preserved from reference photo, stylized in Indian epic film aesthetic",
 };
 
-// Trait phrases now describe expression and energy ONLY — no pose verbs that would
-// pull the camera back or change body language away from a portrait crop.
+// Trait phrases describe expression, energy, and pose — dynamic poses are welcome
+// as long as hands/props stay clear of the face (enforced by the identity preamble).
 export const traitDescriptions: Record<string, string> = {
-    'risk_taker': 'bold, fearless expression, confident gaze, slight smirk',
-    'analytical': 'calm, focused expression, sharp intelligent eyes, composed',
-    'wealth_builder': 'confident, ambitious expression, commanding gaze',
-    'cautious_saver': 'steady, calm expression, kind and composed eyes',
+    'risk_taker': 'bold, fearless expression, confident gaze, slight smirk, dynamic action pose',
+    'analytical': 'calm, focused expression, sharp intelligent eyes, composed, precise posture',
+    'wealth_builder': 'confident, ambitious expression, commanding gaze, powerful stance',
+    'cautious_saver': 'steady, calm expression, kind and composed eyes, protective stance',
 };
 
 /**
@@ -117,7 +117,7 @@ export const getIdentityPreamble = (isTextOnly: boolean): string[] => {
     return [
         'PRIMARY GOAL: photorealistic portrait that is unmistakably the same person as the uploaded reference photo.',
         'Preserve EXACTLY: facial structure, skin tone (do not lighten or alter), ethnicity, age, hair color and style, eye color, eyebrows, nose shape, lip shape, and any distinguishing features.',
-        'Framing: head-and-shoulders portrait, face centered and fully visible, eyes looking toward camera, neutral relaxed expression unless otherwise specified.',
-        'Strict rules: no hands, weapons, wands, lightsabers, masks, visors, helmets, or other objects covering, crossing, or near the face. No extreme action pose. No tilted or profile angles — face the camera.',
+        'Framing: face must remain clearly visible and unobstructed — vary the pose, angle, and expression to match the energy of the scene rather than defaulting to a static centered headshot.',
+        'Strict rules: no masks, visors, or helmets covering the face. Hands, weapons, or other props may appear in the scene but must not cross or obscure the face.',
     ];
 };
